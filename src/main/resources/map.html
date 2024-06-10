@@ -1,0 +1,589 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <style>
+        html, body { width: 100%; height: 100%; margin: 0; padding: 0; }
+        #map { position: absolute; top: 0; bottom: 0; right: 0; left: 0; }
+
+        .end-marker {
+            width: 12px;
+            height: 12px;
+            background-color: #EA4335; 
+            border-radius: 50%;
+            border: 2px solid #fff; 
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+        .start-marker {
+            width: 12px;
+            height: 12px;
+            background-color: #34A853; 
+            border-radius: 50%;
+            box-shadow:  0 0 5px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+        var map = L.map('map').setView([50.851368, 5.690973], 13);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var markers = [];
+        var routeLayer = null;
+
+        function updateMap(coordinates) {
+            // Remove existing markers
+            markers.forEach(marker => map.removeLayer(marker));
+            markers = [];
+
+            // Add new markers
+            coordinates.forEach(coord => {
+                var marker = L.marker([coord[0], coord[1]]).addTo(map);
+                markers.push(marker);
+            });
+        }
+
+        function drawRoute(route) {
+            // Remove existing route layer
+            if (routeLayer) {
+                map.removeLayer(routeLayer);
+            }
+
+            // Remove existing markers
+            markers.forEach(marker => map.removeLayer(marker));
+            markers = [];
+
+            // Add new route layer
+            routeLayer = L.polyline(route, { color: '#1A73E8' }).addTo(map);
+
+            // Fit map to route
+            map.fitBounds(routeLayer.getBounds());
+
+            if (route.length > 0) {
+                var startPoint = route[0];
+                var endPoint = route[route.length - 1];
+
+               let startIcon = L.divIcon({
+                    className: 'start-marker',
+                    iconSize: [12, 12]
+                });
+                 
+               let endIcon = L.divIcon({
+                    className: 'end-marker',
+                    iconSize: [12, 12]
+                });
+
+                var endMarker = L.marker([endPoint[0], endPoint[1]], {icon: endIcon}).addTo(map).bindPopup("End Point");
+                var startMarker = L.marker([startPoint[0], startPoint[1]], {icon: startIcon}).addTo(map).bindPopup("Start Point");
+
+                markers.push(startMarker);
+                markers.push(endMarker);
+            }
+        }
+    </script>
+</body>
+</html> -->
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <style>
+        html, body { width: 100%; height: 100%; margin: 0; padding: 0; }
+        #map { position: absolute; top: 0; bottom: 0; right: 0; left: 0; }
+
+        .end-marker {
+            width: 12px;
+            height: 12px;
+            background-color: #EA4335; 
+            border-radius: 50%;
+            border: 2px solid #fff; 
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+        .start-marker {
+            width: 12px;
+            height: 12px;
+            background-color: #34A853; 
+            border-radius: 50%;
+            box-shadow:  0 0 5px rgba(0, 0, 0, 0.5);
+        }
+        #route-description {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 250px;
+            height: 200px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid #ddd;
+            padding: 10px;
+            overflow-y: auto;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            z-index: 1000; /* Higher z-index to bring it in front of the map */
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <div id="map"></div>
+    <div id="route-description"></div>
+    <script>
+        var map = L.map('map').setView([50.851368, 5.690973], 13);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var markers = [];
+        var routeLayer = null;
+
+        function updateMap(coordinates) {
+            // Remove existing markers
+            markers.forEach(marker => map.removeLayer(marker));
+            markers = [];
+
+            // Add new markers
+            coordinates.forEach(coord => {
+                var marker = L.marker([coord[0], coord[1]]).addTo(map);
+                markers.push(marker);
+            });
+        }
+
+        function drawRoute(route) {
+            // Remove existing route layer
+            if (routeLayer) {
+                map.removeLayer(routeLayer);
+            }
+
+            // Remove existing markers
+            markers.forEach(marker => map.removeLayer(marker));
+            markers = [];
+
+            // Add new route layer
+            routeLayer = L.polyline(route, { color: '#1A73E8' }).addTo(map);
+
+            // Fit map to route
+            map.fitBounds(routeLayer.getBounds());
+
+            if (route.length > 0) {
+                var startPoint = route[0];
+                var endPoint = route[route.length - 1];
+
+                let startIcon = L.divIcon({
+                    className: 'start-marker',
+                    iconSize: [12, 12]
+                });
+
+                let endIcon = L.divIcon({
+                    className: 'end-marker',
+                    iconSize: [12, 12]
+                });
+
+                var endMarker = L.marker([endPoint[0], endPoint[1]], {icon: endIcon}).addTo(map).bindPopup("End Point");
+                var startMarker = L.marker([startPoint[0], startPoint[1]], {icon: startIcon}).addTo(map).bindPopup("Start Point");
+
+                markers.push(startMarker);
+                markers.push(endMarker);
+            }
+        }
+
+        function updateRouteDescription(description) {
+            var routeDescriptionDiv = document.getElementById('route-description');
+            routeDescriptionDiv.innerHTML = description;
+            routeDescriptionDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html> -->
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <style>
+        html, body { width: 100%; height: 100%; margin: 0; padding: 0; }
+        #map { position: absolute; top: 0; bottom: 0; right: 0; left: 0; }
+
+        .end-marker {
+            width: 12px;
+            height: 12px;
+            background-color: #EA4335; 
+            border-radius: 50%;
+            border: 2px solid #fff; 
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+        .start-marker {
+            width: 12px;
+            height: 12px;
+            background-color: #34A853; 
+            border-radius: 50%;
+            box-shadow:  0 0 5px rgba(0, 0, 0, 0.5);
+        }
+        #route-description {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 250px;
+            height: 200px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid #ddd;
+            border-radius: 15px; /* Added border-radius for rounded corners */
+            padding: 10px;
+            overflow-y: auto;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            z-index: 1000; /* Higher z-index to bring it in front of the map */
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <div id="map"></div>
+    <div id="route-description"></div>
+    <script>
+        var map = L.map('map').setView([50.851368, 5.690973], 13);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var markers = [];
+        var routeLayer = null;
+
+        function updateMap(coordinates) {
+            // Remove existing markers
+            markers.forEach(marker => map.removeLayer(marker));
+            markers = [];
+
+            // Add new markers
+            coordinates.forEach(coord => {
+                var marker = L.marker([coord[0], coord[1]]).addTo(map);
+                markers.push(marker);
+            });
+        }
+
+        function drawRoute(route) {
+            // Remove existing route layer
+            if (routeLayer) {
+                map.removeLayer(routeLayer);
+            }
+
+            // Remove existing markers
+            markers.forEach(marker => map.removeLayer(marker));
+            markers = [];
+
+            // Add new route layer
+            routeLayer = L.polyline(route, { color: '#1A73E8' }).addTo(map);
+
+            // Fit map to route
+            map.fitBounds(routeLayer.getBounds());
+
+            if (route.length > 0) {
+                var startPoint = route[0];
+                var endPoint = route[route.length - 1];
+
+                let startIcon = L.divIcon({
+                    className: 'start-marker',
+                    iconSize: [12, 12]
+                });
+
+                let endIcon = L.divIcon({
+                    className: 'end-marker',
+                    iconSize: [12, 12]
+                });
+
+                var endMarker = L.marker([endPoint[0], endPoint[1]], {icon: endIcon}).addTo(map).bindPopup("End Point");
+                var startMarker = L.marker([startPoint[0], startPoint[1]], {icon: startIcon}).addTo(map).bindPopup("Start Point");
+
+                markers.push(startMarker);
+                markers.push(endMarker);
+            }
+        }
+
+        function updateRouteDescription(description) {
+            var routeDescriptionDiv = document.getElementById('route-description');
+            routeDescriptionDiv.innerHTML = description;
+            routeDescriptionDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html> -->
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+      }
+
+      .end-marker {
+        width: 12px;
+        height: 12px;
+        background-color: #ea4335;
+        border-radius: 50%;
+        border: 2px solid #fff;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+      }
+      .start-marker {
+        width: 12px;
+        height: 12px;
+        background-color: #34a853;
+        border-radius: 50%;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+      }
+      #route-description {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 250px;
+        height: 200px;
+        background-color: rgba(255, 255, 255, 0.9);
+        border: 1px solid #ddd;
+        border-radius: 15px; /* Added border-radius for rounded corners */
+        padding: 10px;
+        overflow-y: auto;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        z-index: 1000; /* Higher z-index to bring it in front of the map */
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="route-description"></div>
+    <script>
+      var map = L.map("map").setView([50.851368, 5.690973], 13);
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(map);
+
+      var markers = [];
+      var routeLayer = null;
+
+      function updateMap(coordinates) {
+        // Remove existing markers
+        markers.forEach((marker) => map.removeLayer(marker));
+        markers = [];
+
+        // Add new markers
+        coordinates.forEach((coord) => {
+          var marker = L.marker([coord[0], coord[1]]).addTo(map);
+          markers.push(marker);
+        });
+      }
+
+      function drawRoute(route) {
+        // Remove existing route layer
+        if (routeLayer) {
+          map.removeLayer(routeLayer);
+        }
+
+        // Remove existing markers
+        markers.forEach((marker) => map.removeLayer(marker));
+        markers = [];
+
+        // Add new route layer
+        routeLayer = L.polyline(route, { color: "#1A73E8" }).addTo(map);
+
+        // Fit map to route
+        map.fitBounds(routeLayer.getBounds());
+
+        if (route.length > 0) {
+          var startPoint = route[0];
+          var endPoint = route[route.length - 1];
+
+          let startIcon = L.divIcon({
+            className: "start-marker",
+            iconSize: [12, 12],
+          });
+
+          let endIcon = L.divIcon({
+            className: "end-marker",
+            iconSize: [12, 12],
+          });
+
+          var endMarker = L.marker([endPoint[0], endPoint[1]], {
+            icon: endIcon,
+          })
+            .addTo(map)
+            .bindPopup("End Point");
+          var startMarker = L.marker([startPoint[0], startPoint[1]], {
+            icon: startIcon,
+          })
+            .addTo(map)
+            .bindPopup("Start Point");
+
+          markers.push(startMarker);
+          markers.push(endMarker);
+        }
+      }
+
+      function updateRouteDescription(description) {
+        var routeDescriptionDiv = document.getElementById("route-description");
+        routeDescriptionDiv.innerHTML = description;
+        routeDescriptionDiv.style.display = "block";
+      }
+
+      function clearRouteDescription() {
+        var routeDescriptionDiv = document.getElementById("route-description");
+        routeDescriptionDiv.innerHTML = "";
+        routeDescriptionDiv.style.display = "none";
+      }
+    </script>
+  </body>
+</html> -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <style>
+        html, body { width: 100%; height: 100%; margin: 0; padding: 0; }
+        #map { position: absolute; top: 0; bottom: 0; right: 0; left: 0; }
+
+        .end-marker {
+            width: 12px;
+            height: 12px;
+            background-color: #EA4335; 
+            border-radius: 50%;
+            border: 2px solid #fff; 
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+        .start-marker {
+            width: 12px;
+            height: 12px;
+            background-color: #34A853; 
+            border-radius: 50%;
+            box-shadow:  0 0 5px rgba(0, 0, 0, 0.5);
+        }
+        #route-description {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 250px;
+            height: 200px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid #ddd;
+            border-radius: 15px; /* Added border-radius for rounded corners */
+            padding: 10px;
+            overflow-y: auto;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            z-index: 1000; /* Higher z-index to bring it in front of the map */
+            display: none; /* Initially hidden */
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <div id="map"></div>
+    <div id="route-description"></div>
+    <script>
+        var map = L.map('map').setView([50.851368, 5.690973], 13);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var markers = [];
+        var routeLayer = null;
+
+        function updateMap(coordinates) {
+            // Remove existing markers
+            markers.forEach(marker => map.removeLayer(marker));
+            markers = [];
+
+            // Add new markers
+            coordinates.forEach(coord => {
+                var marker = L.marker([coord[0], coord[1]]).addTo(map);
+                markers.push(marker);
+            });
+        }
+
+        function drawRoute(route) {
+            // Remove existing route layer
+            if (routeLayer) {
+                map.removeLayer(routeLayer);
+            }
+
+            // Remove existing markers
+            markers.forEach(marker => map.removeLayer(marker));
+            markers = [];
+
+            // Add new route layer
+            routeLayer = L.polyline(route, { color: '#1A73E8' }).addTo(map);
+
+            // Fit map to route
+            map.fitBounds(routeLayer.getBounds());
+
+            if (route.length > 0) {
+                var startPoint = route[0];
+                var endPoint = route[route.length - 1];
+
+                let startIcon = L.divIcon({
+                    className: 'start-marker',
+                    iconSize: [12, 12]
+                });
+
+                let endIcon = L.divIcon({
+                    className: 'end-marker',
+                    iconSize: [12, 12]
+                });
+
+                var endMarker = L.marker([endPoint[0], endPoint[1]], {icon: endIcon}).addTo(map).bindPopup("End Point");
+                var startMarker = L.marker([startPoint[0], startPoint[1]], {icon: startIcon}).addTo(map).bindPopup("Start Point");
+
+                markers.push(startMarker);
+                markers.push(endMarker);
+            }
+        }
+
+        function showRouteDescription() {
+            var routeDescriptionDiv = document.getElementById('route-description');
+            routeDescriptionDiv.style.display = 'block';
+        }
+
+        function updateRouteDescription(description) {
+            var routeDescriptionDiv = document.getElementById('route-description');
+            routeDescriptionDiv.innerHTML = description;
+            showRouteDescription(); // Ensure the div is shown when updating description
+        }
+
+        function clearRouteDescription() {
+            var routeDescriptionDiv = document.getElementById('route-description');
+            routeDescriptionDiv.innerHTML = '';
+            routeDescriptionDiv.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    environment:
+      DB_HOST: host.docker.internal # if linux ip
+      DB_PORT: 3306
+      DB_NAME: gtfs
+      DB_USER: max
+      DB_PASSWORD: password

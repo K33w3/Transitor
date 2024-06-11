@@ -66,7 +66,6 @@
       <version>3.9.2</version>
       <scope>test</scope>
     </dependency>
-    <!-- JUnit 5 dependencies -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
@@ -82,7 +81,7 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
-      <version>1.7.30</version> <!-- or any other appropriate version -->
+      <version>1.7.30</version>
     </dependency>
   </dependencies>
   <build>

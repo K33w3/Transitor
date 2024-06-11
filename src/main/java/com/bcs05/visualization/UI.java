@@ -206,8 +206,9 @@ public class UI extends JFrame {
                 }
             }
         } catch (Exception e) {
-            //System.err.println("Error in convertCoordinatesToJsArray: " + e.getMessage());
-            e.printStackTrace();
+            Platform.runLater(() -> {
+                webEngine.executeScript("displayError(\"Converting Coordinates to Js Array\");");
+            });
         }
         sb.append("]");
         return sb.toString();
@@ -250,6 +251,7 @@ public class UI extends JFrame {
     }
 
     private List<Coordinates> generateRouteGtfs(String fromPostal, String toPostal, int range) {
+        
         Path route = new GTFSEngine().findShortestDirectPath(fromPostal, toPostal, range / 100.0);
         distance = route.getDistance();
         time = route.getTime().toMinutes();
@@ -260,7 +262,7 @@ public class UI extends JFrame {
         }
 
         return routeCoords;
-    }
+}
 
     private Transportation getTransportationMode(String mode) {
         try {

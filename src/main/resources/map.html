@@ -375,7 +375,6 @@
             left: 0;
             width: 100%;
             height: 100%;
-            /* background-color: rgba(0, 0, 0, 0); */
             display: none;
             z-index: 1050;
             pointer-events: none;
@@ -493,8 +492,6 @@
             <h2 id="route-name">Route Name</h2>
             <p id="route-time">Time: 0 mins</p>
             <p id="route-distance">Distance: 0 m</p>
-            <div id="route-instructions" class="separator"></div>
-            <h2 id="route-instructions-title">Route Instructions</h2>
             <div id="route-instructions"></div>
         </div>
         <div id="notification-container"></div>
@@ -671,28 +668,16 @@
                 document.querySelector(`.route-item[data-route-id='${routeId}']`).classList.add('active');
 
                 var routeInstructions = document.getElementById('route-instructions');
-                var routeInstructionsTitle = document.getElementById('route-instructions-title');
-                routeInstructions.innerHTML = '';
 
                 document.getElementById('route-name').innerText = route.details;
                 document.getElementById('route-time').innerText = `Time: ${route.time}`;
                 document.getElementById('route-distance').innerText = `Distance: ${route.distance}`;
 
-                if (route.mode !== 'bus') {
-                    routeInstructionsTitle.style.display = 'none';
-                    routeInstructions.style.display = 'none';
-                    document.getElementById('route-details-container').style.display = 'block';
-                    document.getElementById('route-details-container').style.height = 'auto';
-                    document.getElementById('route-details-container').style.maxHeight = 'calc(100% - 100px)'; /* Allow for spacing */
-                    document.getElementById('route-details-container').style.overflowY = 'auto';
-                    drawRouteOnMap(route.coordinates);
-                    return;
-                }
+                // Clear previous instructions
+                routeInstructions.innerHTML = '';
 
-                routeInstructionsTitle.style.display = 'block';
-                routeInstructions.style.display = 'block';
-
-                if (route.stops) {
+                if (route.mode === 'bus') {
+                    // Append the instructions
                     route.stops.forEach((step, index) => {
                         var stepDiv = document.createElement('div');
                         stepDiv.className = 'step';

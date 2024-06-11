@@ -80,7 +80,7 @@ public class UI extends JFrame {
 
     public void createJsonJavascript(String fromPostal, String toPostal, String mode, int range) {
         if (isStartEndValid(fromPostal, toPostal)) {
-            System.out.println("the range is " + range);
+           
             List<Coordinates> coordinates = chooseRoute(fromPostal, toPostal, mode, range);
 
             Map<String, Object> routeDetails = new HashMap<>();
@@ -100,7 +100,7 @@ public class UI extends JFrame {
             routeDetails.put("coordinates", coordinatesJsArray);
 
             String routeDetailsJson = new Gson().toJson(routeDetails);
-            System.out.println("Generated JSON: " + routeDetailsJson);
+            
 
             String escapedJson = routeDetailsJson.replace("\"", "\\\"");
             String jsCode = "receiveRouteDetails(\"" + escapedJson + "\");";
@@ -214,7 +214,7 @@ public class UI extends JFrame {
     }
 
     private List<Coordinates> chooseRoute(String fromPostal, String toPostal, String mode, int range) {
-        System.out.println("managed to call this method choose" + range);
+
         switch (mode) {
             case "bus":
                 return generateRouteGtfs(fromPostal, toPostal, range);

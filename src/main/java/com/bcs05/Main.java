@@ -9,7 +9,7 @@ public final class Main {
 
     public static void main(String[] args) {
         UI ui = new UI();
-        ui.setExtendedState(JFrame.MAXIMIZED_BOTH);
+       // ui.setExtendedState(JFrame.MAXIMIZED_BOTH);
         ui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ui.setVisible(true);
     }

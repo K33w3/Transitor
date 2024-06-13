@@ -59,7 +59,6 @@ public class GTFSDataHandler {
                             AND stop_times.stop_id IN (
                                 SELECT stop_id
                                 FROM stops
-                                WHERE stop_name LIKE 'Maastricht%'
                             )
                             AND trips.route_id IN (
                                 SELECT route_id

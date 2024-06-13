@@ -1,0 +1,4845 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-ide",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2023-07-03T08:44:15Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/34050681",
+        "name": "Museum de Historische Drukkerij",
+        "tourism": "museum",
+        "website": "https://www.drukmuseum.nl",
+        "wikidata": "Q30163006"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6932054,
+          50.8500353
+        ]
+      },
+      "id": "node/34050681"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/260985537",
+        "description": "https://photos.app.goo.gl/G4cz6YsZfXJzVS73A",
+        "image": "https://images.mapillary.com/MHMiMu10olbDFpIcFiU5bR/thumb-2048.jpg",
+        "mapillary": "514745156230574",
+        "tourism": "viewpoint"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6925409,
+          50.8227839
+        ]
+      },
+      "id": "node/260985537"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/293248973",
+        "information": "map",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6795449,
+          50.8440609
+        ]
+      },
+      "id": "node/293248973"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/391453461",
+        "artist_name": "Charles Eyck",
+        "artwork_type": "statue",
+        "historic": "memorial",
+        "memorial": "war_memorial",
+        "name": "Limburgs Bevrijdingsmonument",
+        "tourism": "artwork",
+        "wheelchair": "limited"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7103517,
+          50.849265
+        ]
+      },
+      "id": "node/391453461"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/392677946",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.730517,
+          50.8247234
+        ]
+      },
+      "id": "node/392677946"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/430472959",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6958909,
+          50.8465163
+        ]
+      },
+      "id": "node/430472959"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/476646999",
+        "name": "Bastion Hotel",
+        "tourism": "hotel",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6903637,
+          50.8551734
+        ]
+      },
+      "id": "node/476646999"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/520644278",
+        "information": "board",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.682104,
+          50.8549045
+        ]
+      },
+      "id": "node/520644278"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/605237779",
+        "addr:city": "Maastricht",
+        "addr:country": "NL",
+        "addr:housenumber": "16",
+        "addr:postcode": "6221CR",
+        "addr:province": "Limburg",
+        "addr:street": "Hoogbrugstraat",
+        "email": "info@auliondor.nl",
+        "internet_access": "wlan",
+        "internet_access:fee": "yes",
+        "name": "Au Lion d'Or",
+        "phone": "+31 43 321 1467",
+        "smoking": "no",
+        "source": "www.auliondor.nl",
+        "tourism": "hotel",
+        "website": "https://www.auliondor.nl/",
+        "wheelchair": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.701518,
+          50.847366
+        ]
+      },
+      "id": "node/605237779"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/714007993",
+        "addr:city": "Maastricht",
+        "addr:country": "NL",
+        "addr:housenumber": "2",
+        "addr:postcode": "6221BP",
+        "addr:street": "Stationsstraat",
+        "email": "info@hotel-empereur.nl",
+        "name": "L'Empereur",
+        "operator": "Amrath",
+        "phone": "+31 43 321 3838",
+        "rooms": "149",
+        "source": "BAG",
+        "source:date": "2014-03-24",
+        "stars": "4",
+        "tourism": "hotel",
+        "website": "https://www.amrathhotelempereur.nl"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7044971,
+          50.8498702
+        ]
+      },
+      "id": "node/714007993"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/714012491",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7033342,
+          50.8496381
+        ]
+      },
+      "id": "node/714012491"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/715176759",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "47",
+        "addr:postcode": "6221BN",
+        "addr:street": "Stationsstraat",
+        "amenity": "pub",
+        "email": "poshoorn@hetnet.nl",
+        "name": "De Poshoorn",
+        "phone": "+31 43 321 7334",
+        "source": "BAG",
+        "source:date": "2014-03-24",
+        "tourism": "hotel",
+        "website": "https://www.poshoorn.nl/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7012271,
+          50.8493871
+        ]
+      },
+      "id": "node/715176759"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/715186107",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6995709,
+          50.8495747
+        ]
+      },
+      "id": "node/715186107"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/715566830",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6952331,
+          50.8437152
+        ]
+      },
+      "id": "node/715566830"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/715566838",
+        "information": "map",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6953066,
+          50.8428478
+        ]
+      },
+      "id": "node/715566838"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/715573134",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6891517,
+          50.8487217
+        ]
+      },
+      "id": "node/715573134"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/715588699",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "11",
+        "addr:postcode": "6211LG",
+        "addr:street": "Papenstraat",
+        "email": "info@hotelbotticelli.nl",
+        "name": "Botticelli",
+        "phone": "+31 43 352 6300",
+        "source": "BAG",
+        "source:date": "2014-03-24",
+        "tourism": "hotel",
+        "website": "https://www.hotelbotticelli.nl"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6883648,
+          50.8477802
+        ]
+      },
+      "id": "node/715588699"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/715743860",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6903875,
+          50.8526465
+        ]
+      },
+      "id": "node/715743860"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/715743865",
+        "information": "map",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6899691,
+          50.8536286
+        ]
+      },
+      "id": "node/715743865"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/715750342",
+        "information": "map",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6898119,
+          50.8543232
+        ]
+      },
+      "id": "node/715750342"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/724554693",
+        "information": "map",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7029838,
+          50.8388416
+        ]
+      },
+      "id": "node/724554693"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/791011607",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6660744,
+          50.8198911
+        ]
+      },
+      "id": "node/791011607"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/833469594",
+        "name": "hip Hotel",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7036731,
+          50.8516454
+        ]
+      },
+      "id": "node/833469594"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/833469599",
+        "name": "Townhouse Hotel",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7037214,
+          50.8513896
+        ]
+      },
+      "id": "node/833469599"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/840593364",
+        "loc_name": "Berekojl",
+        "name": "Berenkuil",
+        "name:li": "Berekojl",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6843646,
+          50.8436123
+        ]
+      },
+      "id": "node/840593364"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/840600344",
+        "artwork_type": "statue",
+        "name": "D'Artagnan",
+        "name:en": "D'Artagnan Monument",
+        "name:es": "D Artagnan Monument",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6837213,
+          50.844399
+        ]
+      },
+      "id": "node/840600344"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/840621532",
+        "artwork_type": "statue",
+        "name": "De Mens in het Heelal",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6814064,
+          50.8445946
+        ]
+      },
+      "id": "node/840621532"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/914049730",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7271565,
+          50.8336988
+        ]
+      },
+      "id": "node/914049730"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/945421077",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "6",
+        "addr:postcode": "6211HD",
+        "addr:street": "Onze Lieve Vrouweplein",
+        "email": "info@derlon.com",
+        "name": "Derlon",
+        "phone": "+31 43 321 6770",
+        "tourism": "hotel",
+        "website": "https://www.derlon.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6932084,
+          50.8478604
+        ]
+      },
+      "id": "node/945421077"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/945421086",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "2B",
+        "addr:postcode": "6211HT",
+        "addr:street": "Cortenstraat",
+        "email": "info@levirage.nl",
+        "name": "Le Virage",
+        "phone": "+31 43 321 6608",
+        "source": "BAG",
+        "source:date": "2014-03-24",
+        "tourism": "hotel",
+        "website": "https://www.levirage.nl"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6926383,
+          50.8470381
+        ]
+      },
+      "id": "node/945421086"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/945421098",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "18",
+        "addr:postcode": "6211KR",
+        "addr:street": "Lenculenstraat",
+        "email": "info@hotellescharmes.nl",
+        "name": "Hotel Les Charme",
+        "phone": "+31 43 321 2521",
+        "source": "BAG",
+        "source:date": "2014-03-24",
+        "tourism": "hotel",
+        "website": "https://www.charmes.nl"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6888325,
+          50.8467515
+        ]
+      },
+      "id": "node/945421098"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/945421123",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "32",
+        "addr:postcode": "6211KW",
+        "addr:street": "Kapoenstraat",
+        "email": "info@auquartier.nl",
+        "internet_access": "wlan",
+        "internet_access:fee": "no",
+        "name": "Hotel Au Quartier",
+        "phone": "+31 43 325 8088",
+        "rooms": "14",
+        "source": "BAG",
+        "source:date": "2014-03-24",
+        "tourism": "hotel",
+        "website": "https://www.petitbonheur.nl"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6901772,
+          50.8466178
+        ]
+      },
+      "id": "node/945421123"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/945428534",
+        "email": "info@beaumont.nl",
+        "name": "Beaumont",
+        "phone": "+31 43 325 4433",
+        "tourism": "hotel",
+        "website": "https://www.beaumonthotel.nl/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7007602,
+          50.8496507
+        ]
+      },
+      "id": "node/945428534"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1117935143",
+        "name": "Stichting Dierenpark",
+        "opening_hours": "24/7",
+        "tourism": "zoo"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6896533,
+          50.8434612
+        ]
+      },
+      "id": "node/1117935143"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1117935147",
+        "mapillary": "199864918644310",
+        "tourism": "viewpoint"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6851639,
+          50.8304095
+        ]
+      },
+      "id": "node/1117935147"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1321704381",
+        "tourism": "viewpoint"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6887109,
+          50.8318308
+        ]
+      },
+      "id": "node/1321704381"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1332211739",
+        "description": "https://photos.app.goo.gl/R1KroNYWaR8rcCkB8",
+        "historic": "milestone",
+        "image": "https://i.imgur.com/BxQogMG.jpg",
+        "mapillary": "471058770825939",
+        "name": "Pieterpadmonument",
+        "tourism": "artwork",
+        "website": "https://nl.wikipedia.org/wiki/Pieterpad"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6865154,
+          50.8266512
+        ]
+      },
+      "id": "node/1332211739"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1419298633",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7251512,
+          50.8438735
+        ]
+      },
+      "id": "node/1419298633"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1771581725",
+        "tourism": "viewpoint"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6875285,
+          50.8327991
+        ]
+      },
+      "id": "node/1771581725"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1771581726",
+        "name": "Slavante",
+        "tourism": "viewpoint"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6952656,
+          50.8259048
+        ]
+      },
+      "id": "node/1771581726"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1771581728",
+        "tourism": "viewpoint"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6855178,
+          50.8352842
+        ]
+      },
+      "id": "node/1771581728"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1771581729",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "71",
+        "addr:street": "Luikerweg",
+        "name": "Informatiepunt van Grotten Noord en Fort Sint Pieter",
+        "name:nl": "Informatiepunt van Grotten Noord en Fort Sint Pieter",
+        "tourism": "information",
+        "website": "https://www.maastrichtunderground.nl"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6854457,
+          50.8351927
+        ]
+      },
+      "id": "node/1771581729"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1771581734",
+        "tourism": "viewpoint"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.683929,
+          50.8359804
+        ]
+      },
+      "id": "node/1771581734"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1771583194",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "1",
+        "addr:postcode": "6212ET",
+        "addr:street": "Luikerweg",
+        "email": "info@hotelpastis.nl",
+        "name": "Hotel Pastis",
+        "phone": "+31 43 358 0110",
+        "source": "BAG",
+        "source:date": "2014-03-24",
+        "tourism": "hotel",
+        "website": "https://www.hotelpastis.nl"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6877687,
+          50.8403081
+        ]
+      },
+      "id": "node/1771583194"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2650701092",
+        "name": "N More",
+        "tourism": "museum"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6867884,
+          50.8508529
+        ]
+      },
+      "id": "node/2650701092"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2653532539",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "104-106",
+        "addr:postcode": "6221AZ",
+        "addr:street": "Boschstraat",
+        "email": "info@beezmaastricht.nl",
+        "name": "Hotel Beez",
+        "old_name": "Hotel Holla",
+        "phone": "+31 43 321 3523",
+        "tourism": "hotel",
+        "website": "https://beezmaastricht.nl"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6899274,
+          50.8524474
+        ]
+      },
+      "id": "node/2653532539"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2653547992",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "4",
+        "addr:postcode": "6221CB",
+        "addr:street": "Kleine Gracht",
+        "name": "Hotel d'Orangerie",
+        "phone": "+31 43 326 1111",
+        "tourism": "hotel",
+        "website": "http://www.hotel-orangerie.nl/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6934049,
+          50.8529186
+        ]
+      },
+      "id": "node/2653547992"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2653547993",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "24",
+        "addr:postcode": "6211CB",
+        "addr:street": "Kleine Gracht",
+        "email": "info@hotelmabi.nl",
+        "name": "Hotel Mabi",
+        "phone": "+31 43 351 4444",
+        "tourism": "hotel",
+        "website": "https://www.hotelmabi.nl/citycentre/index.php"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6920577,
+          50.8526225
+        ]
+      },
+      "id": "node/2653547993"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2795989481",
+        "name": "De Wieringerberg",
+        "tourism": "zoo",
+        "zoo": "petting_zoo"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7245986,
+          50.8185317
+        ]
+      },
+      "id": "node/2795989481"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2795989483",
+        "name": "Hoogenweerth suites",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6996655,
+          50.8218188
+        ]
+      },
+      "id": "node/2795989483"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2796998734",
+        "name": "Van der Valk",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.719692,
+          50.8419246
+        ]
+      },
+      "id": "node/2796998734"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2799136805",
+        "name": "Apart Hotels",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7159981,
+          50.8379447
+        ]
+      },
+      "id": "node/2799136805"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2799137700",
+        "name": "NH Maastricht Hotel",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.714124,
+          50.8376763
+        ]
+      },
+      "id": "node/2799137700"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2800074048",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "29",
+        "addr:postcode": "6213CH",
+        "addr:street": "d'Artagnanlaan",
+        "building:architecture": "modern",
+        "name": "Wiel Arets Architect B.V.",
+        "phone": "+31 43 351 2200",
+        "source": "BAG",
+        "source:date": "2014-03-24",
+        "tourism": "attraction",
+        "website": "https://www.wielaretsarchitects.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6734355,
+          50.8410343
+        ]
+      },
+      "id": "node/2800074048"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2802134197",
+        "board_type": "history",
+        "information": "board",
+        "name": "Slagveld Lanakerveld",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6558984,
+          50.8727349
+        ]
+      },
+      "id": "node/2802134197"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2804889895",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "1",
+        "addr:postcode": "6211ED",
+        "addr:street": "Kleine Staat",
+        "email": "info@vvvmaastricht.nl",
+        "information": "office",
+        "name": "Maastricht Visitor Center",
+        "name:nl": "VVV Maastricht",
+        "opening_hours": "Mo-Sa 10:00-18:00; Su 11:00-17:00",
+        "phone": "+31 43 325 2121",
+        "source": "BAG",
+        "source:date": "2018-05-08",
+        "tourism": "information",
+        "website": "https://www.vvvmaastricht.nl/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6925304,
+          50.8498775
+        ]
+      },
+      "id": "node/2804889895"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2804889984",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "101",
+        "addr:postcode": "6211JW",
+        "addr:street": "Maasboulevard",
+        "internet_access": "wlan",
+        "name": "Stayokay Maastricht",
+        "old_name": "Jeugdherberg Maastricht",
+        "operator": "Stayokay",
+        "source": "BAG",
+        "source:date": "2014-03-24",
+        "tourism": "hostel",
+        "website": "https://www.stayokay.com/nl/hostel/maastricht",
+        "wheelchair": "limited",
+        "wikimedia_commons": "File:Maastricht, Maas, Stayokay.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6975105,
+          50.843568
+        ]
+      },
+      "id": "node/2804889984"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2804890823",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "12",
+        "addr:postcode": "6211EX",
+        "addr:street": "Het Bat",
+        "air_conditioning": "yes",
+        "brand": "easyHotel",
+        "brand:wikidata": "Q17011598",
+        "internet_access": "wlan",
+        "name": "easyHotel Maastricht City Centre",
+        "smoking": "no",
+        "source": "BAG",
+        "source:date": "2014-03-24",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6948211,
+          50.8478109
+        ]
+      },
+      "id": "node/2804890823"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2804891254",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "14",
+        "addr:postcode": "6211TA",
+        "addr:street": "Helmstraat",
+        "internet_access": "yes",
+        "internet_access:fee": "no",
+        "name": "Hotel Du Casque",
+        "operator": "Amrath",
+        "phone": "+31 43 321 4343",
+        "source": "BAG",
+        "source:date": "2014-03-24",
+        "tourism": "hotel",
+        "website": "https://www.amrathhotels.nl/ducasque/welcome-en.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6888593,
+          50.8502696
+        ]
+      },
+      "id": "node/2804891254"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2804892708",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "18",
+        "addr:postcode": "6211LD",
+        "addr:street": "Vrijthof",
+        "description": "photography museum",
+        "fee": "yes",
+        "name": "Museum aan het Vrijthof",
+        "opening_hours": "Tu-Su 10:00-17:30",
+        "payment:museumkaart": "yes",
+        "source": "BAG",
+        "source:date": "2014-03-24",
+        "tourism": "museum",
+        "website": "https://www.museumaanhetvrijthof.nl",
+        "wikidata": "Q1634251",
+        "wikipedia": "nl:Fotomuseum aan het Vrijthof"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6887551,
+          50.8483543
+        ]
+      },
+      "id": "node/2804892708"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2804892774",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "19",
+        "addr:postcode": "6211NW",
+        "addr:street": "Kruisherengang",
+        "brand": "Château Hotels",
+        "email": "info@kruisherenhotel.nl",
+        "name": "Kruisherenhotel",
+        "phone": "+31 43 329 2020",
+        "rooms": "60",
+        "source": "BAG",
+        "source:date": "2014-03-24",
+        "stars": "5",
+        "tourism": "hotel",
+        "website": "https://www.oostwegelcollection.nl/kruisherenhotel-maastricht"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6838029,
+          50.8487435
+        ]
+      },
+      "id": "node/2804892774"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2804898387",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "32",
+        "addr:postcode": "6211LE",
+        "addr:street": "Vrijthof",
+        "name": "Saillant Hotel Maastricht",
+        "source": "BAG",
+        "source:date": "2014-03-24",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6874669,
+          50.8495545
+        ]
+      },
+      "id": "node/2804898387"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2804898630",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "7",
+        "addr:postcode": "6211JM",
+        "addr:street": "Sint Pieterstraat",
+        "name": "Regionaal Historisch Centrum Limburg",
+        "source": "BAG",
+        "source:date": "2014-03-24",
+        "tourism": "museum",
+        "website": "https://www.rhcl.nl/",
+        "wikidata": "Q21004453",
+        "wikimedia_commons": "Category:RHCL (Maastricht)",
+        "wikipedia": "nl:Regionaal Historisch Centrum Limburg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6927111,
+          50.8457856
+        ]
+      },
+      "id": "node/2804898630"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2804898641",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "7",
+        "addr:postcode": "6211KJ",
+        "addr:street": "De Bosquetplein",
+        "fee": "yes",
+        "name": "Natuurhistorisch Museum Maastricht",
+        "opening_hours": "Tu-Fr 11:00-17:00; Sa,Su 13:00-17:00",
+        "payment:museumkaart": "yes",
+        "source": "BAG",
+        "source:date": "2014-03-24",
+        "tourism": "museum",
+        "website": "https://nhmmaastricht.nl/",
+        "wikidata": "Q2412016"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6878046,
+          50.8450433
+        ]
+      },
+      "id": "node/2804898641"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2804900231",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "5",
+        "addr:postcode": "6211HK",
+        "addr:street": "Sint Bernardusstraat",
+        "contact:phone": "+31 43 321 2211",
+        "name": "Zenden Design Hotel",
+        "source": "BAG",
+        "source:date": "2014-03-24",
+        "tourism": "hotel",
+        "website": "https://www.zenden.nl/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6942178,
+          50.8466971
+        ]
+      },
+      "id": "node/2804900231"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2804902056",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "6",
+        "addr:postcode": "6211HD",
+        "addr:street": "Onze Lieve Vrouweplein",
+        "name": "Museumkelder Derlon",
+        "operator": "Hotel Derlon",
+        "source": "BAG",
+        "source:date": "2014-03-24",
+        "tourism": "museum",
+        "wikidata": "Q13866198",
+        "wikipedia": "nl:Museumkelder Derlon"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6931982,
+          50.8477987
+        ]
+      },
+      "id": "node/2804902056"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2808609717",
+        "name": "Museum van illusies",
+        "opening_hours": "We-Sa 10:00-18:00",
+        "phone": "+31 43 205 7184",
+        "source": "BAG",
+        "source:date": "2014-03-24",
+        "tourism": "museum",
+        "website": "https://maastricht.museumofillusions.nl/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6933129,
+          50.8516219
+        ]
+      },
+      "id": "node/2808609717"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2808615312",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "34",
+        "addr:postcode": "6211CB",
+        "addr:street": "Kleine Gracht",
+        "name": "Matuchi",
+        "source": "BAG",
+        "source:date": "2014-03-24",
+        "tourism": "hotel",
+        "website": "http://www.matuchi.eu/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6916128,
+          50.8522859
+        ]
+      },
+      "id": "node/2808615312"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2808615702",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "37",
+        "addr:postcode": "6211CK",
+        "addr:street": "Markt",
+        "amenity": "restaurant",
+        "diet:vegan": "no",
+        "diet:vegetarian": "yes",
+        "name": "de la Bourse",
+        "source": "BAG",
+        "source:date": "2014-03-24",
+        "tourism": "hotel",
+        "website": "https://www.hoteldelabourse.nl"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6913824,
+          50.8519127
+        ]
+      },
+      "id": "node/2808615702"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2808618022",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "98",
+        "addr:postcode": "6211RT",
+        "addr:street": "Capucijnenstraat",
+        "check_date:opening_hours": "2023-02-28",
+        "description": "Contemporary Culture",
+        "fee": "yes",
+        "name": "Marres",
+        "opening_hours": "Tu-Su 12:00-17:00",
+        "payment:museumkaart": "yes",
+        "source": "BAG",
+        "source:date": "2014-03-24",
+        "tourism": "museum",
+        "website": "https://www.marres.org/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.685843,
+          50.8518926
+        ]
+      },
+      "id": "node/2808618022"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2809147252",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "2A",
+        "addr:postcode": "6219PD",
+        "addr:street": "Lage Frontweg",
+        "attraction": "escape_room",
+        "name": "Roomescape Maastricht",
+        "source": "BAG",
+        "source:date": "2017-09-11",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6825065,
+          50.8563095
+        ]
+      },
+      "id": "node/2809147252"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2809148350",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "488",
+        "addr:postcode": "6219NP",
+        "addr:street": "Brusselseweg",
+        "email": "info@villaloca.nl",
+        "internet_access": "wlan",
+        "name": "B&B Villaloca",
+        "name:en": "Bed and Breakfast Villaloca",
+        "phone": "+31 43 850 2582",
+        "source": "BAG",
+        "source:date": "2014-03-24",
+        "tourism": "guest_house",
+        "website": "http://www.villaloca.nl"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6723219,
+          50.8645054
+        ]
+      },
+      "id": "node/2809148350"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2809835850",
+        "brand": "Crowne Plaza",
+        "brand:wikidata": "Q2746220",
+        "name": "Crowne Plaza",
+        "tourism": "hotel",
+        "wheelchair": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6982457,
+          50.8470536
+        ]
+      },
+      "id": "node/2809835850"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2809843382",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "11",
+        "addr:postcode": "6221AV",
+        "addr:street": "Sint Maartenslaan",
+        "guest_house": "hostel",
+        "internet_access": "wlan",
+        "internet_access:fee": "customers",
+        "name": "The Green Elephant",
+        "source": "BAG",
+        "source:date": "2014-03-24",
+        "tourism": "hostel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7032068,
+          50.8513053
+        ]
+      },
+      "id": "node/2809843382"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2809854059",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "19",
+        "addr:postcode": "6221BN",
+        "addr:street": "Stationsstraat",
+        "amenity": "fast_food",
+        "cuisine": "mexican",
+        "email": "babsburritos@gmail.com",
+        "name": "BABs Burritos",
+        "name:ka": "Saxle",
+        "opening_hours": "Su-We 12:00-22:00; Th-Sa 12:00-23:00",
+        "phone": "+31 6 10232335",
+        "source": "BAG",
+        "source:date": "2014-03-24",
+        "tourism": "apartment",
+        "website": "http://babsburritos.nl"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7032548,
+          50.8494676
+        ]
+      },
+      "id": "node/2809854059"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2810584409",
+        "name": "Apple Park",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7168165,
+          50.8585372
+        ]
+      },
+      "id": "node/2810584409"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2811255296",
+        "name": "Novotel",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7180985,
+          50.8449527
+        ]
+      },
+      "id": "node/2811255296"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2811766608",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "2",
+        "addr:postcode": "6222BM",
+        "addr:street": "Bethlehemweg",
+        "email": "teachinghotel@hszuyd.nl",
+        "internet_access": "yes",
+        "internet_access:fee": "free",
+        "internet_access:type": "wifi",
+        "name": "Teaching Hotel",
+        "opening_hours": "Mo-Su 12:00-24:00",
+        "operator": "Hotelschool Maastricht",
+        "phone": "+31 43 352 8292",
+        "smoking": "not allowed",
+        "source": "BAG",
+        "source:date": "2014-03-24",
+        "tourism": "hotel",
+        "website": "https://www.hotelschoolmaastricht.nl/hotel-en-restaurant",
+        "wheelchair": "limited"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7108683,
+          50.8679132
+        ]
+      },
+      "id": "node/2811766608"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2811786049",
+        "name": "Kasteel Vaeshartelt",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7258569,
+          50.8795186
+        ]
+      },
+      "id": "node/2811786049"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2951186874",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7087701,
+          50.8383321
+        ]
+      },
+      "id": "node/2951186874"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2951186875",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7135605,
+          50.841823
+        ]
+      },
+      "id": "node/2951186875"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2951186876",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.718544,
+          50.8467972
+        ]
+      },
+      "id": "node/2951186876"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2951186878",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7241901,
+          50.841303
+        ]
+      },
+      "id": "node/2951186878"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2951192852",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7135752,
+          50.8371769
+        ]
+      },
+      "id": "node/2951192852"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2951192853",
+        "artist_name": "Felix van de Beek",
+        "artwork_type": "sculpture",
+        "name": "Monument van de dipoolmomenten van Peter Debye",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7125104,
+          50.8351883
+        ]
+      },
+      "id": "node/2951192853"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2951192854",
+        "artist_name": "Marco Juriën",
+        "artwork_type": "sculpture",
+        "material": "concrete",
+        "name": "Zonder titel/No Title",
+        "tourism": "artwork",
+        "website": "https://www.kec-um.nl/uploads/files/meer_over_kunstwerk/258_Zonder-titel--1978.pdf"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7122502,
+          50.8348156
+        ]
+      },
+      "id": "node/2951192854"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2951197192",
+        "artist_name": "Alexander Suma",
+        "artwork_type": "sculpture",
+        "material": "concrete",
+        "name": "Relax & Meet",
+        "source": "survey",
+        "start_date": "2007",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7024549,
+          50.8378815
+        ]
+      },
+      "id": "node/2951197192"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2951197193",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.702495,
+          50.8422735
+        ]
+      },
+      "id": "node/2951197193"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2951197194",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7027271,
+          50.841788
+        ]
+      },
+      "id": "node/2951197194"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2951264227",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7160683,
+          50.8579114
+        ]
+      },
+      "id": "node/2951264227"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2951264228",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.716991,
+          50.8599262
+        ]
+      },
+      "id": "node/2951264228"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2951275091",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7172968,
+          50.8586327
+        ]
+      },
+      "id": "node/2951275091"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2951328220",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6963891,
+          50.841298
+        ]
+      },
+      "id": "node/2951328220"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3018655766",
+        "information": "board",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6791185,
+          50.8717512
+        ]
+      },
+      "id": "node/3018655766"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3120959990",
+        "name": "Maastricht marina",
+        "tourism": "caravan_site"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.703373,
+          50.8246857
+        ]
+      },
+      "id": "node/3120959990"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3453439093",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "8",
+        "addr:postcode": "6211CC",
+        "addr:street": "van Hasseltkade",
+        "contact:phone": "+31 43 310 0310",
+        "name": "Hotel Bigarré",
+        "tourism": "hotel",
+        "website": "https://www.bigarre.nl/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6935073,
+          50.853861
+        ]
+      },
+      "id": "node/3453439093"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3851974858",
+        "description": "https://photos.app.goo.gl/GaaJXMfCa2ZyWYdY6",
+        "mapillary": "496320104846634",
+        "tourism": "viewpoint",
+        "wikidata": "Q108307114"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6864902,
+          50.8264049
+        ]
+      },
+      "id": "node/3851974858"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3857879776",
+        "tourism": "viewpoint"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6844959,
+          50.835527
+        ]
+      },
+      "id": "node/3857879776"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3863913597",
+        "tourism": "viewpoint"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6789854,
+          50.8202589
+        ]
+      },
+      "id": "node/3863913597"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3863913611",
+        "tourism": "viewpoint"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6777274,
+          50.8259937
+        ]
+      },
+      "id": "node/3863913611"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3866183763",
+        "fee": "yes",
+        "name": "Grotten Zonneberg",
+        "natural": "cave_entrance",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6946674,
+          50.8257309
+        ]
+      },
+      "id": "node/3866183763"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3866183764",
+        "information": "board",
+        "name": "Pietersberg",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6863653,
+          50.8162825
+        ]
+      },
+      "id": "node/3866183764"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3866183765",
+        "information": "board",
+        "name": "Sint-Pietersberg",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6852671,
+          50.8357152
+        ]
+      },
+      "id": "node/3866183765"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3924561078",
+        "information": "board",
+        "name": "D'n Observant",
+        "tourism": "information",
+        "wikidata": "Q13509950"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6890985,
+          50.8135438
+        ]
+      },
+      "id": "node/3924561078"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3924594595",
+        "board_type": "nature",
+        "information": "board",
+        "name": "Oehoe-vallei",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6834466,
+          50.830729
+        ]
+      },
+      "id": "node/3924594595"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4216089690",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "100",
+        "addr:postcode": "6216EG",
+        "addr:street": "Brouwersweg",
+        "internet_access": "wlan",
+        "name": "Teikyo",
+        "phone": "+31 43 346 7300",
+        "tourism": "guest_house"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6680062,
+          50.848442
+        ]
+      },
+      "id": "node/4216089690"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4340813289",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "56",
+        "addr:postcode": "6211SX",
+        "addr:street": "Grote Gracht",
+        "email": "reservations@boutiquehotelmaastricht.nl",
+        "name": "Boutique Hotel Grote Gracht",
+        "phone": "+31 43 203 0040",
+        "source": "BAG",
+        "source:date": "2017-09-08",
+        "tourism": "hotel",
+        "website": "https://boutiquehotelgrotegracht.nl"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6875825,
+          50.8508297
+        ]
+      },
+      "id": "node/4340813289"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4568618289",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "199",
+        "addr:postcode": "6229HD",
+        "addr:street": "Sorbonnelaan",
+        "artwork_type": "statue",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7095347,
+          50.8336929
+        ]
+      },
+      "id": "node/4568618289"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4568638307",
+        "artwork_type": "architecture",
+        "name": "Bulten Plein",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7056762,
+          50.8343413
+        ]
+      },
+      "id": "node/4568638307"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4575318241",
+        "tourism": "viewpoint"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6798377,
+          50.8129579
+        ]
+      },
+      "id": "node/4575318241"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4575318242",
+        "tourism": "viewpoint"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6860594,
+          50.8175327
+        ]
+      },
+      "id": "node/4575318242"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4704048291",
+        "addr:street": "Onze Lieve Vrouweplein",
+        "email": "info@citysightsmaastricht.com",
+        "name": "F(r)ee Tours by City Sights Maastricht",
+        "phone": "+31 6 50608769",
+        "tourism": "attraction",
+        "website": "https://www.citysightsmaastricht.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6930565,
+          50.847517
+        ]
+      },
+      "id": "node/4704048291"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4704958429",
+        "description": "https://photos.app.goo.gl/eQP416W9kWoPx3JN7",
+        "mapillary": "766619194030077",
+        "name": "Kiekoet Oehoe-vallei",
+        "tourism": "viewpoint",
+        "wikidata": "Q108127486"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6834957,
+          50.8306453
+        ]
+      },
+      "id": "node/4704958429"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4708876299",
+        "description": "https://photos.app.goo.gl/8GghATGM4w53n4Mj8",
+        "image": "https://images.mapillary.com/ienYMps9DiK16tKtjwaxwC/thumb-2048.jpg",
+        "mapillary": "881840625733086",
+        "tourism": "viewpoint"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6947041,
+          50.8226567
+        ]
+      },
+      "id": "node/4708876299"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4719991841",
+        "description": "https://photos.app.goo.gl/VzTn9rjLvfPhMWvY6",
+        "image": "https://images.mapillary.com/siOJSqlCQEJdoBhGMt8Onn/thumb-2048.jpg",
+        "mapillary": "259356089302430",
+        "name": "De Schatkamer",
+        "opening_hours": "Mo-Sa 10:00-17:00; Su 12:30-17:00",
+        "operator": "Sint Servaasbasilliek",
+        "tourism": "museum",
+        "website": "https://www.sintservaas.nl/index24.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6873348,
+          50.8490416
+        ]
+      },
+      "id": "node/4719991841"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4728353888",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7170533,
+          50.8377568
+        ]
+      },
+      "id": "node/4728353888"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4728389981",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7134511,
+          50.8370933
+        ]
+      },
+      "id": "node/4728389981"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4922770119",
+        "artwork_type": "sculpture",
+        "name": "D'Artagnan",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6821631,
+          50.8465164
+        ]
+      },
+      "id": "node/4922770119"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4922774776",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6826205,
+          50.8474936
+        ]
+      },
+      "id": "node/4922774776"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4922797686",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6826249,
+          50.8474954
+        ]
+      },
+      "id": "node/4922797686"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4922809982",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.680728,
+          50.8472817
+        ]
+      },
+      "id": "node/4922809982"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4932485377",
+        "historic": "cannon",
+        "name": "kanon",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6894042,
+          50.8440623
+        ]
+      },
+      "id": "node/4932485377"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4944783693",
+        "bicycle": "yes",
+        "information": "map",
+        "name": "Knooppunten Zuid-Limburg",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.683731,
+          50.8413963
+        ]
+      },
+      "id": "node/4944783693"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5001750222",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "45",
+        "addr:postcode": "6221CB",
+        "addr:street": "Alexander Battalaan",
+        "email": "reserve.sansa@gmail.com",
+        "name": "Hotel Sansa",
+        "phone": "+31 43 323 3321",
+        "tourism": "hotel",
+        "website": "https://hotelsansa.nl"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7034687,
+          50.8498612
+        ]
+      },
+      "id": "node/5001750222"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5006029993",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "9",
+        "addr:postcode": "6211AS",
+        "addr:street": "Boschstraat",
+        "fee": "yes",
+        "name": "Bureau Europa",
+        "opening_hours": "We-Su 12:00-17:00; Jan 1 off; Dec 25 off; Apr 27 off; \"during Carnival off\"",
+        "payment:museumkaart": "yes",
+        "source": "BAG",
+        "source:date": "2017-08-01",
+        "tourism": "museum"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6902773,
+          50.8567335
+        ]
+      },
+      "id": "node/5006029993"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5040281222",
+        "name": "M-building",
+        "tourism": "guest_house"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6697662,
+          50.8465263
+        ]
+      },
+      "id": "node/5040281222"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5144674563",
+        "name": "The Social Hub",
+        "tourism": "hotel",
+        "wheelchair": "limited"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6894254,
+          50.8564516
+        ]
+      },
+      "id": "node/5144674563"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5304862921",
+        "artist_name": "Guido Geelen",
+        "artwork_type": "statue",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6518895,
+          50.861942
+        ]
+      },
+      "id": "node/5304862921"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5323749068",
+        "artist_name": "Guido Geelen",
+        "artwork_type": "statue",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6492809,
+          50.8639471
+        ]
+      },
+      "id": "node/5323749068"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5331434979",
+        "artist_name": "Guido Geelen",
+        "artwork_type": "statue",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6523144,
+          50.8616033
+        ]
+      },
+      "id": "node/5331434979"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5331434980",
+        "artist_name": "Guido Geelen",
+        "artwork_type": "statue",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6531124,
+          50.860982
+        ]
+      },
+      "id": "node/5331434980"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5339720757",
+        "artwork_type": "sculpture",
+        "description": "monument, ingang recreatiegebied, standbeeld",
+        "image": "https://images.standbeelden.be/300x0/73737/Tongeren%202000.jpg",
+        "name": "Tongeren 2000",
+        "source": "http://www.standbeelden.be/standbeeld/3203",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6515247,
+          50.8425143
+        ]
+      },
+      "id": "node/5339720757"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5354211066",
+        "artist_name": "Willem Hofhuizen",
+        "artwork_type": "statue",
+        "material": "bronze",
+        "name": "Fons Olterdissen",
+        "subject": "Alfons Olterdissen",
+        "subject:wikidata": "Q2307798",
+        "subject:wikipedia": "nl:Alfons Olterdissen",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6887786,
+          50.8449521
+        ]
+      },
+      "id": "node/5354211066"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5354218984",
+        "artwork_type": "sculpture",
+        "description": "https://photos.app.goo.gl/YKmAt8Eexh37dCyBA",
+        "image": "https://images.mapillary.com/9xSooaCcEAp6mEhOsoSKxh/thumb-2048.jpg",
+        "mapillary": "336974987775135",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6844269,
+          50.8487583
+        ]
+      },
+      "id": "node/5354218984"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5356267597",
+        "access": "private",
+        "artwork_type": "statue",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6887289,
+          50.8442552
+        ]
+      },
+      "id": "node/5356267597"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5720751821",
+        "name": "Waterpoortje",
+        "tourism": "attraction",
+        "wheelchair": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6979286,
+          50.8473502
+        ]
+      },
+      "id": "node/5720751821"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5896986255",
+        "artwork_type": "statue",
+        "historic": "memorial",
+        "image": "https://images.mapillary.com/KQgWHVCu3trGTHekwMsjKo/thumb-2048.jpg",
+        "mapillary": "385075966186015",
+        "memorial": "column",
+        "name": "Sint Amor",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6905005,
+          50.8489536
+        ]
+      },
+      "id": "node/5896986255"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6238087191",
+        "artist_name": "Collin van der Sluijs",
+        "artwork_type": "mural",
+        "image": "https://images.mapillary.com/UX0VhBeYZ9A5sdvXcZ9l8u/thumb-2048.jpg",
+        "mapillary": "906144713280587",
+        "name": "Mural zanglijster",
+        "name:en": "Mural Song Thrush",
+        "tourism": "artwork",
+        "url": "https://www.belvedere-maastricht.nl/actueel/mural-als-entree-voor-het-sphinxkwartier"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6907438,
+          50.8577347
+        ]
+      },
+      "id": "node/6238087191"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6374722111",
+        "information": "board",
+        "name": "De Kleine Weerd",
+        "source": "survey",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7023235,
+          50.8360674
+        ]
+      },
+      "id": "node/6374722111"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6412823080",
+        "board_type": "history",
+        "information": "board",
+        "name": "Lage Fronten",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.683889,
+          50.8556786
+        ]
+      },
+      "id": "node/6412823080"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6412823081",
+        "board_type": "history",
+        "description": "Noor-Westelijke vestingszerken",
+        "information": "board",
+        "name": "Lage Fronten",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6835224,
+          50.8558902
+        ]
+      },
+      "id": "node/6412823081"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6422516727",
+        "artist_name": "Appie Drielsma",
+        "artwork_subject": "monument to commemorate the crossing of the Meuse and liberation of Maastricht by the US 30th infantry division in 1944",
+        "artwork_type": "sculpture",
+        "historic": "memorial",
+        "memorial": "war_memorial",
+        "name": "Old Hickorymonument",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7009536,
+          50.8403392
+        ]
+      },
+      "id": "node/6422516727"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6629971652",
+        "name": "De Krul",
+        "tourism": "viewpoint"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6884361,
+          50.8583214
+        ]
+      },
+      "id": "node/6629971652"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6635694063",
+        "hiking": "yes",
+        "information": "map",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6699415,
+          50.8283308
+        ]
+      },
+      "id": "node/6635694063"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6783025312",
+        "artwork_type": "sculpture",
+        "image": "https://images.mapillary.com/Q6iz6V6p1OSD7nnZ9cBr99/thumb-2048.jpg",
+        "mapillary": "997089907362486",
+        "material": "bronze",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6943544,
+          50.8473107
+        ]
+      },
+      "id": "node/6783025312"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6783892733",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "49",
+        "addr:postcode": "6211NS",
+        "addr:street": "Jekerstraat",
+        "name": "Pension Jekerzicht",
+        "operator": "Koraal",
+        "tourism": "guest_house"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6812238,
+          50.8476716
+        ]
+      },
+      "id": "node/6783892733"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6783892750",
+        "artist_name": "Luk van Soom",
+        "artwork_type": "sculpture",
+        "material": "metal",
+        "name": "Bosnimf",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6842661,
+          50.8441587
+        ]
+      },
+      "id": "node/6783892750"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6783917905",
+        "direction": "0-360",
+        "fee": "yes",
+        "tourism": "viewpoint"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6872863,
+          50.8483426
+        ]
+      },
+      "id": "node/6783917905"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6787661378",
+        "board_type": "history",
+        "information": "board",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6771589,
+          50.8256432
+        ]
+      },
+      "id": "node/6787661378"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6789074031",
+        "artwork_type": "sculpture",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6878871,
+          50.8412058
+        ]
+      },
+      "id": "node/6789074031"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6789074037",
+        "hiking": "yes",
+        "information": "map",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6853873,
+          50.8355229
+        ]
+      },
+      "id": "node/6789074037"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6789074038",
+        "information": "board",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6853765,
+          50.8355323
+        ]
+      },
+      "id": "node/6789074038"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6789272062",
+        "information": "tactile_map",
+        "tourism": "information",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6938302,
+          50.8515068
+        ]
+      },
+      "id": "node/6789272062"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6789365599",
+        "information": "map",
+        "name": "'t Bassin Maastricht",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.690816,
+          50.8556698
+        ]
+      },
+      "id": "node/6789365599"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6789365609",
+        "bicycle": "yes",
+        "information": "guidepost",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6883548,
+          50.8590316
+        ]
+      },
+      "id": "node/6789365609"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6793472633",
+        "board_type": "history",
+        "information": "board",
+        "name": "Leeuwenmolen",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6917723,
+          50.8445584
+        ]
+      },
+      "id": "node/6793472633"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6793472637",
+        "board_type": "history",
+        "information": "board",
+        "name": "Helpoort",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6945061,
+          50.8455022
+        ]
+      },
+      "id": "node/6793472637"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6793472638",
+        "board_type": "history",
+        "information": "board",
+        "name": "Papiermolen 'De Ancker'",
+        "ref:anwb": "60235 / 001",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6946774,
+          50.8454042
+        ]
+      },
+      "id": "node/6793472638"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6793472639",
+        "description": "Relief Stadssommuring",
+        "information": "map",
+        "map_type": "scheme",
+        "material": "stone",
+        "name": "De Helpoort",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6945027,
+          50.8456595
+        ]
+      },
+      "id": "node/6793472639"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6793472640",
+        "board_type": "history",
+        "image": "https://images.mapillary.com/JBC64DA4CXintuzJccJLQx/thumb-2048.jpg",
+        "information": "board",
+        "mapillary": "292352732551355",
+        "name": "Jekertoren",
+        "ref:anwb": "60209/001",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6947989,
+          50.8455286
+        ]
+      },
+      "id": "node/6793472640"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6793472641",
+        "board_type": "history",
+        "information": "board",
+        "name": "Onze Lieve Vrouwewal",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6946,
+          50.8468155
+        ]
+      },
+      "id": "node/6793472641"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6795700069",
+        "description": "Relief Stadssommuring",
+        "information": "map",
+        "map_type": "scheme",
+        "material": "stone",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6890276,
+          50.8440355
+        ]
+      },
+      "id": "node/6795700069"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6797538183",
+        "artwork_type": "sculpture",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6917796,
+          50.8444894
+        ]
+      },
+      "id": "node/6797538183"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6797538184",
+        "board_type": "history",
+        "information": "board",
+        "name": "Rondeel Haet Ende Nyt",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6936645,
+          50.8443476
+        ]
+      },
+      "id": "node/6797538184"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6799165667",
+        "board_type": "history",
+        "information": "board",
+        "name": "Stadsommuring",
+        "ref:anwb": "60217/001",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6906786,
+          50.8457308
+        ]
+      },
+      "id": "node/6799165667"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6799165673",
+        "board_type": "history",
+        "information": "board",
+        "name": "Stadsommuring en waterpoort",
+        "ref:anwb": "60236/001",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6878509,
+          50.8459141
+        ]
+      },
+      "id": "node/6799165673"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6799165674",
+        "information": "map",
+        "map_type": "scheme",
+        "name": "Huize in den Nieuwenhof",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6889459,
+          50.844237
+        ]
+      },
+      "id": "node/6799165674"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6799165675",
+        "information": "map",
+        "map_type": "scheme",
+        "name": "Nieuwenhofpoortje",
+        "ref:anwb": "61213/001",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6890686,
+          50.8440169
+        ]
+      },
+      "id": "node/6799165675"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6799338859",
+        "board_type": "history",
+        "information": "board",
+        "name": "Onze Lievevrouwebasiliek",
+        "ref:anwb": "60229/001",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6932166,
+          50.8474531
+        ]
+      },
+      "id": "node/6799338859"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7141241585",
+        "addr:city": "Maastricht",
+        "addr:housenumber": "4",
+        "addr:postcode": "6213NG",
+        "addr:street": "Von Dopfflaan",
+        "email": "secretariaat.stichtingjb@gmail.com",
+        "heritage": "2",
+        "name": "Jezuïetenberg",
+        "opening_hours": "Mo-Sa 09:00-22:00",
+        "phone": "+31 43 321 3488",
+        "tourism": "attraction",
+        "website": "http://www.jezuietenberg.eu"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.664878,
+          50.822495
+        ]
+      },
+      "id": "node/7141241585"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7236472956",
+        "artwork_type": "statue",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.654379,
+          50.8630256
+        ]
+      },
+      "id": "node/7236472956"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7645866109",
+        "name": "Merrett",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6906286,
+          50.8520898
+        ]
+      },
+      "id": "node/7645866109"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7669749819",
+        "brand": "Eden Hotels",
+        "brand:wikidata": "Q102265358",
+        "name": "Designhotel Maastricht",
+        "tourism": "hotel",
+        "website": "https://www.designhotelmaastricht.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7027209,
+          50.8497548
+        ]
+      },
+      "id": "node/7669749819"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7689058570",
+        "tourism": "viewpoint"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6820946,
+          50.8336063
+        ]
+      },
+      "id": "node/7689058570"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7905056017",
+        "artwork_type": "mural",
+        "image": "https://images.mapillary.com/eEWzXrz1oN3A1WpOaN4J29/thumb-2048.jpg",
+        "mapillary": "789149261743272",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6941363,
+          50.8557868
+        ]
+      },
+      "id": "node/7905056017"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7905056018",
+        "artwork_type": "mural",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6949539,
+          50.8555622
+        ]
+      },
+      "id": "node/7905056018"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7999713261",
+        "information": "board",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6724078,
+          50.8286939
+        ]
+      },
+      "id": "node/7999713261"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8014715487",
+        "name": "Rederij Stiphout",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6941096,
+          50.8510351
+        ]
+      },
+      "id": "node/8014715487"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8014763275",
+        "artwork_type": "statue",
+        "image": "https://images.mapillary.com/lOiJKuRzipuJW4Jx9N8xN5/thumb-2048.jpg",
+        "mapillary": "493843168433857",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6941598,
+          50.828983
+        ]
+      },
+      "id": "node/8014763275"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8014808765",
+        "image": "https://images.mapillary.com/i65tPfT1H0PsmpaP6CuekC/thumb-2048.jpg",
+        "information": "board",
+        "mapillary": "512572273213676",
+        "name": "Ruïnetoren van Lichtenberg",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6945859,
+          50.8226579
+        ]
+      },
+      "id": "node/8014808765"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8014839292",
+        "information": "guidepost",
+        "mapillary": "936860810409142",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6935564,
+          50.8243014
+        ]
+      },
+      "id": "node/8014839292"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8014839294",
+        "image": "https://images.mapillary.com/DOrnVu2A6tSw4YAoEPEHO8/thumb-2048.jpg",
+        "information": "board",
+        "mapillary": "1548322992041002",
+        "name": "Activiteiten Zuid-Limburg",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6933473,
+          50.8229493
+        ]
+      },
+      "id": "node/8014839294"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8014839303",
+        "image": "https://images.mapillary.com/Xu4Gte924I64IEjPU8iw43/thumb-2048.jpg",
+        "information": "board",
+        "mapillary": "285650699884992",
+        "name": "Van lege badkuip to natuurgebied",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6925747,
+          50.8227376
+        ]
+      },
+      "id": "node/8014839303"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8014839304",
+        "image": "https://images.mapillary.com/ZZrQOJW9KVV8yrvUdpER4c/thumb-2048.jpg",
+        "information": "board",
+        "mapillary": "464065614897612",
+        "name": "Verhalen van vroeger en de geur van vlaai",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6939714,
+          50.8224484
+        ]
+      },
+      "id": "node/8014839304"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8015812712",
+        "information": "guidepost",
+        "mapillary": "158155032925716",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6908486,
+          50.8264531
+        ]
+      },
+      "id": "node/8015812712"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8017492521",
+        "information": "guidepost",
+        "mapillary": "952289262240240",
+        "name": "Hoeve Lichtenberg",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6868703,
+          50.8266025
+        ]
+      },
+      "id": "node/8017492521"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8017492522",
+        "information": "board",
+        "mapillary": "194948765691495",
+        "name": "Zweven boven de groeve",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6865391,
+          50.8266121
+        ]
+      },
+      "id": "node/8017492522"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8017492523",
+        "information": "board",
+        "mapillary": "392227701923946",
+        "name": "70 miljoen jaar in 1 maand",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6863838,
+          50.8266489
+        ]
+      },
+      "id": "node/8017492523"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8017492537",
+        "information": "board",
+        "name": "Tikdreis door de groeve",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6864801,
+          50.8264073
+        ]
+      },
+      "id": "node/8017492537"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8017492576",
+        "artwork_type": "sculpture",
+        "mapillary": "2825407364343785",
+        "name": "Kiekoet",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6834162,
+          50.8306906
+        ]
+      },
+      "id": "node/8017492576"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8017492579",
+        "information": "board",
+        "mapillary": "519446999084417",
+        "name": "Zachtjes zweeft de uil voorbij",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6834361,
+          50.8306713
+        ]
+      },
+      "id": "node/8017492579"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8017512292",
+        "image": "https://images.mapillary.com/axzq04VlzCLUsOiOHasyTd/thumb-2048.jpg",
+        "information": "board",
+        "mapillary": "502371451005217",
+        "name": "Schrale rijdom",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6845524,
+          50.8334574
+        ]
+      },
+      "id": "node/8017512292"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8018171694",
+        "image": "https://images.mapillary.com/qQiIIKv9zFWAGpIGKxdrgq/thumb-2048.jpg",
+        "mapillary": "975977279805074",
+        "tourism": "viewpoint"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.683955,
+          50.8364655
+        ]
+      },
+      "id": "node/8018171694"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8018215267",
+        "artwork_type": "sculpture",
+        "image": "https://images.mapillary.com/4HeqWfYgn8cJngxvYIwpty/thumb-2048.jpg",
+        "mapillary": "302041008060168",
+        "material": "steel",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6955009,
+          50.8439098
+        ]
+      },
+      "id": "node/8018215267"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8018333602",
+        "artwork_type": "sculpture",
+        "description": "https://photos.app.goo.gl/CCFV5WcwgTQ2Fhac6",
+        "image": "https://images.mapillary.com/QYl3xAyBkjFi28YRYniAa6/thumb-2048.jpg",
+        "mapillary": "341880370615265",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6941526,
+          50.8462181
+        ]
+      },
+      "id": "node/8018333602"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8018333603",
+        "artwork_type": "sculpture",
+        "image": "https://images.mapillary.com/CE4nBzQSAXQNMVktRF9Dja/thumb-2048.jpg",
+        "mapillary": "774528439897309",
+        "material": "metal",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.692525,
+          50.8458916
+        ]
+      },
+      "id": "node/8018333603"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8018333604",
+        "artist_name": "Jos Hermans 1930-2017",
+        "artwork_type": "sculpture",
+        "description": "https://photos.app.goo.gl/WXyoWxjn9TVb7izX7",
+        "image": "https://images.mapillary.com/idVVqPrT4SmSJeoM5k1UGx/thumb-2048.jpg",
+        "mapillary": "307495020947331",
+        "material": "bronze",
+        "name": "Huivende kinder",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6915803,
+          50.8469629
+        ]
+      },
+      "id": "node/8018333604"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8018399872",
+        "artwork_type": "sculpture",
+        "image": "https://images.mapillary.com/pLIKJJVWHAQuyYwYyewO3W/thumb-2048.jpg",
+        "mapillary": "2591267444511641",
+        "material": "bronze",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6930031,
+          50.847271
+        ]
+      },
+      "id": "node/8018399872"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8018405921",
+        "artwork_type": "statue",
+        "image": "https://images.mapillary.com/5dy1liuB9zefZut9GwSwY3/thumb-2048.jpg",
+        "mapillary": "974807953330285",
+        "material": "stone",
+        "name": "S. Joseph ora pro nobis",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6934152,
+          50.8476818
+        ]
+      },
+      "id": "node/8018405921"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8018544827",
+        "artwork_type": "sculpture",
+        "image": "https://images.mapillary.com/QrAaxoeqIaKTJJ45I0RnhP/thumb-2048.jpg",
+        "mapillary": "822712328338637",
+        "material": "bronze",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6923192,
+          50.8479098
+        ]
+      },
+      "id": "node/8018544827"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8018544844",
+        "artwork_type": "sculpture",
+        "image": "https://images.mapillary.com/3s6i5VrnzWOQpBXVUZelwr/thumb-2048.jpg",
+        "mapillary": "2868700903368850",
+        "material": "metal",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6921675,
+          50.8481818
+        ]
+      },
+      "id": "node/8018544844"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8019019748",
+        "artwork_type": "sculpture",
+        "historic": "memorial",
+        "image": "https://images.mapillary.com/otT2LV47uRdaaOEbEF4IEM/thumb-2048.jpg",
+        "mapillary": "510164686796926",
+        "memorial": "column",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6929061,
+          50.8478042
+        ]
+      },
+      "id": "node/8019019748"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8019019749",
+        "artwork_type": "sculpture",
+        "image": "https://images.mapillary.com/glMPYt8wHkdtqdCQIzTpYS/thumb-2048.jpg",
+        "mapillary": "460239941933598",
+        "material": "bronze",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6937531,
+          50.8482237
+        ]
+      },
+      "id": "node/8019019749"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8019019750",
+        "artwork_type": "sculpture",
+        "image": "https://images.mapillary.com/ZgMOKMvzK0CG5qyUftKV2R/thumb-2048.jpg",
+        "mapillary": "4096033867124604",
+        "material": "bronze",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6941645,
+          50.8479842
+        ]
+      },
+      "id": "node/8019019750"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8019019779",
+        "artwork_type": "sculpture",
+        "image": "https://images.mapillary.com/I8y3z2aFIh5EEXqy8WaBxM/thumb-2048.jpg",
+        "mapillary": "161145992626912",
+        "material": "metal",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6951476,
+          50.8468401
+        ]
+      },
+      "id": "node/8019019779"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8019058057",
+        "artwork_type": "sculpture",
+        "description": "https://photos.app.goo.gl/hnBcLRNYjcZszQVy6",
+        "historic": "memorial",
+        "image": "https://images.mapillary.com/iFXhkucpWMR8v6iKcz4rCF/thumb-2048.jpg",
+        "mapillary": "180023557329371",
+        "memorial": "column",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6953864,
+          50.8481467
+        ]
+      },
+      "id": "node/8019058057"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8019058059",
+        "image": "https://images.mapillary.com/zfLR0Iy3i3KHw2OjYwxnkc/thumb-2048.jpg",
+        "information": "board",
+        "mapillary": "1253031498433477",
+        "name": "Pons Mosae - Maasbrug",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6953617,
+          50.8481644
+        ]
+      },
+      "id": "node/8019058059"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8019228897",
+        "amenity": "fountain",
+        "artwork_type": "sculpture",
+        "image": "https://images.mapillary.com/A7K62sueIjs7Ldrs7Fl24J/thumb-2048.jpg",
+        "mapillary": "758737521478961",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6886888,
+          50.8487024
+        ]
+      },
+      "id": "node/8019228897"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8019228898",
+        "artwork_type": "sculpture",
+        "image": "https://images.mapillary.com/fXXKnxNqCjkvBwJiGlcInh/thumb-2048.jpg",
+        "mapillary": "168602408511227",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6883383,
+          50.8485703
+        ]
+      },
+      "id": "node/8019228898"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8019228899",
+        "artwork_type": "sculpture",
+        "image": "https://images.mapillary.com/YD7gzQFRuaN78Bw0hafoiR/thumb-2048.jpg",
+        "mapillary": "375330677190371",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6883658,
+          50.8485959
+        ]
+      },
+      "id": "node/8019228899"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8019228900",
+        "artwork_type": "sculpture",
+        "image": "https://images.mapillary.com/tOR2IaP3L50KZfxvWULfre/thumb-2048.jpg",
+        "mapillary": "3951877721533717",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6884357,
+          50.8485895
+        ]
+      },
+      "id": "node/8019228900"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8019228901",
+        "artwork_type": "sculpture",
+        "image": "https://images.mapillary.com/FVKaXxyW8t9miuSrnyfK4u/thumb-2048.jpg",
+        "mapillary": "246763623906798",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6883891,
+          50.8485704
+        ]
+      },
+      "id": "node/8019228901"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8019228902",
+        "artwork_type": "sculpture",
+        "image": "https://images.mapillary.com/dEa7WcbLxufESHLGbLKnXS/thumb-2048.jpg",
+        "mapillary": "799866207394938",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6883222,
+          50.8485416
+        ]
+      },
+      "id": "node/8019228902"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8019228953",
+        "artwork_type": "sculpture",
+        "description": "https://photos.app.goo.gl/bMqzjWtp9A3iAZdH9",
+        "image": "https://images.mapillary.com/DD5r19mbgy1k339JirjcAG/thumb-2048.jpg",
+        "mapillary": "331280258421540",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6864383,
+          50.8495098
+        ]
+      },
+      "id": "node/8019228953"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8019229026",
+        "artwork_type": "vase",
+        "image": "https://images.mapillary.com/hDLWsoYrQiEQNWVW9gIF2t/thumb-2048.jpg",
+        "mapillary": "927019781444029",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6869692,
+          50.8489963
+        ]
+      },
+      "id": "node/8019229026"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8019270140",
+        "description": "https://photos.app.goo.gl/mdE6CpsLvdduYfwM8",
+        "entrance": "yes",
+        "historic": "yes",
+        "image": "https://images.mapillary.com/ZwuBICyeDwOUFtyf0PWpGJ/thumb-2048.jpg",
+        "mapillary": "1056686048490095",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6868889,
+          50.8485612
+        ]
+      },
+      "id": "node/8019270140"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8019270155",
+        "artwork_type": "sculpture",
+        "image": "https://images.mapillary.com/sdvwyCAmkeNfuPYpA1pjV4/thumb-2048.jpg",
+        "mapillary": "275138864344291",
+        "name": "Monulphus on Gondulphus",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6867874,
+          50.8484815
+        ]
+      },
+      "id": "node/8019270155"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8022847885",
+        "artwork_type": "graffiti",
+        "image": "https://images.mapillary.com/yzSSbn3INWA5nTGgJkPHAA/thumb-2048.jpg",
+        "mapillary": "6248088028550399",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6843555,
+          50.854263
+        ]
+      },
+      "id": "node/8022847885"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8022887396",
+        "artwork_type": "graffiti",
+        "description": "https://photos.app.goo.gl/hQUqUfs9fcQVait67",
+        "image": "https://images.mapillary.com/i57ZCAf7tfQWJbNbkRqtHh/thumb-2048.jpg",
+        "mapillary": "1455002291687711",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6937683,
+          50.8557492
+        ]
+      },
+      "id": "node/8022887396"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8022887397",
+        "artwork_type": "graffiti",
+        "image": "https://images.mapillary.com/cpOgNw1Fa6B3uBnHnVGyX7/thumb-2048.jpg",
+        "mapillary": "523687005479062",
+        "name": "Snor",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6938616,
+          50.855779
+        ]
+      },
+      "id": "node/8022887397"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8023052206",
+        "artwork_type": "graffiti",
+        "image": "https://images.mapillary.com/u59IS409Y1aPLMdhDrXQA9/thumb-2048.jpg",
+        "mapillary": "317900286380516",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.693935,
+          50.8558025
+        ]
+      },
+      "id": "node/8023052206"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8023052207",
+        "artwork_type": "graffiti",
+        "image": "https://images.mapillary.com/JoHYlI4ATLl5hNGzSqIBiG/thumb-2048.jpg",
+        "mapillary": "3502477259854120",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6939944,
+          50.8558045
+        ]
+      },
+      "id": "node/8023052207"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8023052208",
+        "artist_name": "Dave de Leeuw",
+        "artwork_type": "mural",
+        "image": "https://images.mapillary.com/DlJW0aFP2DvfD2Nq74JsTD/thumb-2048.jpg",
+        "mapillary": "310439690458635",
+        "tourism": "artwork",
+        "website": "http://wallpaintss.blogspot.com/2020/10/maastricht-netherlands.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6942483,
+          50.8558189
+        ]
+      },
+      "id": "node/8023052208"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8023052210",
+        "artwork_type": "graffiti",
+        "image": "https://images.mapillary.com/8kpXhQ6FgTQjOzGHmdDG9J/thumb-2048.jpg",
+        "mapillary": "239830967911876",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6943796,
+          50.8558541
+        ]
+      },
+      "id": "node/8023052210"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8023052230",
+        "artwork_type": "graffiti",
+        "image": "https://images.mapillary.com/qv1Ob87GOg94iT4xHH2hd0/thumb-2048.jpg",
+        "mapillary": "534855581011961",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6945924,
+          50.855963
+        ]
+      },
+      "id": "node/8023052230"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8026386813",
+        "historic": "cannon",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6947674,
+          50.8458048
+        ]
+      },
+      "id": "node/8026386813"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8026386814",
+        "historic": "cannon",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6947573,
+          50.8459409
+        ]
+      },
+      "id": "node/8026386814"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8026386815",
+        "historic": "cannon",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6947401,
+          50.8460753
+        ]
+      },
+      "id": "node/8026386815"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8026386816",
+        "historic": "cannon",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6947216,
+          50.8462104
+        ]
+      },
+      "id": "node/8026386816"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8026386817",
+        "historic": "cannon",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6947039,
+          50.8463446
+        ]
+      },
+      "id": "node/8026386817"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9064511489",
+        "name": "Rozemarijn",
+        "tourism": "guest_house"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7298304,
+          50.8514379
+        ]
+      },
+      "id": "node/9064511489"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9437373181",
+        "artwork_type": "statue",
+        "denomination": "roman_catholic",
+        "name": "Heilig Hartbeeld",
+        "religion": "christian",
+        "tourism": "artwork",
+        "wikidata": "Q2182768",
+        "wikipedia": "nl:Heilig Hartbeeld (Maastricht, Tongerseweg)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6628668,
+          50.8395119
+        ]
+      },
+      "id": "node/9437373181"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9441741724",
+        "artwork_type": "statue",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6882574,
+          50.8530302
+        ]
+      },
+      "id": "node/9441741724"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9441741725",
+        "artwork_type": "statue",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6882867,
+          50.852821
+        ]
+      },
+      "id": "node/9441741725"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9442572476",
+        "artwork_type": "statue",
+        "name": "Sculptuur Henri Hermans",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6911635,
+          50.8435926
+        ]
+      },
+      "id": "node/9442572476"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9442572477",
+        "artwork_type": "statue",
+        "name": "Gedenkteken Franse Vluchtelingen",
+        "tourism": "artwork",
+        "wikidata": "Q17457319"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6908873,
+          50.844189
+        ]
+      },
+      "id": "node/9442572477"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9449379676",
+        "artwork_type": "statue",
+        "name": "Jacob en de Engel",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7237664,
+          50.8478534
+        ]
+      },
+      "id": "node/9449379676"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9451962638",
+        "artwork_type": "statue",
+        "name": "Graanvrouwe van Limmel",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7058334,
+          50.8672
+        ]
+      },
+      "id": "node/9451962638"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9455466469",
+        "artwork_type": "statue",
+        "denomination": "roman_catholic",
+        "name": "Heilig Hartbeeld",
+        "religion": "christian",
+        "tourism": "artwork",
+        "wikidata": "Q19753449",
+        "wikipedia": "nl:Heilig Hartbeeld (Borgharen)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6889686,
+          50.876671
+        ]
+      },
+      "id": "node/9455466469"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9609476574",
+        "artist:wikidata": "Q21545607",
+        "artist_name": "Wil van der Laan",
+        "artwork_type": "statue",
+        "name": "Engel van Maastricht",
+        "tourism": "artwork",
+        "wikidata": "Q59616649"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7114226,
+          50.8482935
+        ]
+      },
+      "id": "node/9609476574"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9609540978",
+        "artist_name": "Frans Carlier",
+        "artwork_type": "statue",
+        "name": "Klein meisje en wezentje",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7180876,
+          50.8534658
+        ]
+      },
+      "id": "node/9609540978"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9783826433",
+        "direction": "110",
+        "information": "board",
+        "name": "Limburg verrijst uit zee",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6860849,
+          50.8263633
+        ]
+      },
+      "id": "node/9783826433"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9783826436",
+        "tourism": "viewpoint"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6852706,
+          50.8301717
+        ]
+      },
+      "id": "node/9783826436"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9783826445",
+        "tourism": "viewpoint"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6958492,
+          50.825441
+        ]
+      },
+      "id": "node/9783826445"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9819770484",
+        "indoor": "yes",
+        "information": "office",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7054357,
+          50.8498573
+        ]
+      },
+      "id": "node/9819770484"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9860742657",
+        "artwork_type": "statue",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7008761,
+          50.849559
+        ]
+      },
+      "id": "node/9860742657"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9864093949",
+        "artwork_type": "sculpture",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6876268,
+          50.847662
+        ]
+      },
+      "id": "node/9864093949"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9864161225",
+        "artwork_type": "sculpture",
+        "name:en": "Show us that you are our mother.",
+        "name:nl": "Toon dat gij onze moeder zijt.",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6876813,
+          50.8474204
+        ]
+      },
+      "id": "node/9864161225"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9865972488",
+        "artwork_type": "statue",
+        "tourism": "artwork"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6855183,
+          50.8439614
+        ]
+      },
+      "id": "node/9865972488"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9917126690",
+        "bicycle": "yes",
+        "information": "guidepost",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7291627,
+          50.8472767
+        ]
+      },
+      "id": "node/9917126690"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9918582721",
+        "bicycle": "yes",
+        "information": "guidepost",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7075698,
+          50.8465838
+        ]
+      },
+      "id": "node/9918582721"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9918582723",
+        "bicycle": "yes",
+        "information": "guidepost",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7070899,
+          50.8476016
+        ]
+      },
+      "id": "node/9918582723"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9918582724",
+        "bicycle": "yes",
+        "information": "guidepost",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.7066544,
+          50.8463207
+        ]
+      },
+      "id": "node/9918582724"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/10056819328",
+        "information": "map",
+        "mtb": "yes",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6872999,
+          50.8170013
+        ]
+      },
+      "id": "node/10056819328"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/10152562517",
+        "addr:city": "Maastricht",
+        "addr:country": "NL",
+        "addr:housenumber": "3",
+        "addr:postcode": "6211HP",
+        "addr:street": "Stenenbrug",
+        "email": "activiteiten@bisschopsmolen.nl",
+        "name": "Bakker & Bed",
+        "number_of_apartments": "1",
+        "phone": "+31 43 327 0615",
+        "smoking": "no",
+        "tourism": "apartment",
+        "website": "https://www.bisschopsmolen.nl/overnachten-bij-de-bisschopsmolen-in-hartje-maastricht-bed-bakker/",
+        "wheelchair": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.692549,
+          50.8463635
+        ]
+      },
+      "id": "node/10152562517"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/10707902602",
+        "contact:website": "https://www.kunstuitleenmaastricht.nl/",
+        "fee": "no",
+        "name": "Galerie en Kunstuitleen Maastricht",
+        "opening_hours": "We-Fr 11:00-18:00; Sa 11:00-17:00; PH unknown",
+        "tourism": "gallery"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6902747,
+          50.8531551
+        ]
+      },
+      "id": "node/10707902602"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/10708906591",
+        "contact:website": "https://www.hotelmonasteremaastricht.com/",
+        "name": "Hotel Monastère",
+        "operator": "Vondel Hotels",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6902154,
+          50.853739
+        ]
+      },
+      "id": "node/10708906591"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/10840197784",
+        "board_type": "history",
+        "information": "board",
+        "name": "Bisschopsmolen",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6927919,
+          50.8462803
+        ]
+      },
+      "id": "node/10840197784"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/10878390876",
+        "information": "board",
+        "tourism": "information"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.6622241,
+          50.8206703
+        ]
+      },
+      "id": "node/10878390876"
+    }
+  ]
+}

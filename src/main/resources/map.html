@@ -12,7 +12,7 @@
 
 <body>
     <div id="main-container">
-        <div id="left-panel">
+        <div id="left-panel" class="panel">
             <div class="logo-container">
                 <h1>Transport Planner</h1>
             </div>
@@ -44,13 +44,16 @@
             </div>
             <div id="overlay"></div>
         </div>
+        <div id="notification-container"></div>
         <div id="route-details-container" style="display:none;">
             <h2 id="route-name">Route Name</h2>
             <p id="route-time">Time: 0 mins</p>
             <p id="route-distance">Distance: 0 m</p>
             <div id="route-instructions"></div>
         </div>
-        <div id="notification-container"></div>
+        <div id="new-panel" class="panel hidden">
+            <h2>Accessibility Panel</h2>
+        </div>
     </div>
     <script src="scripts.js"></script>
 </body>

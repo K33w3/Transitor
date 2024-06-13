@@ -37,8 +37,8 @@ public class Path {
      * 
      * @param coordinate The coordinate to add to the path.
      */
-    public void addCoordinates(Coordinates coordinate) {
-        PathCoordinates pathCoordinate = new PathCoordinates(coordinate.getLatitude(), coordinate.getLongitude(), 0);
+    public void addCoordinates(Coordinates coordinate, int type) {
+        PathCoordinates pathCoordinate = new PathCoordinates(coordinate.getLatitude(), coordinate.getLongitude(), 0, type);
         coordinates.add(pathCoordinate);
     }
 
@@ -47,8 +47,8 @@ public class Path {
      * 
      * @param coordinate
      */
-    public void addCoordinatesToStart(Coordinates coordinate) {
-        PathCoordinates pathCoordinate = new PathCoordinates(coordinate.getLatitude(), coordinate.getLongitude(), 0);
+    public void addCoordinatesToStart(Coordinates coordinate, int type) {
+        PathCoordinates pathCoordinate = new PathCoordinates(coordinate.getLatitude(), coordinate.getLongitude(), 0, type);
         coordinates.add(0, pathCoordinate);
     }
 

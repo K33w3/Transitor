@@ -7,6 +7,7 @@ package com.bcs05.util;
 public class PathCoordinates extends Coordinates {
 
     private int shapeDistTraveled;
+    private int type;
 
     /**
      * Constructs a new PathCoordinates object with the specified latitude,
@@ -16,9 +17,10 @@ public class PathCoordinates extends Coordinates {
      * @param longitude         the longitude of the coordinates
      * @param shapeDistTraveled the shape distance traveled
      */
-    public PathCoordinates(String latitude, String longitude, int shapeDistTraveled) {
+    public PathCoordinates(String latitude, String longitude, int shapeDistTraveled, int type) {
         super(latitude, longitude);
         this.shapeDistTraveled = shapeDistTraveled;
+        this.type = type;
     }
 
     /**
@@ -30,4 +32,7 @@ public class PathCoordinates extends Coordinates {
         return shapeDistTraveled;
     }
 
+    public int getType() {
+        return type;
+    }
 }

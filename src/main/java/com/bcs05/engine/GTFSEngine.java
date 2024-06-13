@@ -257,7 +257,7 @@ public class GTFSEngine {
             String latitute = String.valueOf(coordinates.getDouble("shape_pt_lat"));
             String longitude = String.valueOf(coordinates.getDouble("shape_pt_lon"));
             int shapeDistTraveled = coordinates.getInt("shape_dist_traveled");
-            path.addCoordinates(new PathCoordinates(latitute, longitude, shapeDistTraveled));
+            path.addCoordinates(new PathCoordinates(latitute, longitude, shapeDistTraveled,1));
         }
 
         // Path from postal code to stop
@@ -280,12 +280,12 @@ public class GTFSEngine {
 
         // Add walk to from stop path
         for (int i = walkToFromStopCoordinates.size() - 1; i >= 0; i--) {
-            path.addCoordinatesToStart(walkToFromStopCoordinates.get(i));
+            path.addCoordinatesToStart(walkToFromStopCoordinates.get(i),0);
         }
 
         // Add walk to to postal code path
         for (Coordinates c : walkToToPostalCodeCoordinates) {
-            path.addCoordinates(c);
+            path.addCoordinates(c,0);
         }
 
         // Get trip stops

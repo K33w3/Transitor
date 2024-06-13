@@ -80,9 +80,8 @@ public class UI extends JFrame {
 
     public void createJsonJavascript(String fromPostal, String toPostal, String mode, int range) {
         if (isStartEndValid(fromPostal, toPostal)) {
-           
             List<Coordinates> coordinates = chooseRoute(fromPostal, toPostal, mode, range);
-
+    
             Map<String, Object> routeDetails = new HashMap<>();
             routeDetails.put("fromPostal", fromPostal);
             routeDetails.put("toPostal", toPostal);
@@ -91,25 +90,26 @@ public class UI extends JFrame {
             routeDetails.put("distance", (Math.round(distance * 100.0) / 100.0));
             routeDetails.put("range", range);
             routeDetails.put("details", "Route from " + fromPostal + " to " + toPostal + " by " + mode);
-
+    
             if (mode.equals("bus")) {
                 routeDetails.put("stops", convertStopsToMapList(routeBus.getStops()));
+                routeDetails.put("coordinates", convertCoordinatesToJsArrayBus(routeBus));
+            } else {
+                String coordinatesJsArray = convertCoordinatesToJsArray(coordinates);
+                routeDetails.put("coordinates", coordinatesJsArray);
             }
-
-            String coordinatesJsArray = convertCoordinatesToJsArray(coordinates);
-            routeDetails.put("coordinates", coordinatesJsArray);
-
+    
             String routeDetailsJson = new Gson().toJson(routeDetails);
-            
-
-            String escapedJson = routeDetailsJson.replace("\"", "\\\"");
+    
+            String escapedJson = routeDetailsJson.replace("\\", "\\\\").replace("\"", "\\\"");
             String jsCode = "receiveRouteDetails(\"" + escapedJson + "\");";
-
+    
             Platform.runLater(() -> {
                 webEngine.executeScript(jsCode);
             });
         }
     }
+    
 
     private boolean isStartEndValid(String startPostalCode, String endPostalCode) {
         try {
@@ -190,6 +190,35 @@ public class UI extends JFrame {
         }
         return stopList;
     }
+
+    private String convertCoordinatesToJsArrayBus(Path route) {
+        if (route.getCoordinates() == null || route == null) {
+            return "[]";
+        }
+    
+        StringBuilder sb = new StringBuilder("[");
+        try {
+            for (int i = 0; i < route.getCoordinates().size(); i++) {
+                PathCoordinates coord = route.getCoordinates().get(i);
+                sb.append("[")
+                  .append(coord.getLatitude()).append(", ")
+                  .append(coord.getLongitude()).append(", ")
+                  .append(coord.getType()).append("]");
+                if (i < route.getCoordinates().size() - 1) {
+                    sb.append(", ");
+                }
+            }
+        } catch (Exception e) {
+            Platform.runLater(() -> {
+                webEngine.executeScript("displayError(\"Error converting bus coordinates to JS array\");");
+            });
+        }
+        sb.append("]");
+        return sb.toString();
+    }
+    
+
+
 
     private String convertCoordinatesToJsArray(List<Coordinates> coordinates) {
         if (coordinates == null || coordinates.isEmpty()) {

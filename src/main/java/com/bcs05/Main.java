@@ -19,7 +19,7 @@ public final class Main {
             e.printStackTrace();
         }
         UI ui = new UI();
-       // ui.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        ui.setExtendedState(JFrame.MAXIMIZED_BOTH);
         ui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ui.setVisible(true);
     }

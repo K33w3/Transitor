@@ -1,31 +1,29 @@
 package com.bcs05.util;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class GeoJSONParser {
-    public static void parseGeoJSON(String geoJsonContent) {
-        List<String> jsonContent = splitGeoJSON(geoJsonContent);
+    public static ArrayList<GeoJSONObject> parseGeoJSON(String geoJsonContent) {
+        ArrayList<GeoJSONObject> jsonArray = new ArrayList<>();
+        ArrayList<String> jsonContent = splitGeoJSON(geoJsonContent);
         for (int i = 3; i < jsonContent.size(); i += 3) {
             String json = jsonContent.get(i);
+
             String type = getType(json);
-            System.out.println("Type: " + type);
-
-            List<String> properties = getProperties(json);
-            System.out.println("Properties: " + properties);
-
+            ArrayList<String> properties = getProperties(json);
             Coordinates coords = getCoordinates(jsonContent.get(i + 1));
-            System.out.println("Coordinates: " + coords.getLatitude() + " " + coords.getLongitude());
+
+            GeoJSONObject jsonObject = new GeoJSONObject(type, properties, coords); 
+            jsonArray.add(jsonObject);
         }
+        return jsonArray; 
     }
 
-    public static List<String> splitGeoJSON(String geoJsonContent) {
+    public static ArrayList<String> splitGeoJSON(String geoJsonContent) {
         geoJsonContent = geoJsonContent.trim();
         geoJsonContent = geoJsonContent.substring(1, geoJsonContent.length() - 1);
-        List<String> jsonContent = new ArrayList<>();
+        ArrayList<String> jsonContent = new ArrayList<>();
         String[] parts = geoJsonContent.split("},");
-        System.out.println(parts.length);
         for (int i = 0; i < parts.length; i++) {
             String part = parts[i].trim();
             if (i == 0) {
@@ -46,8 +44,8 @@ public class GeoJSONParser {
         return type;
     }
 
-    public static List<String> getProperties(String json) {
-        List<String> properties = new ArrayList<>();
+    public static ArrayList<String> getProperties(String json) {
+        ArrayList<String> properties = new ArrayList<>();
         String[] parts = json.split(",");
         parts[1] = parts[1].replace("\"properties\": {","");
 

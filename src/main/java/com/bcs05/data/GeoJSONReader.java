@@ -7,25 +7,15 @@ import java.io.BufferedReader;
 public class GeoJSONReader {
     private static final String FILE_PATH = "src/main/resources/amenity.geojson";
 
-    public static void main(String[] args) {
-        try {
-            String geoJsonContent = readFile(FILE_PATH);
-            System.out.println(geoJsonContent);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static String readFile(String filePath) throws IOException {
+    public static String readFile() throws IOException {
         StringBuilder geoJSONContents = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
             String currentLine;
             while ((currentLine = reader.readLine()) != null) {
                 geoJSONContents.append(currentLine);
                 geoJSONContents.append(System.lineSeparator());
             }
-            
-            
+             
         }
         return geoJSONContents.toString();
     }

@@ -375,7 +375,7 @@
 // });
 var map;
 var routes = [];
-var currentRouteLayers = []; // Updated to manage multiple layers
+var currentRouteLayers = [];
 var selectedMode = 'foot';
 var overlayVisible = false;
 var activityLayers = [];
@@ -383,7 +383,7 @@ var markers = [];
 
 function initializeMap() {
     try {
-        map = L.map('map').setView([50.851368, 5.690973], 13); // Default view set to Maastricht
+        map = L.map('map').setView([50.851368, 5.690973], 13);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -452,7 +452,7 @@ function receiveRouteDetails(routeDetailsJson) {
         route.id = routes.length + 1;
         route.time = route.time + ' mins';
         route.distance = route.distance + ' m';
-        route.coordinates = JSON.parse(route.coordinates); // Parse coordinates string to JavaScript array
+        route.coordinates = JSON.parse(route.coordinates);
         console.log("Parsed Coordinates: ", route.coordinates);
         routes.push(route);
         updateRouteList();
@@ -549,11 +549,9 @@ function showRouteDetails(routeId) {
         document.getElementById('route-time').innerText = `Time: ${route.time}`;
         document.getElementById('route-distance').innerText = `Distance: ${route.distance}`;
 
-        // Clear previous instructions
         routeInstructions.innerHTML = '';
 
         if (route.mode === 'bus') {
-            // Append the instructions
             route.stops.forEach((step, index) => {
                 var stepDiv = document.createElement('div');
                 stepDiv.className = 'step';
@@ -577,7 +575,7 @@ function showRouteDetails(routeId) {
 
         document.getElementById('route-details-container').style.display = 'block';
         document.getElementById('route-details-container').style.height = 'auto';
-        document.getElementById('route-details-container').style.maxHeight = 'calc(100% - 100px)'; /* Allow for spacing */
+        document.getElementById('route-details-container').style.maxHeight = 'calc(100% - 100px)';
         document.getElementById('route-details-container').style.overflowY = 'auto';
 
         drawRouteOnMap(route.coordinates, route.mode);
@@ -612,7 +610,7 @@ const endIcon = L.divIcon({
 
 function drawRouteOnMap(routeCoordinates, mode) {
     try {
-        clearMap(); // Clear previous layers and markers
+        clearMap();
 
         if (routeCoordinates.length > 0) {
             let segments = [];
@@ -625,7 +623,6 @@ function drawRouteOnMap(routeCoordinates, mode) {
                 let coord = routeCoordinates[i];
                 currentSegment.latLngs.push([coord[0], coord[1]]);
 
-                // Check if the next segment has a different type or if it is the last coordinate
                 if (i === routeCoordinates.length - 1 || routeCoordinates[i + 1][2] !== currentSegment.type) {
                     segments.push(currentSegment);
                     if (i !== routeCoordinates.length - 1) {
@@ -638,13 +635,13 @@ function drawRouteOnMap(routeCoordinates, mode) {
             }
 
             segments.forEach(segment => {
-                let color = '#1A73E8'; // Default color
+                let color = '#1A73E8';
                 if (mode === 'bus') {
-                    color = (segment.type === 0) ? 'orange' : 'blue'; // Change color based on type
+                    color = (segment.type === 0) ? 'orange' : 'blue';
                 }
 
                 const layer = L.polyline(segment.latLngs, { color: color }).addTo(map);
-                currentRouteLayers.push(layer); // Store the layer
+                currentRouteLayers.push(layer);
             });
 
             const startPoint = [routeCoordinates[0][0], routeCoordinates[0][1]];
@@ -664,44 +661,6 @@ function drawRouteOnMap(routeCoordinates, mode) {
         }
     } catch (error) {
         displayError("Error drawing route on map: " + error.message);
-    }
-}
-
-function toggleOverlay() {
-    try {
-        var overlay = document.getElementById('overlay');
-        var toggleContainer = document.querySelector('.toggle-container');
-        var toggleSlider = document.getElementById('toggle-slider');
-        overlayVisible = !overlayVisible;
-
-        // Animation Logic
-        var leftPanel = document.getElementById('left-panel');
-        var newPanel = document.getElementById('new-panel');
-
-        if (overlayVisible) {
-            document.getElementById('route-details-container').style.display = 'none'; // Hide route details
-            leftPanel.classList.add('slide-out-left');
-            setTimeout(() => {
-                leftPanel.style.display = 'none';
-                newPanel.classList.add('slide-in');
-                newPanel.style.display = 'flex';
-            }, 500); // Delay for animation to complete
-        } else {
-            newPanel.classList.remove('slide-in');
-            newPanel.style.display = 'none';
-            leftPanel.style.display = 'flex';
-            setTimeout(() => {
-                leftPanel.classList.remove('slide-out-left');
-            }, 10); // Small delay to allow adding the classes back
-        }
-
-        overlay.style.display = overlayVisible ? 'block' : 'none';
-        toggleSlider.classList.toggle('left', !overlayVisible);
-        toggleSlider.classList.toggle('right', overlayVisible);
-        toggleContainer.classList.toggle('active', overlayVisible);
-        toggleSEAILayers(overlayVisible);
-    } catch (error) {
-        displayError("Error toggling overlay: " + error.message);
     }
 }
 
@@ -767,6 +726,59 @@ async function fetchSEAIData() {
     }
 }
 
+function toggleOverlay() {
+    try {
+        var toggleContainer = document.querySelector('.toggle-container');
+        var toggleSlider = document.getElementById('toggle-slider');
+        overlayVisible = !overlayVisible;
+
+        var leftPanel = document.getElementById('left-panel');
+        var rightPanel = document.getElementById('right-panel');
+        var mapContainer = document.getElementById('map-container');
+
+        if (overlayVisible) {
+            leftPanel.style.transform = 'translateX(-320px)';
+            rightPanel.style.display = 'block';
+            rightPanel.style.transform = 'translateX(0)';
+            mapContainer.style.left = '0';
+            mapContainer.style.width = 'calc(100% - 320px)';
+            toggleSEAILayers(true); // Show SEAI layers when toggled
+        } else {
+            leftPanel.style.transform = 'translateX(0)';
+            rightPanel.style.transform = 'translateX(320px)';
+            setTimeout(() => {
+                rightPanel.style.display = 'none';
+            }, 300); // Match the transition duration to avoid flicker
+            mapContainer.style.left = '320px';
+            mapContainer.style.width = 'calc(100% - 320px)';
+            toggleSEAILayers(false); // Hide SEAI layers when untoggled
+        }
+
+        toggleSlider.classList.toggle('left', !overlayVisible);
+        toggleSlider.classList.toggle('right', overlayVisible);
+        toggleContainer.classList.toggle('active', overlayVisible);
+    } catch (error) {
+        displayError("Error toggling overlay: " + error.message);
+    }
+}
+
+function swapPostalCodes() {
+    try {
+        var fromPostal = document.getElementById('from-postal').value;
+        var toPostal = document.getElementById('to-postal').value;
+        document.getElementById('from-postal').value = toPostal;
+        document.getElementById('to-postal').value = fromPostal;
+    } catch (error) {
+        displayError("Error swapping postal codes: " + error.message);
+    }
+}
+
 document.addEventListener('DOMContentLoaded', (event) => {
     initializeMap();
+    const rangeInput = document.getElementById('range-slider');
+    rangeInput.addEventListener('input', () => {
+        const value = (rangeInput.value - rangeInput.min) / (rangeInput.max - rangeInput.min) * 100;
+        rangeInput.style.background = `linear-gradient(to right, #1abc9c 0%, #1abc9c ${value}%, #34495e ${value}%, #34495e 100%)`;
+    });
+    rangeInput.dispatchEvent(new Event('input'));
 });

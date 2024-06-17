@@ -1,33 +1,40 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css" />
-    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <title>Map Application</title>
 </head>
-
 <body>
     <div id="main-container">
-        <div id="left-panel" class="panel">
+        <div id="left-panel">
             <div class="logo-container">
-                <h1>Transport Planner</h1>
+                <h1>Plan a Trip</h1>
             </div>
             <div class="top-bar">
-                <input type="text" id="from-postal" placeholder="From Postal Code">
-                <input type="text" id="to-postal" placeholder="To Postal Code">
+                <div class="input-container">
+                    <div class="postal-inputs">
+                        <input type="text" id="from-postal" placeholder="From Postal Code">
+                        <button id="swap-button" onclick="swapPostalCodes()">
+                            <img src="swap.png" alt="Swap" style="width: 20px; height: 20px; align-content: flex-start;">
+                        </button>
+                        <input type="text" id="to-postal" placeholder="To Postal Code">
+                    </div>
+                </div>
                 <button onclick="planRoute()">Plan Route</button>
                 <div class="slider-container">
                     <label for="range-slider">Range:</label>
-                    <input type="range" id="range-slider" min="1" max="50" value="10">
+                    <input type="range" id="range-slider" min="1" max="50" value="25">
                 </div>
             </div>
+            
             <div class="transportation-options">
-                <button onclick="selectMode('foot')">Walking</button>
-                <button onclick="selectMode('bike')">Biking</button>
+                <button onclick="selectMode('foot')" class="active">Foot</button>
+                <button onclick="selectMode('bike')">Bike</button>
                 <button onclick="selectMode('bus')">Bus</button>
                 <button onclick="selectMode('aerial')">Aerial</button>
             </div>
@@ -35,32 +42,24 @@
                 <div id="route-list" class="route-list"></div>
             </div>
         </div>
+        <div id="right-panel" class="hidden">
+            <div id="route-details-container">
+                <h2 id="route-name"></h2>
+                <p id="route-time"></p>
+                <p id="route-distance"></p>
+                <div id="route-instructions"></div>
+            </div>
+        </div>
         <div id="map-container">
             <div id="map"></div>
-            <div class="toggle-container" onclick="toggleOverlay()">
-                <div id="toggle-slider" class="toggle-slider left"></div>
-                <div class="toggle-label left">Map</div>
-                <div class="toggle-label right">Accessibility</div>
-            </div>
-            <div id="overlay"></div>
         </div>
-        <div id="notification-container"></div>
-        <div id="route-details-container" style="display:none;">
-            <h2 id="route-name">Route Name</h2>
-            <p id="route-time">Time: 0 mins</p>
-            <p id="route-distance">Distance: 0 m</p>
-            <div id="route-instructions"></div>
-        </div>
-        <div id="new-panel" class="panel hidden">
-            <div class="logo-container">
-                <h1>Accessibility Panel</h1>
-            </div>
-            <div class="content">
-                <p>Accessibility features and options will be displayed here.</p>
-            </div>
+        <div class="toggle-container" onclick="toggleOverlay()">
+            <div id="toggle-slider" class="toggle-slider left"></div>
+            <div class="toggle-label left">Show</div>
+            <div class="toggle-label right">Hide</div>
         </div>
     </div>
+    <div id="notification-container"></div>
     <script src="scripts.js"></script>
 </body>
-
 </html>

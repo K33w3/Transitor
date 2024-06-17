@@ -10,6 +10,7 @@ import com.bcs05.util.Stop;
 import com.bcs05.util.Transportation;
 import com.bcs05.util.Utils;
 import com.graphhopper.ResponsePath;
+import com.graphhopper.isochrone.algorithm.Triangulator.Result;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -207,6 +208,168 @@ public class GTFSEngine {
         return path;
     }
 
+    public static void main(String[] args) {
+        GTFSEngine engine = new GTFSEngine();
+        Path path = engine.findShortestPathWithTransportation("6221BA", "6221GE", 0.3);
+
+        if (path != null) {
+            System.out.println("Coordinates: " + path.getCoordinates().size());
+        } else {
+            System.out.println("No path found!");
+        }
+    }
+
+    public Path findShortestPathWithTransportation(String fromPostalCode, String toPostalCode, double radiusDistance) {
+        // Find stops for both postal codes
+        ArrayList<Stop> fromStops = getStopsFromPostalCode(fromPostalCode, radiusDistance);
+        ArrayList<Stop> toStops = getStopsFromPostalCode(toPostalCode, radiusDistance);
+
+        Path path = new Path();
+
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+
+            String findOutgoingTripsSQL = """
+                    select
+                    	t.route_id,
+                    	st.trip_id,
+                    	st.departure_time
+                    from
+                    	stop_times st
+                    join
+                    	trips t on st.trip_id = t.trip_id
+                    join
+                    	calendar_dates cd on t.service_id = cd.service_id
+                    join
+                    	(
+                    	select
+                            t.route_id,
+                            min(st.departure_time) as earliest_departure
+                        from
+                            stop_times st
+                        join
+                            trips t on st.trip_id = t.trip_id
+                        join
+                            calendar_dates cd on t.service_id = cd.service_id
+                        where
+                            st.stop_id = ? and
+                            st.departure_time >= current_time() and
+                            cd.date = current_date
+                        group by
+                            t.route_id
+                    	) earliest_trips on t.route_id = earliest_trips.route_id
+                    	and st.departure_time = earliest_trips.earliest_departure
+                    where
+                        st.stop_id = ?
+                        and st.departure_time >= current_time
+                        and cd.date = current_date;
+                    """;
+
+            Boolean transferTripFound = false;
+            String firstTripId = null;
+            String secondTripId = null;
+            Stop transferExit = null;
+            Stop transferStart = null;
+            Stop fS = null;
+            Stop tS = null;
+
+            for (Stop fromStop : fromStops) {
+
+                if (transferTripFound) {
+                    break;
+                }
+
+                for (Stop toStop : toStops) {
+
+                    if (transferTripFound) {
+                        break;
+                    }
+
+                    PreparedStatement statement = connection.prepareStatement(findOutgoingTripsSQL);
+                    // statement.setString(1, fromStop.getStopId());
+                    // statement.setString(2, fromStop.getStopId());
+                    statement.setString(1, "2511607");
+                    statement.setString(2, "2511607");
+
+                    ResultSet outgoingTripsResults = statement.executeQuery();
+
+                    while (outgoingTripsResults.next()) {
+                        String tripId = outgoingTripsResults.getString("trip_id");
+                        tripId = "179431363";
+
+                        String checkIfTripExistsSQL = """
+                                select
+                                	*
+                                from
+                                	stop_times st
+                                where
+                                	trip_id = (select to_trip_id from transfers where from_trip_id = ?)
+                                	and
+                                	stop_id = ?
+                                	and
+                                	stop_sequence >= (select stop_sequence from stop_times st2
+                                						where trip_id = (select to_trip_id from transfers where from_trip_id = ?)
+                                						and
+                                						stop_id = (select to_stop_id from transfers where from_trip_id = ?))
+                                                        """;
+                        PreparedStatement checkIfTripExistsStatement = connection
+                                .prepareStatement(checkIfTripExistsSQL);
+                        checkIfTripExistsStatement.setString(1, tripId);
+                        // checkIfTripExistsStatement.setString(2, toStop.getStopId());
+                        checkIfTripExistsStatement.setString(2, "2510277");
+                        checkIfTripExistsStatement.setString(3, tripId);
+                        checkIfTripExistsStatement.setString(4, tripId);
+
+                        ResultSet checkIfTripExistsResults = checkIfTripExistsStatement.executeQuery();
+                        if (checkIfTripExistsResults.next()) {
+                            System.out.println("Transfer trip found!");
+                            transferTripFound = true;
+                            firstTripId = tripId;
+                            secondTripId = checkIfTripExistsResults.getString("trip_id");
+
+                            // Get transfer stops
+                            String getTransferStopsSQL = """
+                                    select
+                                    	from_stop_id,
+                                    	to_stop_id
+                                    from
+                                    	transfers
+                                    where
+                                    	from_trip_id = ?
+                                    """;
+                            PreparedStatement getTransferStopsStatement = connection
+                                    .prepareStatement(getTransferStopsSQL);
+                            getTransferStopsStatement.setString(1, firstTripId);
+                            ResultSet transferStopsResults = getTransferStopsStatement.executeQuery();
+                            if (transferStopsResults.next()) {
+                                transferExit = new Stop(transferStopsResults.getString("from_stop_id"));
+                                transferStart = new Stop(transferStopsResults.getString("to_stop_id"));
+                            }
+
+                            fS = fromStop;
+                            tS = toStop;
+
+                            break;
+                        }
+                    }
+                    statement.close();
+                }
+            }
+
+            if (transferTripFound) {
+                path = constructPathWithTransfer(fromPostalCode, toPostalCode, fS, tS, transferExit,
+                        transferStart, firstTripId, secondTripId, connection);
+            } else {
+                return null;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return path;
+    }
+
     private ResponsePath walk(Coordinates from, Coordinates to) {
         RoutingEngine routingEngine = new RoutingEngine(Transportation.FOOT);
         return routingEngine.routing(from, to);
@@ -257,7 +420,7 @@ public class GTFSEngine {
             String latitute = String.valueOf(coordinates.getDouble("shape_pt_lat"));
             String longitude = String.valueOf(coordinates.getDouble("shape_pt_lon"));
             int shapeDistTraveled = coordinates.getInt("shape_dist_traveled");
-            path.addCoordinates(new PathCoordinates(latitute, longitude, shapeDistTraveled,1));
+            path.addCoordinates(new PathCoordinates(latitute, longitude, shapeDistTraveled, 1));
         }
 
         // Path from postal code to stop
@@ -280,12 +443,12 @@ public class GTFSEngine {
 
         // Add walk to from stop path
         for (int i = walkToFromStopCoordinates.size() - 1; i >= 0; i--) {
-            path.addCoordinatesToStart(walkToFromStopCoordinates.get(i),0);
+            path.addCoordinatesToStart(walkToFromStopCoordinates.get(i), 0);
         }
 
         // Add walk to to postal code path
         for (Coordinates c : walkToToPostalCodeCoordinates) {
-            path.addCoordinates(c,0);
+            path.addCoordinates(c, 0);
         }
 
         // Get trip stops
@@ -293,6 +456,85 @@ public class GTFSEngine {
         path.setStops(tripStops);
 
         return path;
+    }
+
+    private Path constructPathWithTransfer(String fromPostalCode, String toPostalCode, Stop fromStop, Stop toStop,
+            Stop transferExit, Stop transferStart,
+            String firstTripId, String secondTripId, Connection connection) throws SQLException {
+        Path path = new Path();
+
+        // Walk from fromPostalCode to fromStop
+        ResponsePath walkToFromStop = walk(CoordHandler.getCoordinates(fromPostalCode),
+                fromStop.getCoordinates());
+        ArrayList<Coordinates> walkToFromStopCoordinates = Utils.pointListToArrayList(walkToFromStop.getPoints());
+        for (Coordinates c : walkToFromStopCoordinates) {
+            path.addCoordinates(c, 0);
+        }
+
+        // Coordinates from fromStop to transferExit
+        ArrayList<PathCoordinates> coordinatesFromFromStoptoTransferExit = getCoordinatesForDirectTrip(firstTripId,
+                fromStop.getStopId(),
+                transferExit.getStopId(), connection);
+        for (PathCoordinates c : coordinatesFromFromStoptoTransferExit) {
+            path.addCoordinates(c, 1);
+        }
+
+        // Coordinates from transferStart to toStop
+        ArrayList<PathCoordinates> coordinatesFromTransferStartToToStop = getCoordinatesForDirectTrip(secondTripId,
+                transferStart.getStopId(),
+                toStop.getStopId(), connection);
+        for (PathCoordinates c : coordinatesFromTransferStartToToStop) {
+            path.addCoordinates(c, 1);
+        }
+
+        // Walk from toStop to toPostalCode
+        ResponsePath walkToToPostalCode = walk(toStop.getCoordinates(), CoordHandler.getCoordinates(toPostalCode));
+        ArrayList<Coordinates> walkToToPostalCodeCoordinates = Utils
+                .pointListToArrayList(walkToToPostalCode.getPoints());
+        for (Coordinates c : walkToToPostalCodeCoordinates) {
+            path.addCoordinates(c, 0);
+        }
+
+        return path;
+
+    }
+
+    public ArrayList<PathCoordinates> getCoordinatesForDirectTrip(String tripId, String fromStopId, String toStopId,
+            Connection connection) throws SQLException {
+        ArrayList<PathCoordinates> coordinates = new ArrayList<PathCoordinates>();
+
+        // Get coordinates SQL query
+        String getCoordinatesSQL = """
+                select
+                    shape_pt_lat,
+                    shape_pt_lon,
+                    shape_dist_traveled
+                from
+                    shapes
+                where
+                    shape_id = (select shape_id from trips where trip_id = ?)
+                    and shape_dist_traveled >= (select shape_dist_traveled from stop_times where trip_id = ? and stop_id = ?)
+                    and shape_dist_traveled <= (select shape_dist_traveled from stop_times where trip_id = ? and stop_id = ?);
+                        """;
+
+        // Prepare statement
+        PreparedStatement statement = connection.prepareStatement(getCoordinatesSQL);
+        statement.setString(1, tripId);
+        statement.setString(2, tripId);
+        statement.setString(3, fromStopId);
+        statement.setString(4, tripId);
+        statement.setString(5, toStopId);
+
+        // Populate the Path instance
+        ResultSet coordinatesResultSet = statement.executeQuery();
+        while (coordinatesResultSet.next()) {
+            String latitute = String.valueOf(coordinatesResultSet.getDouble("shape_pt_lat"));
+            String longitude = String.valueOf(coordinatesResultSet.getDouble("shape_pt_lon"));
+            int shapeDistTraveled = coordinatesResultSet.getInt("shape_dist_traveled");
+            coordinates.add(new PathCoordinates(latitute, longitude, shapeDistTraveled, 1));
+        }
+
+        return coordinates;
     }
 
     /**

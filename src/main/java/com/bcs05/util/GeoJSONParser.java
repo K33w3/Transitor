@@ -8,14 +8,11 @@ public class GeoJSONParser {
         ArrayList<String> jsonContent = splitGeoJSON(geoJsonContent);
         for (int i = 3; i < jsonContent.size(); i += 3) {
             String json = jsonContent.get(i);
+
             String type = getType(json);
-            System.out.println("Type: " + type);
-
             ArrayList<String> properties = getProperties(json);
-            System.out.println("Properties: " + properties);
-
             Coordinates coords = getCoordinates(jsonContent.get(i + 1));
-            System.out.println("Coordinates: " + coords.getLatitude() + " " + coords.getLongitude());
+
             GeoJSONObject jsonObject = new GeoJSONObject(type, properties, coords); 
             jsonArray.add(jsonObject);
         }
@@ -27,7 +24,6 @@ public class GeoJSONParser {
         geoJsonContent = geoJsonContent.substring(1, geoJsonContent.length() - 1);
         ArrayList<String> jsonContent = new ArrayList<>();
         String[] parts = geoJsonContent.split("},");
-        System.out.println(parts.length);
         for (int i = 0; i < parts.length; i++) {
             String part = parts[i].trim();
             if (i == 0) {

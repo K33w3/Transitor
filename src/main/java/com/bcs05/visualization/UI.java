@@ -91,7 +91,7 @@ public class UI extends JFrame {
             routeDetails.put("range", range);
             routeDetails.put("details", "Route from " + fromPostal + " to " + toPostal + " by " + mode);
     
-            if (mode.equals("bus")) {
+            if (mode.equals("bus") || mode.equals("transit")) {
                 routeDetails.put("stops", convertStopsToMapList(routeBus.getStops()));
                 routeDetails.put("coordinates", convertCoordinatesToJsArrayBus(routeBus));
             } else {
@@ -217,9 +217,6 @@ public class UI extends JFrame {
         return sb.toString();
     }
     
-
-
-
     private String convertCoordinatesToJsArray(List<Coordinates> coordinates) {
         if (coordinates == null || coordinates.isEmpty()) {
             return "[]";
@@ -254,6 +251,8 @@ public class UI extends JFrame {
                 return generateRouteGraphhopper(fromPostal, toPostal, mode);
             case "aerial":
                 return generateAerialDistance(fromPostal, toPostal);
+            case "transit":
+                return generateRouteTransportation(fromPostal, toPostal, range);
             default:
                 return null;
         }
@@ -268,6 +267,19 @@ public class UI extends JFrame {
         route.add(destination);
         distance = calculateAerialDistance(origin, destination);
         return route;
+    }
+
+    private List<Coordinates> generateRouteTransportation(String fromPostal, String toPostal, int radius)
+    {
+        Path route = new GTFSEngine().findShortestPathWithTransportation(fromPostal, toPostal, 0.3);
+        distance = route.getDistance();
+        time = route.getTime().toMinutes();
+        routeBus = route;
+        List<Coordinates> routeCoords = new ArrayList<>();
+        for (PathCoordinates pathCoord : route.getCoordinates()) {
+            routeCoords.add(new Coordinates(pathCoord.getLatitude(), pathCoord.getLongitude()));
+        }
+        return routeCoords;
     }
 
     private List<Coordinates> generateRouteGraphhopper(String fromPostal, String toPostal, String mode) {

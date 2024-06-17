@@ -49,7 +49,7 @@ function selectMode(mode) {
         selectedMode = mode;
         document.querySelectorAll('.transportation-options button').forEach(button => button.classList.remove('active'));
         document.querySelector(`.transportation-options button[onclick="selectMode('${mode}')"]`).classList.add('active');
-        document.getElementById('range-slider').disabled = (mode !== 'bus');
+        document.getElementById('range-slider').disabled = (mode !== 'bus' && mode !== 'transit');
     } catch (error) {
         displayError("Error selecting mode: " + error.message);
     }
@@ -66,7 +66,7 @@ function planRoute() {
             displayError("Please enter both from and to postal codes.");
         }
     } catch (error) {
-        displayError("No route found with this range. Please try again.");
+        displayError("No route found with this range. Please try again." + error.message);
     }
 }
 
@@ -136,6 +136,8 @@ function getModeIcon(mode) {
                 return '<img src="bus.svg" alt="Bus" class="icon"> Bus';
             case 'aerial':
                 return '<img src="plane.png" alt="Aerial" class="icon"> Aerial';
+            case 'transit':
+                return '<img src="bus.svg" alt="Transit" class="icon"> Transit';
             default:
                 return '';
         }
@@ -177,7 +179,7 @@ function showRouteDetails(routeId) {
         // Clear previous instructions
         routeInstructions.innerHTML = '';
 
-        if (route.mode === 'bus') {
+        if (route.mode === 'bus' || route.mode === 'transit') {
             // Append the instructions
             route.stops.forEach((step, index) => {
                 var stepDiv = document.createElement('div');

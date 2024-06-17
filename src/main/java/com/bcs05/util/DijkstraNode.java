@@ -9,18 +9,18 @@ public class DijkstraNode {
     // The stop the node represents
     private Stop stop;
 
-    // The distance from the previous node
-    private int distance;
+    // The travel time from the previous node
+    private int travelTime;
 
     /**
-     * Constructs a new DijkstraNode object with the specified stop and distance
+     * Constructs a new DijkstraNode object with the specified stop and travel time
      * 
-     * @param stop     The stop represented by this node
-     * @param distance The distance from the previous node to this node
+     * @param stop       The stop represented by this node
+     * @param travelTime The travel time from the previous node to this node
      */
-    public DijkstraNode(Stop stop, int distance) {
+    public DijkstraNode(Stop stop, int travelTime) {
         this.stop = stop;
-        this.distance = distance;
+        this.travelTime = travelTime;
     }
 
     /**
@@ -30,7 +30,7 @@ public class DijkstraNode {
      */
     public DijkstraNode(GTFSWeightedEdge edge) {
         stop = edge.getStop();
-        distance = edge.getTravelTime();
+        travelTime = edge.getTravelTime();
     }
 
     /**
@@ -43,12 +43,12 @@ public class DijkstraNode {
     }
 
     /**
-     * Retrieves the distance from the previous node to this node
+     * Retrieves the travel time from the previous node to this node
      * 
-     * @return The Distance
+     * @return The travel time
      */
-    public int getDistance() {
-        return distance;
+    public int getTravelTime() {
+        return travelTime;
     }
 
 }

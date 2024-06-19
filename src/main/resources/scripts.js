@@ -106,8 +106,6 @@ function receiveRouteDetails(routeDetailsJson) {
     } catch (error) {
         displayError("Error parsing JSON response: " + error.message);
         console.error("Error parsing JSON response: ", error, routeDetailsJson);
-    } finally {
-        hideLoading();
     }
 }
 
@@ -230,8 +228,6 @@ function showRouteDetails(routeId) {
         drawRouteOnMap(route.coordinates, route.mode);
     } catch (error) {
         displayError("Error showing route details: " + error.message);
-    } finally {
-        hideLoading();
     }
 }
 

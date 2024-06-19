@@ -66,15 +66,15 @@ function planRoute() {
         var toPostal = document.getElementById('to-postal').value;
         var range = document.getElementById('range-slider').value;
         if (fromPostal && toPostal) {
-            showLoading();
+            
             window.javaUI.createJsonJavascript(fromPostal, toPostal, selectedMode, range);
         } else {
             displayError("Please enter both from and to postal codes.");
-            hideLoading();
+            
         }
     } catch (error) {
         displayError("No route found with this range. Please try again.");
-        hideLoading();
+       
     }
 }
 
@@ -230,6 +230,8 @@ function showRouteDetails(routeId) {
         drawRouteOnMap(route.coordinates, route.mode);
     } catch (error) {
         displayError("Error showing route details: " + error.message);
+    } finally {
+        hideLoading();
     }
 }
 
@@ -311,7 +313,7 @@ function drawRouteOnMap(routeCoordinates, mode) {
         }
     } catch (error) {
         displayError("Error drawing route on map: " + error.message);
-    }
+    } 
 }
 
 function toggleOverlay() {
@@ -339,13 +341,6 @@ function toggleOverlay() {
     }
 }
 
-function showLoading() {
-    document.getElementById('loading-container').style.display = 'block';
-}
-
-function hideLoading() {
-    document.getElementById('loading-container').style.display = 'none';
-}
 
 document.addEventListener('DOMContentLoaded', (event) => {
     initializeMap();

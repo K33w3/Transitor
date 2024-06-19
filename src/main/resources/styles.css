@@ -25,15 +25,19 @@ body {
     display: flex;
     flex-direction: column;
     font-size: 14px;
-    position: relative;
-    transition: 0.3s ease;
+    position: absolute;
+    left: 0;
+    transition: transform 0.5s ease;
     z-index: 1000;
+}
+
+#left-panel.hide {
+    transform: translateX(-100%);
 }
 
 #map-container {
     flex: 1;
     height: 100%;
-    /* margin-left: 100px; */
     transition: 0.5s ease;
     z-index: 500;
 }
@@ -44,7 +48,6 @@ body {
 }
 
 #accessibility-panel {
-    display: none;
     width: 320px;
     background-color: #2c3e50;
     padding: 15px;
@@ -52,11 +55,16 @@ body {
     display: flex;
     flex-direction: column;
     font-size: 14px;
-    position: relative;
-    z-index: 1100;
+    position: absolute;
+    right: -380px;
     height: 100%;
-    transition: 0.5s ease;
+    transition: right 0.5s ease;
     overflow-y: auto;
+    z-index: 1100;
+}
+
+#accessibility-panel.show {
+    right: 0;
 }
 
 .hidden {
@@ -179,48 +187,62 @@ body {
     margin-bottom: 10px;
 }
 
-.postal-inputs {
-    display: flex;
-    align-items: center;
-    position: relative;
-}
-
-.postal-inputs input {
-    padding: 8px;
+.input-container input {
+    padding: 12px;
+    margin-bottom: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
     background-color: #34495e;
     color: #ecf0f1;
     font-size: 14px;
-    margin-right: 10px;
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-#swap-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    margin-left: 10px;
+.input-container input:focus {
+    background-color: #3b5998;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    outline: none;
+}
+
+.plan-swap-container {
     display: flex;
     align-items: center;
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
 }
 
 .top-bar button {
-    padding: 8px;
+    padding: 10px;
     border: none;
     color: #fff;
     border-radius: 5px;
     cursor: pointer;
     width: 100%;
-    margin-bottom: 10px;
     background-color: #1abc9c;
     font-size: 14px;
+    transition: background-color 0.3s;
 }
 
 .top-bar button:hover {
+    background-color: #16a085;
+}
+
+#swap-button {
+    padding: 10px;
+    border: none;
+    background-color: #1abc9c;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    background-image: url('swap1.svg');
+    background-size: 20px 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-color 0.3s;
+}
+
+#swap-button:hover {
     background-color: #16a085;
 }
 
@@ -294,7 +316,7 @@ body {
 }
 
 .transportation-options button {
-    padding: 8px 12px;
+    padding: 10px 12px;
     border: none;
     background-color: #1abc9c;
     color: #fff;
@@ -311,6 +333,31 @@ body {
 }
 
 .transportation-options button:hover {
+    background-color: #1abc9c;
+}
+
+.transit-button-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.transit-button-container button {
+    padding: 10px 12px;
+    border: none;
+    background-color: #1abc9c;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.transit-button-container button.active {
+    background-color: #16a085;
+}
+
+.transit-button-container button:hover {
     background-color: #1abc9c;
 }
 
@@ -334,7 +381,7 @@ body {
 .route-item {
     background-color: #34495e;
     border: 1px solid #1abc9c;
-    padding: 8px;
+    padding: 10px;
     border-radius: 5px;
     margin-bottom: 10px;
     cursor: pointer;
@@ -345,6 +392,7 @@ body {
     justify-content: space-between;
     align-items: center;
     position: relative;
+    transition: background-color 0.3s;
 }
 
 .route-item:hover {
@@ -356,7 +404,7 @@ body {
 }
 
 .route-info {
-    padding: 8px;
+    padding: 10px;
     background-color: #34495e;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -500,4 +548,18 @@ body {
     background-color: #34A853;
     border-radius: 50%;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Loading Throbber */
+#loading-container {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1200;
+}
+
+#loading-container img {
+    width: 50px;
+    height: 50px;
 }

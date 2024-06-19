@@ -50,6 +50,10 @@ function selectMode(mode) {
         selectedMode = mode;
         document.querySelectorAll('.transportation-options button').forEach(button => button.classList.remove('active'));
         document.querySelector(`.transportation-options button[onclick="selectMode('${mode}')"]`).classList.add('active');
+        document.querySelectorAll('.transit-button-container button').forEach(button => button.classList.remove('active'));
+        if (mode === 'transit') {
+            document.querySelector(`.transit-button-container button[onclick="selectMode('${mode}')"]`).classList.add('active');
+        }
         document.getElementById('range-slider').disabled = (mode !== 'bus');
     } catch (error) {
         displayError("Error selecting mode: " + error.message);
@@ -62,12 +66,27 @@ function planRoute() {
         var toPostal = document.getElementById('to-postal').value;
         var range = document.getElementById('range-slider').value;
         if (fromPostal && toPostal) {
+            showLoading();
             window.javaUI.createJsonJavascript(fromPostal, toPostal, selectedMode, range);
         } else {
             displayError("Please enter both from and to postal codes.");
+            hideLoading();
         }
     } catch (error) {
         displayError("No route found with this range. Please try again.");
+        hideLoading();
+    }
+}
+
+function swapInputs() {
+    try {
+        var fromPostal = document.getElementById('from-postal');
+        var toPostal = document.getElementById('to-postal');
+        var temp = fromPostal.value;
+        fromPostal.value = toPostal.value;
+        toPostal.value = temp;
+    } catch (error) {
+        displayError("Error swapping inputs: " + error.message);
     }
 }
 
@@ -87,6 +106,8 @@ function receiveRouteDetails(routeDetailsJson) {
     } catch (error) {
         displayError("Error parsing JSON response: " + error.message);
         console.error("Error parsing JSON response: ", error, routeDetailsJson);
+    } finally {
+        hideLoading();
     }
 }
 
@@ -295,95 +316,35 @@ function drawRouteOnMap(routeCoordinates, mode) {
 
 function toggleOverlay() {
     try {
-        var overlay = document.getElementById('overlay');
-        var toggleContainer = document.querySelector('.toggle-container');
         var toggleSlider = document.getElementById('toggle-slider');
         var leftPanel = document.getElementById('left-panel');
         var accessibilityPanel = document.getElementById('accessibility-panel');
-        var mapContainer = document.getElementById('map-container');
 
         overlayVisible = !overlayVisible;
         accessibilityMode = !accessibilityMode;
 
-        overlay.style.display = overlayVisible ? 'block' : 'none';
         toggleSlider.classList.toggle('left', !overlayVisible);
         toggleSlider.classList.toggle('right', overlayVisible);
-        toggleContainer.classList.toggle('active', overlayVisible);
+        document.querySelector('.toggle-container').classList.toggle('active', overlayVisible);
 
         if (accessibilityMode) {
-            leftPanel.style.display = 'none';
-            accessibilityPanel.style.display = 'flex';
-            toggleSEAILayers(true);
+            leftPanel.classList.add('hide');
+            accessibilityPanel.classList.add('show');
         } else {
-            leftPanel.style.display = 'flex';
-            accessibilityPanel.style.display = 'none';
-            toggleSEAILayers(false);
+            leftPanel.classList.remove('hide');
+            accessibilityPanel.classList.remove('show');
         }
     } catch (error) {
         displayError("Error toggling overlay: " + error.message);
     }
 }
 
-function toggleSEAILayers(show) {
-    try {
-        if (show) {
-            fetchSEAIData().then(data => {
-                data.forEach(entry => {
-                    const { Lat, Lon, SEAI } = entry;
-                    if (Lat && Lon) {
-                        var color = getColorBySEAI(SEAI);
-                        var marker = L.circleMarker([Lat, Lon], {
-                            color: color,
-                            radius: 8,
-                            fillOpacity: 0.8
-                        }).addTo(map);
-                        activityLayers.push(marker);
-                    } else {
-                        console.error("Invalid Lat/Lon values for entry:", entry);
-                    }
-                });
-            }).catch(error => {
-                displayError("Error loading SEAI data: " + error.message);
-            });
-        } else {
-            activityLayers.forEach(layer => {
-                map.removeLayer(layer);
-            });
-            activityLayers = [];
-        }
-    } catch (error) {
-        displayError("Error toggling SEAI layers: " + error.message);
-    }
+function showLoading() {
+    document.getElementById('loading-container').style.display = 'block';
 }
 
-function getColorBySEAI(SEAI) {
-    try {
-        if (SEAI >= 0 && SEAI <= 30) {
-            return "red";
-        } else if (SEAI >= 31 && SEAI <= 60) {
-            return "yellow";
-        } else if (SEAI >= 61 && SEAI <= 80) {
-            return "green";
-        } else {
-            return "grey";
-        }
-    } catch (error) {
-        displayError("Error getting color by SEAI: " + error.message);
-    }
-}
-
-async function fetchSEAIData() {
-    try {
-        const response = await fetch('postal_codes_seai.csv');
-        const csvText = await response.text();
-        const data = Papa.parse(csvText, {
-            header: true,
-            dynamicTyping: true
-        }).data;
-        return data;
-    } catch (error) {
-        displayError("Error fetching SEAI data: " + error.message);
-    }
+function hideLoading() {
+    document.getElementById('loading-container').style.display = 'none';
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {

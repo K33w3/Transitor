@@ -17,9 +17,14 @@
                 <h1>Transport Planner</h1>
             </div>
             <div class="top-bar">
-                <input type="text" id="from-postal" placeholder="From Postal Code">
-                <input type="text" id="to-postal" placeholder="To Postal Code">
-                <button onclick="planRoute()">Plan Route</button>
+                <div class="input-container">
+                    <input type="text" id="from-postal" placeholder="From Postal Code">
+                    <input type="text" id="to-postal" placeholder="To Postal Code">
+                    <div class="plan-swap-container">
+                        <button onclick="planRoute()">Plan Route</button>
+                        <button id="swap-button" onclick="swapInputs()"></button>
+                    </div>
+                </div>
                 <div class="slider-container">
                     <label for="range-slider">Range:</label>
                     <input type="range" id="range-slider" min="1" max="50" value="10">
@@ -30,6 +35,9 @@
                 <button onclick="selectMode('bike')">Biking</button>
                 <button onclick="selectMode('bus')">Bus</button>
                 <button onclick="selectMode('aerial')">Aerial</button>
+            </div>
+            <div class="transit-button-container">
+                <button onclick="selectMode('transit')">Transit</button>
             </div>
             <div class="route-list-container">
                 <div id="route-list" class="route-list"></div>
@@ -44,8 +52,7 @@
             </div>
             <div id="overlay"></div>
         </div>
-        <div id="accessibility-panel" style="display:none;">
-            <!-- Accessibility panel content goes here -->
+        <div id="accessibility-panel">
             <h2>Accessibility Information</h2>
             <p>Details about accessible routes and facilities.</p>
         </div>
@@ -56,6 +63,9 @@
             <div id="route-instructions"></div>
         </div>
         <div id="notification-container"></div>
+        <div id="loading-container">
+            <img src="throb1.gif" alt="Loading...">
+        </div>
     </div>
     <script src="scripts.js"></script>
 </body>

@@ -40,7 +40,7 @@ public class GTFSEngineWithTransfers {
         graph = new GTFSGraph();
     }
 
-    public Path findPathWithTransfers(String fromPostalCode, String toPostalCode, double radius) {
+    public PathTransfer findPathWithTransfers(String fromPostalCode, String toPostalCode, double radius) {
         ArrayList<Stop> startStops = GTFSEngine.getStopsFromPostalCode(fromPostalCode, radius);
         ArrayList<Stop> endStops = GTFSEngine.getStopsFromPostalCode(toPostalCode, radius);
 

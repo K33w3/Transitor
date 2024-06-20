@@ -3,7 +3,7 @@ package com.bcs05.util;
 public class Route {
 
     private String routeId;
-    private String routeShortName;
+    private String routeShortName; // bus number
     private String routeLongName;
 
     public Route(String routeId, String routeShortName, String routeLongName) {

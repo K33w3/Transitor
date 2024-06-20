@@ -30,7 +30,7 @@ public class GTFSEngine {
      * @param postalCode the postal code to find nearby stops for
      * @return a list of stops within radiusDistance km of the given postal code
      */
-    public ArrayList<Stop> getStopsFromPostalCode(String postalCode, double radiusDistance) {
+    public static ArrayList<Stop> getStopsFromPostalCode(String postalCode, double radiusDistance) {
         // Convert postal code to coordinates
         Coordinates coordinates = CoordHandler.getCoordinates(postalCode);
         if (coordinates == null) {
@@ -207,7 +207,7 @@ public class GTFSEngine {
         return path;
     }
 
-    private ResponsePath walk(Coordinates from, Coordinates to) {
+    public static ResponsePath walk(Coordinates from, Coordinates to) {
         RoutingEngine routingEngine = new RoutingEngine(Transportation.FOOT);
         return routingEngine.routing(from, to);
     }

@@ -82,9 +82,9 @@ public class GTFSEngineWithTransfers {
         }
 
         BusTransferResult bestResult = getBestTransferResult(results);
-        reconstructPathForUI(fromPostalCode, toPostalCode, bestResult);
+        PathTransfer finalPath = reconstructPathForUI(fromPostalCode, toPostalCode, bestResult);
 
-        return null;
+        return finalPath;
     }
 
     public BusTransferResult findBusPathWithTransfers(Stop startStop, Stop endStop,

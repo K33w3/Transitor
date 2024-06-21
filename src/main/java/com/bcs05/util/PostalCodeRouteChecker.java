@@ -29,7 +29,9 @@ public class PostalCodeRouteChecker {
     }
 
     private static boolean generateRoute(String from, String to) {
-        if (!engine.findPathWithTransfers(from, to, 0.5).getCoordinates().isEmpty()) {
+        System.out.println("Generating route from " + from + " to " + to);
+        PathTransfer path = engine.findPathWithTransfers(from, to, 0.5);
+        if(path != null && !path.getCoordinates().isEmpty()){
             return true;
         }
         return false;
@@ -40,13 +42,17 @@ public class PostalCodeRouteChecker {
         String outputCsvFile = "src/main/resources/validTransferRoutes.csv";
         List<String> zipCodes = readZipCodesFromCSV(csvFile);
 
+        System.out.println("Total zip codes read: " + zipCodes.size());
+
         try (PrintWriter pw = new PrintWriter(new FileWriter(outputCsvFile))) {
             for (int i = 0; i < zipCodes.size(); i++) {
                 for (int j = i + 1; j < zipCodes.size(); j++) {
-                    System.out.println("Checking " + zipCodes.get(i) + " to " + zipCodes.get(j));
+                    System.out.println("Checking route from " + zipCodes.get(i) + " to " + zipCodes.get(j));
                     if (generateRoute(zipCodes.get(i), zipCodes.get(j))) {
-                        System.out.println(zipCodes.get(i) + "," + zipCodes.get(j));
+                        System.out.println("Valid route found: " + zipCodes.get(i) + "," + zipCodes.get(j));
                         pw.println(zipCodes.get(i) + "," + zipCodes.get(j));
+                    } else {
+                        System.out.println("No valid route found: " + zipCodes.get(i) + " to " + zipCodes.get(j));
                     }
                 }
             }

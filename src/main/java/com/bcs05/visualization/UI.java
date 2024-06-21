@@ -363,10 +363,10 @@ public class UI extends JFrame {
 
     private List<Coordinates> generateRouteTransfers(String fromPostal, String toPostal, int range) {
         GTFSEngineWithTransfers engine = new GTFSEngineWithTransfers();
-        PathTransfer route = engine.findPathWithTransfers(fromPostal, toPostal, (double) range / 100.0);
+        PathTransfer route = engine.findPathWithTransfers(fromPostal, toPostal, range / 100.0);
         routeBus = route;
-        distance = route.getDistance();
-        time = route.getTime().toMinutes();
+        // distance = route.getDistance();
+        // time = route.getTime().toMinutes();
         List<Coordinates> routeCoords = new ArrayList<>();
 
         for (PathCoordinates pathCoord : route.getCoordinates()) {

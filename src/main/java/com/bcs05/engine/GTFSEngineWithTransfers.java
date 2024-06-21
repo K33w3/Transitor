@@ -142,7 +142,7 @@ public class GTFSEngineWithTransfers {
         }
 
         // Reconstruct path
-        if (explored.getOrDefault(endStop,false)) {
+        if (explored.getOrDefault(endStop, false)) {
             System.out.println("Path found");
             System.out.println("Travel time: " + travelTime.get(endStop));
             System.out.println("Arrival time: " + currentTime.plusSeconds(travelTime.get(endStop)));

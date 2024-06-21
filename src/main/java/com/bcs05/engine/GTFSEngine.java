@@ -30,7 +30,7 @@ public class GTFSEngine {
      * @param postalCode the postal code to find nearby stops for
      * @return a list of stops within radiusDistance km of the given postal code
      */
-    public ArrayList<Stop> getStopsFromPostalCode(String postalCode, double radiusDistance) {
+    public static ArrayList<Stop> getStopsFromPostalCode(String postalCode, double radiusDistance) {
         // Convert postal code to coordinates
         Coordinates coordinates = CoordHandler.getCoordinates(postalCode);
         if (coordinates == null) {
@@ -207,7 +207,7 @@ public class GTFSEngine {
         return path;
     }
 
-    private ResponsePath walk(Coordinates from, Coordinates to) {
+    public static ResponsePath walk(Coordinates from, Coordinates to) {
         RoutingEngine routingEngine = new RoutingEngine(Transportation.FOOT);
         return routingEngine.routing(from, to);
     }
@@ -257,7 +257,7 @@ public class GTFSEngine {
             String latitute = String.valueOf(coordinates.getDouble("shape_pt_lat"));
             String longitude = String.valueOf(coordinates.getDouble("shape_pt_lon"));
             int shapeDistTraveled = coordinates.getInt("shape_dist_traveled");
-            path.addCoordinates(new PathCoordinates(latitute, longitude, shapeDistTraveled,1));
+            path.addCoordinates(new PathCoordinates(latitute, longitude, shapeDistTraveled, 1));
         }
 
         // Path from postal code to stop
@@ -280,12 +280,12 @@ public class GTFSEngine {
 
         // Add walk to from stop path
         for (int i = walkToFromStopCoordinates.size() - 1; i >= 0; i--) {
-            path.addCoordinatesToStart(walkToFromStopCoordinates.get(i),0);
+            path.addCoordinatesToStart(walkToFromStopCoordinates.get(i), 0);
         }
 
         // Add walk to to postal code path
         for (Coordinates c : walkToToPostalCodeCoordinates) {
-            path.addCoordinates(c,0);
+            path.addCoordinates(c, 0);
         }
 
         // Get trip stops
@@ -368,4 +368,5 @@ public class GTFSEngine {
 
         return stops;
     }
+
 }

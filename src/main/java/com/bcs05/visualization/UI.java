@@ -105,7 +105,7 @@ public class UI extends JFrame {
             routeDetails.put("range", range);
             routeDetails.put("details", "Route from " + fromPostal + " to " + toPostal + " by " + mode);
 
-            if (mode.equals("bus") || mode.equals("transit")) {
+            if (mode.equals("bus")) {
                 routeDetails.put("stops", convertStopsToMapList(routeBus.getStops()));
                 routeDetails.put("coordinates", convertCoordinatesToJsArrayBus(routeBus));
                 System.out.println("Transit route chosen: " + routeBus.getStops().size() + " stops");

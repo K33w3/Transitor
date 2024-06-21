@@ -217,6 +217,8 @@ function getModeIcon(mode) {
         return '<img src="bus.svg" alt="Bus" class="icon"> Bus';
       case "aerial":
         return '<img src="plane.png" alt="Aerial" class="icon"> Aerial';
+      case "transit":
+        return '<img src="bus.svg" alt="Transit" class="icon"> Transit';
       default:
         return "";
     }

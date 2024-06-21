@@ -254,7 +254,7 @@ Special instructions are displayed for bus and transit routes, where the stops a
 
 function showRouteDetails(routeId) {
   try {
-    var route = routes.find((r) => r.id === routeId);
+    let route = routes.find((r) => r.id === routeId);
     if (!route) return;
 
     document
@@ -264,7 +264,7 @@ function showRouteDetails(routeId) {
       .querySelector(`.route-item[data-route-id='${routeId}']`)
       .classList.add("active");
 
-    var routeInstructions = document.getElementById("route-instructions");
+    let routeInstructions = document.getElementById("route-instructions");
 
     document.getElementById("route-name").innerText = route.details;
     document.getElementById("route-time").innerText = `Time: ${route.time}`;
@@ -278,7 +278,7 @@ function showRouteDetails(routeId) {
     if (route.mode === "bus" || route.mode === "transit") {
       // Append the instructions
       route.stops.forEach((step, index) => {
-        var stepDiv = document.createElement("div");
+        let stepDiv = document.createElement("div");
         stepDiv.className = "step";
         stepDiv.innerHTML = `
                     <div class="timeline-dot bus"></div>
@@ -290,7 +290,7 @@ function showRouteDetails(routeId) {
         routeInstructions.appendChild(stepDiv);
 
         if (index < route.stops.length - 1) {
-          var lineDiv = document.createElement("div");
+          let lineDiv = document.createElement("div");
           lineDiv.className = "timeline-line";
           lineDiv.innerHTML = `<div class="solid-line"></div>`;
           routeInstructions.appendChild(lineDiv);
@@ -420,9 +420,9 @@ Toggle the overlay panel. This includes the toggle slider, left panel, and acces
 
 function toggleOverlay() {
   try {
-    var toggleSlider = document.getElementById("toggle-slider");
-    var leftPanel = document.getElementById("left-panel");
-    var accessibilityPanel = document.getElementById("accessibility-panel");
+    let toggleSlider = document.getElementById("toggle-slider");
+    let leftPanel = document.getElementById("left-panel");
+    let accessibilityPanel = document.getElementById("accessibility-panel");
 
     overlayVisible = !overlayVisible;
     accessibilityMode = !accessibilityMode;

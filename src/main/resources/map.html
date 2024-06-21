@@ -1,78 +1,91 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css" />
+  <!-- APIs for the map implementation -->
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"
+    />
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="main-container">
-        <div id="left-panel">
-            <div class="logo-container">
-                <h1>Transport Planner</h1>
-            </div>
-            <div class="top-bar">
-                <div class="input-container">
-                    <input type="text" id="from-postal" placeholder="From Postal Code">
-                    <input type="text" id="to-postal" placeholder="To Postal Code">
-                    <div class="plan-swap-container">
-                        <button onclick="planRoute()">Plan Route</button>
-                        <button id="swap-button" onclick="swapInputs()"></button>
-                    </div>
-                </div>
-                <div class="slider-container">
-                    <label for="range-slider">Range:</label>
-                    <input type="range" id="range-slider" min="1" max="50" value="10">
-                </div>
-            </div>
-            <div class="transportation-options">
-                <button onclick="selectMode('foot')">Walking</button>
-                <button onclick="selectMode('bike')">Biking</button>
-                <button onclick="selectMode('bus')">Bus</button>
-                <button onclick="selectMode('aerial')">Aerial</button>
-            </div>
-            <div class="transit-button-container">
-                <button onclick="selectMode('transit')">Transit</button>
-            </div>
-            <div class="route-list-container">
-                <div id="route-list" class="route-list"></div>
-            </div>
+      <div id="left-panel">
+        <div class="logo-container">
+          <h1>Transport Planner</h1>
         </div>
-        <div id="map-container">
-            <div id="map"></div>
-            <div class="toggle-container" onclick="toggleOverlay()">
-                <div id="toggle-slider" class="toggle-slider left"></div>
-                <div class="toggle-label left">Map</div>
-                <div class="toggle-label right">Accessibility</div>
+        <!-- Input fields for the postal codes and the plan route button -->
+        <div class="top-bar">
+          <div class="input-container">
+            <input
+              type="text"
+              id="from-postal"
+              placeholder="From Postal Code"
+            />
+            <input type="text" id="to-postal" placeholder="To Postal Code" />
+            <div class="plan-swap-container">
+              <button onclick="planRoute()">Plan Route</button>
+              <button id="swap-button" onclick="swapInputs()"></button>
             </div>
-            <div id="overlay"></div>
+          </div>
+          <!-- Slider for choosing the range of the GTFS related searches -->
+          <div class="slider-container">
+            <label for="range-slider">Range:</label>
+            <input type="range" id="range-slider" min="1" max="50" value="10" />
+          </div>
         </div>
-        <div id="accessibility-panel">
-            <h2>Accessibility Information</h2>
-            <p>Details about accessible routes and facilities.</p>
-            <div class="pie-chart-container">
-                <div class="pie-chart">
-                    <div class="pie-chart-segment segment-1"></div>
-                    <div class="pie-chart-segment segment-2"></div>
-                    <div class="pie-chart-segment segment-3"></div>
-                    <div class="pie-chart-segment segment-4"></div>
-                </div>
-            </div>
+        <!-- Transportation buttons options -->
+        <div class="transportation-options">
+          <button onclick="selectMode('foot')">Walking</button>
+          <button onclick="selectMode('bike')">Biking</button>
+          <button onclick="selectMode('bus')">Bus</button>
+          <button onclick="selectMode('aerial')">Aerial</button>
         </div>
-        <div id="route-details-container" style="display:none;">
-            <h2 id="route-name">Route Name</h2>
-            <p id="route-time">Time: 0 mins</p>
-            <p id="route-distance">Distance: 0 m</p>
-            <div id="route-instructions"></div>
+        <div class="transit-button-container">
+          <button onclick="selectMode('transit')">Transit</button>
         </div>
-        <div id="notification-container"></div>
-        <script src="scripts.js"></script>
-    </div>
-</body>
+        <div class="route-list-container">
+          <div id="route-list" class="route-list"></div>
+        </div>
+      </div>
+      <div id="map-container">
+        <div id="map"></div>
+        <!-- Toggle button for the map and the accessibility information -->
+        <div class="toggle-container" onclick="toggleOverlay()">
+          <div id="toggle-slider" class="toggle-slider left"></div>
+          <div class="toggle-label left">Map</div>
+          <div class="toggle-label right">Accessibility</div>
+        </div>
+        <div id="overlay"></div>
+      </div>
+      <!-- Accessibility information panel -->
+      <div id="accessibility-panel">
+        <h2>Accessibility Information</h2>
+        <p>Details about accessible routes and facilities.</p>
+        <div class="pie-chart-container">
+          <div class="pie-chart">
+            <div class="pie-chart-segment segment-1"></div>
+            <div class="pie-chart-segment segment-2"></div>
+            <div class="pie-chart-segment segment-3"></div>
+            <div class="pie-chart-segment segment-4"></div>
+          </div>
+        </div>
+      </div>
 
+      <!-- Route details panel -->
+      <div id="route-details-container" style="display: none">
+        <h2 id="route-name">Route Name</h2>
+        <p id="route-time">Time: 0 mins</p>
+        <p id="route-distance">Distance: 0 m</p>
+        <div id="route-instructions"></div>
+      </div>
+      <div id="notification-container"></div>
+      <script src="scripts.js"></script>
+    </div>
+  </body>
 </html>

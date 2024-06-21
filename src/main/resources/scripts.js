@@ -275,7 +275,7 @@ function showRouteDetails(routeId) {
     // Clear previous instructions
     routeInstructions.innerHTML = "";
 
-    if (route.mode === "bus" || route.mode === "transit") {
+    if (route.mode === "bus") {
       // Append the instructions
       route.stops.forEach((step, index) => {
         let stepDiv = document.createElement("div");

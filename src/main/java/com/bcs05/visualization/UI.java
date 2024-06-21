@@ -17,6 +17,7 @@ import com.google.gson.Gson;
 import java.awt.BorderLayout;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -372,7 +373,6 @@ public class UI extends JFrame {
         for (PathCoordinates pathCoord : route.getCoordinates()) {
             routeCoords.add(new Coordinates(pathCoord.getLatitude(), pathCoord.getLongitude()));
         }
-
         return routeCoords;
     }
 
@@ -394,7 +394,6 @@ public class UI extends JFrame {
         for (PathCoordinates pathCoord : route.getCoordinates()) {
             routeCoords.add(new Coordinates(pathCoord.getLatitude(), pathCoord.getLongitude()));
         }
-
         return routeCoords;
     }
 

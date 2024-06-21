@@ -78,7 +78,7 @@ public class GTFSEngineWithTransfers {
             }
         }
 
-        if (results.isEmpty() || results.get(0) == null || results.get(1) == null) {
+        if (results.isEmpty()) {
             System.out.println("No results found");
             return null;
         }

@@ -48,7 +48,7 @@ public class PostalCodeRouteChecker {
             for (int i = 0; i < zipCodes.size(); i++) {
                 for (int j = i + 1; j < zipCodes.size(); j++) {
                     System.out.println("Checking route from " + zipCodes.get(i) + " to " + zipCodes.get(j));
-                    if (generateRoute(zipCodes.get(i), zipCodes.get(j))) {
+                    if (generateRoute(zipCodes.get(i+100), zipCodes.get(j))) {
                         System.out.println("Valid route found: " + zipCodes.get(i) + "," + zipCodes.get(j));
                         pw.println(zipCodes.get(i) + "," + zipCodes.get(j));
                     } else {

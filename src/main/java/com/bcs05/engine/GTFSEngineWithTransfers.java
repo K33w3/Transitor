@@ -225,9 +225,9 @@ public class GTFSEngineWithTransfers {
     
         if (routes.size() > 1) {
             associatedRoutes.add(routes.get(1));
-        } else {
+        } else { 
             System.out.println("Routes list is too small to access element 1");
-            return path; // or handle this case appropriately
+            return path; 
         }
     
         // Add first stop of each distinct route

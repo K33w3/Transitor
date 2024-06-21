@@ -31,7 +31,7 @@ public class GTFSEngineWithTransfers {
 
     public static void main(String[] args) {
         GTFSEngineWithTransfers engine = new GTFSEngineWithTransfers();
-        engine.findPathWithTransfers("6225GE", "6228JG", 0.3);
+        engine.findPathWithTransfers("6221BA", "6221GE", 0.3);
     }
 
     GTFSGraph graph;
@@ -66,7 +66,7 @@ public class GTFSEngineWithTransfers {
                     results.add(path);
                 }
 
-                if (results.size() == 1) {
+                if (results.size() == 10) {
                     alreadyFoundResults = true;
                     break;
                 }
@@ -240,19 +240,24 @@ public class GTFSEngineWithTransfers {
             if (allStops.get(i).getTripId().equals(allStops.get(i - 1).getTripId())) {
                 currentTripIds.add(allStops.get(i));
             } else {
+                // currentTripIds.add(allStops.get(i));
                 dividedIntoTripIds.add(currentTripIds);
                 currentTripIds = new ArrayList<PathTransferStop>();
+                currentTripIds.add(allStops.get(i - 1));
                 currentTripIds.add(allStops.get(i));
+
             }
         }
         dividedIntoTripIds.add(currentTripIds);
+        for (ArrayList<PathTransferStop> tripStops : dividedIntoTripIds) {
+            System.out.println(tripStops);
+        }
 
         // Get shapes coordinates
+        System.out.println("divided size: " + dividedIntoTripIds.size());
         for (ArrayList<PathTransferStop> tripStops : dividedIntoTripIds) {
-            String tripId = tripStops.get(0).getTripId();
-            if (tripId == null) {
-                tripId = tripStops.get(1).getTripId();
-            }
+            String tripId = tripStops.get(tripStops.size() - 1).getTripId();
+
             PathTransferStop firstStop = tripStops.get(0);
             PathTransferStop lastStop = tripStops.get(tripStops.size() - 1);
             try {
@@ -292,7 +297,12 @@ public class GTFSEngineWithTransfers {
         }
 
         // Walk to toStop
-        addWalkPath(path, toPostalCode, toStop);
+        ResponsePath walkPath = GTFSEngine.walk(
+                toStop.getCoordinates(), CoordHandler.getCoordinates(toPostalCode));
+        ArrayList<Coordinates> walkCoordinates = Utils.pointListToArrayList(walkPath.getPoints());
+        for (Coordinates c : walkCoordinates) {
+            path.addCoordinates(c, 0);
+        }
 
         return path;
     }

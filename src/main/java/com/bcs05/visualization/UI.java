@@ -2,6 +2,7 @@ package com.bcs05.visualization;
 
 import com.bcs05.engine.DistanceCalculator;
 import com.bcs05.engine.GTFSEngine;
+import com.bcs05.engine.GTFSEngineWithTransfers;
 import com.bcs05.engine.RoutingEngine;
 import com.bcs05.engine.TimeCalculator;
 import com.bcs05.util.CoordHandler;
@@ -9,6 +10,7 @@ import com.bcs05.util.Coordinates;
 import com.bcs05.util.Path;
 import com.bcs05.util.PathCoordinates;
 import com.bcs05.util.PathStop;
+import com.bcs05.util.PathTransfer;
 import com.bcs05.util.RouteHandler;
 import com.bcs05.util.Transportation;
 import com.google.gson.Gson;
@@ -91,9 +93,10 @@ public class UI extends JFrame {
             routeDetails.put("range", range);
             routeDetails.put("details", "Route from " + fromPostal + " to " + toPostal + " by " + mode);
     
-            if (mode.equals("bus")) {
+            if (mode.equals("bus") || mode.equals("transit")) {
                 routeDetails.put("stops", convertStopsToMapList(routeBus.getStops()));
                 routeDetails.put("coordinates", convertCoordinatesToJsArrayBus(routeBus));
+                System.out.println("Transit route chosen: " + routeBus.getStops().size() + " stops");
             } else {
                 String coordinatesJsArray = convertCoordinatesToJsArray(coordinates);
                 routeDetails.put("coordinates", coordinatesJsArray);
@@ -254,6 +257,8 @@ public class UI extends JFrame {
                 return generateRouteGraphhopper(fromPostal, toPostal, mode);
             case "aerial":
                 return generateAerialDistance(fromPostal, toPostal);
+            case "transit":
+                return generateRouteTransfers(fromPostal, toPostal, range);
             default:
                 return null;
         }
@@ -277,6 +282,22 @@ public class UI extends JFrame {
         RoutingEngine routeEngine = new RoutingEngine(getTransportationMode(mode));
         distance = RouteHandler.getDistanceRoute(mode, origin, destination);
         return routeEngine.getPoints(origin, destination);
+    }
+     
+
+    private List<Coordinates> generateRouteTransfers(String fromPostal, String toPostal, int range) {
+        GTFSEngineWithTransfers engine = new GTFSEngineWithTransfers();
+        PathTransfer route = engine.findPathWithTransfers(fromPostal, toPostal, (double) range / 100.0);
+        routeBus = route;
+        distance = route.getDistance();
+        time = route.getTime().toMinutes();
+        List<Coordinates> routeCoords = new ArrayList<>();
+    
+        for (PathCoordinates pathCoord : route.getCoordinates()) {
+            routeCoords.add(new Coordinates(pathCoord.getLatitude(), pathCoord.getLongitude()));
+        }
+
+        return routeCoords;
     }
 
     private List<Coordinates> generateRouteGtfs(String fromPostal, String toPostal, int range) {

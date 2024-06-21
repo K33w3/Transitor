@@ -11,6 +11,7 @@ import com.bcs05.util.Path;
 import com.bcs05.util.PathCoordinates;
 import com.bcs05.util.PathStop;
 import com.bcs05.util.PathTransfer;
+import com.bcs05.util.Route;
 import com.bcs05.util.RouteHandler;
 import com.bcs05.util.Transportation;
 import com.google.gson.Gson;
@@ -38,6 +39,7 @@ public class UI extends JFrame {
     private double distance;
     private double time;
     private Path routeBus;
+    private PathTransfer routeTransfers;
 
     public UI() {
         setTitle("Route Generator");
@@ -109,7 +111,12 @@ public class UI extends JFrame {
                 routeDetails.put("stops", convertStopsToMapList(routeBus.getStops()));
                 routeDetails.put("coordinates", convertCoordinatesToJsArrayBus(routeBus));
                 System.out.println("Transit route chosen: " + routeBus.getStops().size() + " stops");
-            } else {
+
+            } else if(mode.equals("transit")){
+                routeDetails.put("coordinates", convertCoordinatesToJsArrayBus(routeTransfers));
+                routeDetails.put("routes", convertRouteNamesToMapList(routeTransfers.getRoutes()));           
+            
+            }else {
                 String coordinatesJsArray = convertCoordinatesToJsArray(coordinates);
                 routeDetails.put("coordinates", coordinatesJsArray);
             }
@@ -226,6 +233,22 @@ public class UI extends JFrame {
         }
         return stopList;
     }
+
+    private List<Map<String, Object>> convertRouteNamesToMapList(ArrayList<Route> routes) {
+        List<Map<String, Object>> routeList = new ArrayList<>();
+        if (routes != null && !routes.isEmpty()) {
+            for (Route route : routes) {
+                Map<String, Object> routeMap = new HashMap<>();
+                routeMap.put("name", route.getRouteLongName());
+                routeMap.put("line", route.getRouteShortName());
+                routeList.add(routeMap);
+            }
+        }
+
+        System.out.println("Route list: " + routeList.toString());
+        return routeList;
+    }
+    
 
     /**
      * Convert a list of stops to a list of maps. Returns a list of maps representing the stops.
@@ -365,9 +388,10 @@ public class UI extends JFrame {
     private List<Coordinates> generateRouteTransfers(String fromPostal, String toPostal, int range) {
         GTFSEngineWithTransfers engine = new GTFSEngineWithTransfers();
         PathTransfer route = engine.findPathWithTransfers(fromPostal, toPostal, range / 100.0);
-        routeBus = route;
+        this.routeTransfers = route;
         // distance = route.getDistance();
         // time = route.getTime().toMinutes();
+        System.out.println(routeTransfers.getRoutes().toString());
         List<Coordinates> routeCoords = new ArrayList<>();
 
         for (PathCoordinates pathCoord : route.getCoordinates()) {

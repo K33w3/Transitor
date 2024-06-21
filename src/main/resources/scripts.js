@@ -252,41 +252,91 @@ This highlights the selected route in the route list and displays the route deta
 Special instructions are displayed for bus and transit routes, where the stops are displayed.
 */
 
+// function showRouteDetails(routeId) {
+//   try {
+//     let route = routes.find((r) => r.id === routeId);
+//     if (!route) return;
+
+//     document
+//       .querySelectorAll(".route-item")
+//       .forEach((item) => item.classList.remove("active"));
+//     document
+//       .querySelector(`.route-item[data-route-id='${routeId}']`)
+//       .classList.add("active");
+
+//     let routeInstructions = document.getElementById("route-instructions");
+
+//     document.getElementById("route-name").innerText = route.details;
+//     document.getElementById("route-time").innerText = `Time: ${route.time}`;
+//     document.getElementById(
+//       "route-distance"
+//     ).innerText = `Distance: ${route.distance}`;
+
+//     // Clear previous instructions
+//     routeInstructions.innerHTML = "";
+
+//     if (route.mode === "bus") {
+//       // Append the instructions
+//       route.stops.forEach((step, index) => {
+//         let stepDiv = document.createElement("div");
+//         stepDiv.className = "step";
+//         stepDiv.innerHTML = `
+//                     <div class="timeline-dot bus"></div>
+//                     <div class="step-details">
+//                         <strong>${step.time}</strong><br>
+//                         ${step.name}
+//                     </div>
+//                 `;
+//         routeInstructions.appendChild(stepDiv);
+
+//         if (index < route.stops.length - 1) {
+//           let lineDiv = document.createElement("div");
+//           lineDiv.className = "timeline-line";
+//           lineDiv.innerHTML = `<div class="solid-line"></div>`;
+//           routeInstructions.appendChild(lineDiv);
+//         }
+//       });
+//     }
+//     document.getElementById("route-details-container").style.display = "block";
+//     document.getElementById("route-details-container").style.height = "auto";
+//     document.getElementById("route-details-container").style.maxHeight =
+//       "calc(100% - 100px)"; /* Allow for spacing */
+//     document.getElementById("route-details-container").style.overflowY = "auto";
+
+//     drawRouteOnMap(route.coordinates, route.mode);
+//   } catch (error) {
+//     displayError("Error showing route details: " + error.message);
+//   }
+// }
+
 function showRouteDetails(routeId) {
   try {
     let route = routes.find((r) => r.id === routeId);
     if (!route) return;
 
-    document
-      .querySelectorAll(".route-item")
-      .forEach((item) => item.classList.remove("active"));
-    document
-      .querySelector(`.route-item[data-route-id='${routeId}']`)
-      .classList.add("active");
+    document.querySelectorAll(".route-item").forEach((item) => item.classList.remove("active"));
+    document.querySelector(`.route-item[data-route-id='${routeId}']`).classList.add("active");
 
     let routeInstructions = document.getElementById("route-instructions");
 
     document.getElementById("route-name").innerText = route.details;
     document.getElementById("route-time").innerText = `Time: ${route.time}`;
-    document.getElementById(
-      "route-distance"
-    ).innerText = `Distance: ${route.distance}`;
+    document.getElementById("route-distance").innerText = `Distance: ${route.distance}`;
 
     // Clear previous instructions
     routeInstructions.innerHTML = "";
 
-    if (route.mode === "bus") {
-      // Append the instructions
+    if (route.mode === "bus" && route.stops) {
       route.stops.forEach((step, index) => {
         let stepDiv = document.createElement("div");
         stepDiv.className = "step";
         stepDiv.innerHTML = `
-                    <div class="timeline-dot bus"></div>
-                    <div class="step-details">
-                        <strong>${step.time}</strong><br>
-                        ${step.name}
-                    </div>
-                `;
+          <div class="timeline-dot ${route.mode}"></div>
+          <div class="step-details">
+            <strong>${step.time}</strong><br>
+            ${step.name}
+          </div>
+        `;
         routeInstructions.appendChild(stepDiv);
 
         if (index < route.stops.length - 1) {
@@ -298,10 +348,34 @@ function showRouteDetails(routeId) {
       });
     }
 
+    if (route.mode === "transit" && route.routes) {
+      console.log("Transit routes:", route.routes);  // Debugging line to check routes array
+      // Append the transfer details for transit routes
+      route.routes.forEach((routeDetail, index) => {
+        console.log("Route detail:", routeDetail);  // Debugging line to check each route detail
+        let transferDiv = document.createElement("div");
+        transferDiv.className = "transfer-step";
+        transferDiv.innerHTML = `
+          <div class="timeline-dot transfer"></div>
+          <div class="step-details">
+            <strong>Line: ${routeDetail.line}</strong><br>
+            ${routeDetail.name}
+          </div>
+        `;
+        routeInstructions.appendChild(transferDiv);
+
+        if (index < route.routes.length - 1) {
+          let lineDiv = document.createElement("div");
+          lineDiv.className = "timeline-line";
+          lineDiv.innerHTML = `<div class="dashed-line"></div>`;
+          routeInstructions.appendChild(lineDiv);
+        }
+      });
+    }
+
     document.getElementById("route-details-container").style.display = "block";
     document.getElementById("route-details-container").style.height = "auto";
-    document.getElementById("route-details-container").style.maxHeight =
-      "calc(100% - 100px)"; /* Allow for spacing */
+    document.getElementById("route-details-container").style.maxHeight = "calc(100% - 100px)"; /* Allow for spacing */
     document.getElementById("route-details-container").style.overflowY = "auto";
 
     drawRouteOnMap(route.coordinates, route.mode);

@@ -66,10 +66,11 @@ public class GTFSEngineWithTransfers {
                     results.add(path);
                 }
 
-                if (results.size() == 3) {
+                if (results.size() == 1) {
                     alreadyFoundResults = true;
                     break;
                 }
+
             }
 
             if (alreadyFoundResults) {
@@ -226,6 +227,9 @@ public class GTFSEngineWithTransfers {
             }
         }
 
+        path.setStops(stops);
+        path.setRoutes(associatedRoutes);
+
         // Divide into tripIds
         ArrayList<PathTransferStop> allStops = result.getStops();
         ArrayList<ArrayList<PathTransferStop>> dividedIntoTripIds = new ArrayList<ArrayList<PathTransferStop>>();
@@ -293,11 +297,11 @@ public class GTFSEngineWithTransfers {
         return path;
     }
 
-    private void addWalkPath(Path path, String fromPostalCode, Stop fromStop) {
-        ResponsePath walkToFromStopPath = GTFSEngine.walk(CoordHandler.getCoordinates(fromPostalCode),
-                fromStop.getCoordinates());
-        ArrayList<Coordinates> walkToFromStopCoordinates = Utils.pointListToArrayList(walkToFromStopPath.getPoints());
-        for (Coordinates c : walkToFromStopCoordinates) {
+    private void addWalkPath(Path path, String postalCode, Stop stop) {
+        ResponsePath walkPath = GTFSEngine.walk(CoordHandler.getCoordinates(postalCode),
+                stop.getCoordinates());
+        ArrayList<Coordinates> walkCoordinates = Utils.pointListToArrayList(walkPath.getPoints());
+        for (Coordinates c : walkCoordinates) {
             path.addCoordinates(c, 0);
         }
     }

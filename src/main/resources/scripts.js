@@ -49,16 +49,25 @@ function selectMode(mode) {
     try {
         selectedMode = mode;
         document.querySelectorAll('.transportation-options button').forEach(button => button.classList.remove('active'));
-        document.querySelector(`.transportation-options button[onclick="selectMode('${mode}')"]`).classList.add('active');
-        document.querySelectorAll('.transit-button-container button').forEach(button => button.classList.remove('active'));
-        if (mode === 'transit') {
-            document.querySelector(`.transit-button-container button[onclick="selectMode('${mode}')"]`).classList.add('active');
+     
+        const transportationButton = document.querySelector(`.transportation-options button[onclick="selectMode('${mode}')"]`);
+        if (transportationButton) {
+            transportationButton.classList.add('active');
         }
-        document.getElementById('range-slider').disabled = (mode !== 'bus');
+        document.querySelectorAll('.transit-button-container button').forEach(button => button.classList.remove('active'));
+      
+        if (mode === 'transit') {
+            const transitButton = document.querySelector(`.transit-button-container button[onclick="selectMode('${mode}')"]`);
+            if (transitButton) {
+                transitButton.classList.add('active');
+            }
+        }
+        document.getElementById('range-slider').disabled = (mode !== 'bus' && mode !== 'transit');
     } catch (error) {
         displayError("Error selecting mode: " + error.message);
     }
 }
+
 
 function planRoute() {
     try {
@@ -197,7 +206,7 @@ function showRouteDetails(routeId) {
         // Clear previous instructions
         routeInstructions.innerHTML = '';
 
-        if (route.mode === 'bus') {
+        if (route.mode === 'bus' || route.mode === 'transit') {
             // Append the instructions
             route.stops.forEach((step, index) => {
                 var stepDiv = document.createElement('div');

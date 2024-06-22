@@ -211,6 +211,10 @@ public class GTFSEngineWithTransfers {
             routes.add(route);
         }
 
+        // Set stop name for first stop
+        String stopName = getStopName(result.getStops().get(0).getStopId());
+        result.getStops().get(0).setName(stopName);
+
         // Add first stop to path
         ArrayList<PathStop> stops = new ArrayList<PathStop>();
         ArrayList<Route> associatedRoutes = new ArrayList<Route>();
@@ -222,6 +226,8 @@ public class GTFSEngineWithTransfers {
         for (int i = 2; i < result.getStops().size(); i++) {
             PathTransferStop stop = result.getStops().get(i);
             if (!routes.get(i).getRouteId().equals(currentRouteId)) {
+                String stopNameForRoute = getStopName(stop.getStopId());
+                stop.setName(stopNameForRoute);
                 stops.add(stop);
                 associatedRoutes.add(routes.get(i));
                 currentRouteId = routes.get(i).getRouteId();

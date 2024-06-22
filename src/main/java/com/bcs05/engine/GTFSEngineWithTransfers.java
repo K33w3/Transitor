@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Duration;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -299,10 +300,15 @@ public class GTFSEngineWithTransfers {
         // Walk to toStop
         ResponsePath walkPath = GTFSEngine.walk(
                 toStop.getCoordinates(), CoordHandler.getCoordinates(toPostalCode));
+        int walkTimeInSecondsToToPostalCode = (int) walkPath.getTime() / 1000;
         ArrayList<Coordinates> walkCoordinates = Utils.pointListToArrayList(walkPath.getPoints());
         for (Coordinates c : walkCoordinates) {
             path.addCoordinates(c, 0);
         }
+
+        // Add time
+        Duration timeTaken = computeTime(result.getArrivalTime(), walkTimeInSecondsToToPostalCode);
+        path.setTime(timeTaken);
 
         return path;
     }
@@ -314,6 +320,11 @@ public class GTFSEngineWithTransfers {
         for (Coordinates c : walkCoordinates) {
             path.addCoordinates(c, 0);
         }
+    }
+
+    private Duration computeTime(LocalTime finalBusArrivalTime, int walkTimeToToPostalCodeInSeconds) {
+        LocalTime finalWalkArrivalTime = finalBusArrivalTime.plusSeconds(walkTimeToToPostalCodeInSeconds);
+        return Duration.between(LocalTime.now(), finalWalkArrivalTime);
     }
 
     private String getStopName(String stopId) {

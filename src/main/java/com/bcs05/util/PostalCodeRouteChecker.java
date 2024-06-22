@@ -128,7 +128,7 @@ public class PostalCodeRouteChecker {
                 for (int j = 0; j < zipCodes.size(); j++) {
                     if (!startingPostalCode.equals(zipCodes.get(j))) {
                         System.out.println("Checking route from " + startingPostalCode + " to " + zipCodes.get(j));
-                        if (generateRoute(startingPostalCode, zipCodes.get(j))) {
+                     if (generateRoute(startingPostalCode, zipCodes.get(j))) {
                             System.out.println("Valid route found: " + startingPostalCode + "," + zipCodes.get(j));
                             pw.println(startingPostalCode + "," + zipCodes.get(j));
                         } else {

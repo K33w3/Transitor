@@ -20,6 +20,7 @@ import com.bcs05.util.DijkstraNodeComparator;
 import com.bcs05.util.GTFSGraph;
 import com.bcs05.util.GTFSWeightedEdge;
 import com.bcs05.util.Path;
+import com.bcs05.util.PathCoordinates;
 import com.bcs05.util.PathStop;
 import com.bcs05.util.PathTransfer;
 import com.bcs05.util.PathTransferStop;
@@ -85,6 +86,10 @@ public class GTFSEngineWithTransfers {
 
         BusTransferResult bestResult = getBestTransferResult(results);
         PathTransfer finalPath = reconstructPathForUI(fromPostalCode, toPostalCode, bestResult);
+
+        for (PathCoordinates c : finalPath.getCoordinates()) {
+            System.out.println(c.getBusPathColorId());
+        }
 
         return finalPath;
     }
@@ -262,6 +267,7 @@ public class GTFSEngineWithTransfers {
 
         // Get shapes coordinates
         System.out.println("divided size: " + dividedIntoTripIds.size());
+        int colorId = 0;
         for (ArrayList<PathTransferStop> tripStops : dividedIntoTripIds) {
             String tripId = tripStops.get(tripStops.size() - 1).getTripId();
 
@@ -294,13 +300,13 @@ public class GTFSEngineWithTransfers {
                     String lat = coordinatesResult.getString("shape_pt_lat");
                     String lon = coordinatesResult.getString("shape_pt_lon");
                     Coordinates c = new Coordinates(lat, lon);
-                    path.addCoordinates(c, 1);
+                    path.addCoordinates(c, 1, colorId);
                 }
 
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
+            colorId++;
         }
 
         // Walk to toStop

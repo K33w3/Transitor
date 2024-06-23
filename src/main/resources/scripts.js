@@ -302,6 +302,7 @@ function toggleOverlay() {
         toggleSlider.classList.toggle('left', !overlayVisible);
         toggleSlider.classList.toggle('right', overlayVisible);
         toggleContainer.classList.toggle('active', overlayVisible);
+        window.javaUI.updateAcc();
         toggleSEAILayers(overlayVisible);
     } catch (error) {
         displayError("Error toggling overlay: " + error.message);

@@ -14,6 +14,7 @@ import com.bcs05.util.Transportation;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.bcs05.data.;
 
 import java.awt.BorderLayout;
 import java.math.BigDecimal;
@@ -189,6 +190,12 @@ public class UI extends JFrame {
             }
         }
         return stopList;
+    }
+
+    private void updateAcc(){
+
+        PostalCodeAccessibility pca = new PostalCodeAccessibility();
+        pca.writeChangesCSV();
     }
 
     private String convertCoordinatesToJsArrayBus(Path route) {

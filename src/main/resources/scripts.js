@@ -301,8 +301,7 @@ function toggleOverlay() {
         overlay.style.display = overlayVisible ? 'block' : 'none';
         toggleSlider.classList.toggle('left', !overlayVisible);
         toggleSlider.classList.toggle('right', overlayVisible);
-        toggleContainer.classList.toggle('active', overlayVisible);
-        window.javaUI.updateAcc();
+        toggleContainer.classList.toggle('active', overlayVisible);       
         toggleSEAILayers(overlayVisible);
     } catch (error) {
         displayError("Error toggling overlay: " + error.message);
@@ -343,11 +342,11 @@ function toggleSEAILayers(show) {
 
 function getColorBySEAI(SEAI) {
     try {
-        if (SEAI >= 0 && SEAI <= 30) {
+        if (SEAI >= 0 && SEAI <= 5) {
             return "red";
-        } else if (SEAI >= 31 && SEAI <= 60) {
+        } else if (SEAI > 5 && SEAI <= 9) {
             return "yellow";
-        } else if (SEAI >= 61 && SEAI <= 80) {
+        } else if (SEAI >= 10 && SEAI <= 80) {
             return "green";
         } else {
             return "grey";
@@ -359,7 +358,7 @@ function getColorBySEAI(SEAI) {
 
 async function fetchSEAIData() {
     try {
-        const response = await fetch('postal_codes_seai.csv');
+        const response = await fetch('postalAcc.csv');
         const csvText = await response.text();
         const data = Papa.parse(csvText, {
             header: true,

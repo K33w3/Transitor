@@ -14,7 +14,7 @@ import com.bcs05.util.Transportation;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.bcs05.data.;
+import com.bcs05.data.PostalCodeAccessibility;
 
 import java.awt.BorderLayout;
 import java.math.BigDecimal;
@@ -61,6 +61,7 @@ public class UI extends JFrame {
     }
 
     private void createJavaFXScene() {
+        updateAcc();
         WebView webView = new WebView();
         webEngine = webView.getEngine();
         webEngine.load(getClass().getResource("/map.html").toExternalForm());
@@ -80,6 +81,7 @@ public class UI extends JFrame {
     }
 
     public void createJsonJavascript(String fromPostal, String toPostal, String mode, int range) {
+       
         if (isStartEndValid(fromPostal, toPostal)) {
             List<Coordinates> coordinates = chooseRoute(fromPostal, toPostal, mode, range);
     
@@ -192,8 +194,7 @@ public class UI extends JFrame {
         return stopList;
     }
 
-    private void updateAcc(){
-
+    public void updateAcc(){
         PostalCodeAccessibility pca = new PostalCodeAccessibility();
         pca.writeChangesCSV();
     }

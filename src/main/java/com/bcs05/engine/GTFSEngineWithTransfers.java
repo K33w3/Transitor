@@ -37,9 +37,7 @@ public class GTFSEngineWithTransfers {
     GTFSGraph graph;
 
     public GTFSEngineWithTransfers() {
-        System.out.println("Creating graph");
         graph = GTFSGraph.getInstance();
-        System.out.println("Graph created");
     }
 
     public PathTransfer findPathWithTransfers(String fromPostalCode, String toPostalCode, double radius) {

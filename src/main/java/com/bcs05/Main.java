@@ -2,14 +2,20 @@ package com.bcs05;
 
 import javax.swing.JFrame;
 
+import com.bcs05.util.GTFSGraph;
 import com.bcs05.util.JSONAccessabilityScores;
 import com.bcs05.visualization.UI;
 
 public final class Main {
     private Main() {
     }
+
     public static void main(String[] args) {
-       
+
+        System.out.println("Creating graph");
+        GTFSGraph.createInstance();
+        System.out.println("Graph created");
+
         UI ui = new UI();
         ui.setExtendedState(JFrame.MAXIMIZED_BOTH);
         ui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

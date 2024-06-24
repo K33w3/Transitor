@@ -24,8 +24,20 @@ public class GTFSGraph {
     }
 
     private HashMap<Stop, LinkedList<GTFSWeightedEdge>> adjacencyList;
+    private static GTFSGraph instance;
 
-    public GTFSGraph() {
+    public static void createInstance() {
+        instance = new GTFSGraph();
+    }
+
+    public static GTFSGraph getInstance() {
+        if (instance == null) {
+            instance = new GTFSGraph();
+        }
+        return instance;
+    }
+
+    private GTFSGraph() {
         adjacencyList = new HashMap<Stop, LinkedList<GTFSWeightedEdge>>();
         createGraph();
     }

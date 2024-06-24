@@ -12,9 +12,7 @@ public final class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("Creating graph");
         GTFSGraph.createInstance();
-        System.out.println("Graph created");
 
         UI ui = new UI();
         ui.setExtendedState(JFrame.MAXIMIZED_BOTH);

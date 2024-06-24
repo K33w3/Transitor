@@ -96,7 +96,7 @@ public class JSONAccessabilityScores {
                 BigDecimal lon = new BigDecimal((amenityJSON.get(j).getCoords()).getLongitude());
 
                 // Checks whether the distance is smaller than or equal to 100 meters
-                if (DistanceCalculator.calculateAerialDistance(postlat, postlon, lat, lon).compareTo(BigDecimal.valueOf(0.1)) <= 0) {
+                if (DistanceCalculator.calculateAerialDistance(postlat, postlon, lat, lon).compareTo(BigDecimal.valueOf(1.2)) <= 0) {
                     amenityCount++;
                 }
             }
@@ -107,7 +107,7 @@ public class JSONAccessabilityScores {
                 BigDecimal lon = new BigDecimal((shopJSON.get(j).getCoords()).getLongitude());
 
                 // Checks whether the distance is smaller than or equal to 100 meters
-                if (DistanceCalculator.calculateAerialDistance(postlat, postlon, lat, lon).compareTo(BigDecimal.valueOf(0.1)) <= 0) {
+                if (DistanceCalculator.calculateAerialDistance(postlat, postlon, lat, lon).compareTo(BigDecimal.valueOf(1.2)) <= 0) {
                     shopCount++;
                 }
             }
@@ -118,7 +118,7 @@ public class JSONAccessabilityScores {
                 BigDecimal lon = new BigDecimal((tourismJSON.get(j).getCoords()).getLongitude());
 
                 // Checks whether the distance is smaller than or equal to 100 meters
-                if (DistanceCalculator.calculateAerialDistance(postlat, postlon, lat, lon).compareTo(BigDecimal.valueOf(0.1)) <= 0) {
+                if (DistanceCalculator.calculateAerialDistance(postlat, postlon, lat, lon).compareTo(BigDecimal.valueOf(1.2)) <= 0) {
                     tourismCount++;
                 }
             }

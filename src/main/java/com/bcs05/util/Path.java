@@ -32,21 +32,13 @@ public class Path {
         this.stops = stops;
     }
 
-    public void addCoordinates(Coordinates coordinate, int type, int busPathColorId) {
-        PathCoordinates pathCoordinate = new PathCoordinates(coordinate.getLatitude(), coordinate.getLongitude(), 0,
-                type);
-        pathCoordinate.setBusPathColorId(busPathColorId);
-        coordinates.add(pathCoordinate);
-    }
-
     /**
      * Adds a coordinate to the path.
      * 
      * @param coordinate The coordinate to add to the path.
      */
     public void addCoordinates(Coordinates coordinate, int type) {
-        PathCoordinates pathCoordinate = new PathCoordinates(coordinate.getLatitude(), coordinate.getLongitude(), 0,
-                type);
+        PathCoordinates pathCoordinate = new PathCoordinates(coordinate.getLatitude(), coordinate.getLongitude(), 0, type);
         coordinates.add(pathCoordinate);
     }
 
@@ -56,8 +48,7 @@ public class Path {
      * @param coordinate
      */
     public void addCoordinatesToStart(Coordinates coordinate, int type) {
-        PathCoordinates pathCoordinate = new PathCoordinates(coordinate.getLatitude(), coordinate.getLongitude(), 0,
-                type);
+        PathCoordinates pathCoordinate = new PathCoordinates(coordinate.getLatitude(), coordinate.getLongitude(), 0, type);
         coordinates.add(0, pathCoordinate);
     }
 

@@ -254,6 +254,63 @@ This highlights the selected route in the route list and displays the route deta
 Special instructions are displayed for bus and transit routes, where the stops are displayed.
 */
 
+// function showRouteDetails(routeId) {
+//   try {
+//     let route = routes.find((r) => r.id === routeId);
+//     if (!route) return;
+
+//     document
+//       .querySelectorAll(".route-item")
+//       .forEach((item) => item.classList.remove("active"));
+//     document
+//       .querySelector(`.route-item[data-route-id='${routeId}']`)
+//       .classList.add("active");
+
+//     let routeInstructions = document.getElementById("route-instructions");
+
+//     document.getElementById("route-name").innerText = route.details;
+//     document.getElementById("route-time").innerText = `Time: ${route.time}`;
+//     document.getElementById(
+//       "route-distance"
+//     ).innerText = `Distance: ${route.distance}`;
+
+//     // Clear previous instructions
+//     routeInstructions.innerHTML = "";
+
+//     if (route.mode === "bus") {
+//       // Append the instructions
+//       route.stops.forEach((step, index) => {
+//         let stepDiv = document.createElement("div");
+//         stepDiv.className = "step";
+//         stepDiv.innerHTML = `
+//                     <div class="timeline-dot bus"></div>
+//                     <div class="step-details">
+//                         <strong>${step.time}</strong><br>
+//                         ${step.name}
+//                     </div>
+//                 `;
+//         routeInstructions.appendChild(stepDiv);
+
+//         if (index < route.stops.length - 1) {
+//           let lineDiv = document.createElement("div");
+//           lineDiv.className = "timeline-line";
+//           lineDiv.innerHTML = `<div class="solid-line"></div>`;
+//           routeInstructions.appendChild(lineDiv);
+//         }
+//       });
+//     }
+//     document.getElementById("route-details-container").style.display = "block";
+//     document.getElementById("route-details-container").style.height = "auto";
+//     document.getElementById("route-details-container").style.maxHeight =
+//       "calc(100% - 100px)"; /* Allow for spacing */
+//     document.getElementById("route-details-container").style.overflowY = "auto";
+
+//     drawRouteOnMap(route.coordinates, route.mode);
+//   } catch (error) {
+//     displayError("Error showing route details: " + error.message);
+//   }
+// }
+
 function showRouteDetails(routeId) {
   try {
     let route = routes.find((r) => r.id === routeId);
@@ -294,7 +351,10 @@ function showRouteDetails(routeId) {
     }
 
     if (route.mode === "transit" && route.routes) {
+      console.log("Transit routes:", route.routes);  // Debugging line to check routes array
+      // Append the transfer details for transit routes
       route.routes.forEach((routeDetail, index) => {
+        console.log("Route detail:", routeDetail);  // Debugging line to check each route detail
         let transferDiv = document.createElement("div");
         transferDiv.className = "transfer-step";
         transferDiv.innerHTML = `
@@ -317,7 +377,7 @@ function showRouteDetails(routeId) {
 
     document.getElementById("route-details-container").style.display = "block";
     document.getElementById("route-details-container").style.height = "auto";
-    document.getElementById("route-details-container").style.maxHeight = "calc(100% - 100px)";
+    document.getElementById("route-details-container").style.maxHeight = "calc(100% - 100px)"; /* Allow for spacing */
     document.getElementById("route-details-container").style.overflowY = "auto";
 
     drawRouteOnMap(route.coordinates, route.mode);
@@ -452,76 +512,12 @@ function toggleOverlay() {
     if (accessibilityMode) {
       leftPanel.classList.add("hide");
       accessibilityPanel.classList.add("show");
-      toggleSEAILayers(overlayVisible);
     } else {
       leftPanel.classList.remove("hide");
       accessibilityPanel.classList.remove("show");
-      toggleSEAILayers(overlayVisible);
     }
   } catch (error) {
     displayError("Error toggling overlay: " + error.message);
-  }
-}
-
-function toggleSEAILayers(show) {
-  try {
-      if (show) {
-          fetchSEAIData().then(data => {
-              data.forEach(entry => {
-                  const { Lat, Lon, SEAI } = entry;
-                  if (Lat && Lon) {
-                      var color = getColorBySEAI(SEAI);
-                      var marker = L.circleMarker([Lat, Lon], {
-                          color: color,
-                          radius: 8,
-                          fillOpacity: 0.8
-                      }).addTo(map);
-                      activityLayers.push(marker);
-                  } else {
-                      console.error("Invalid Lat/Lon values for entry:", entry);
-                  }
-              });
-          }).catch(error => {
-              displayError("Error loading SEAI data: " + error.message);
-          });
-      } else {
-          activityLayers.forEach(layer => {
-              map.removeLayer(layer);
-          });
-          activityLayers = [];
-      }
-  } catch (error) {
-      displayError("Error toggling SEAI layers: " + error.message);
-  }
-}
-
-function getColorBySEAI(SEAI) {
-  try {
-      if (SEAI >= 0 && SEAI <= 3) {
-          return "red";
-      } else if (SEAI > 4 && SEAI <= 9) {
-          return "yellow";
-      } else if (SEAI >= 10 && SEAI <= 80) {
-          return "green";
-      } else {
-          return "grey";
-      }
-  } catch (error) {
-      displayError("Error getting color by SEAI: " + error.message);
-  }
-}
-
-async function fetchSEAIData() {
-  try {
-      const response = await fetch('postalAcc.csv');
-      const csvText = await response.text();
-      const data = Papa.parse(csvText, {
-          header: true,
-          dynamicTyping: true
-      }).data;
-      return data;
-  } catch (error) {
-      displayError("Error fetching SEAI data: " + error.message);
   }
 }
 

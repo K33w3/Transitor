@@ -18,6 +18,7 @@ import com.google.gson.Gson;
 import java.awt.BorderLayout;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -388,8 +389,9 @@ public class UI extends JFrame {
         GTFSEngineWithTransfers engine = new GTFSEngineWithTransfers();
         PathTransfer route = engine.findPathWithTransfers(fromPostal, toPostal, range / 100.0);
         this.routeTransfers = route;
-        distance = route.getDistance();
-        time = route.getTime().toMinutes();
+        // distance = route.getDistance();
+        // time = route.getTime().toMinutes();
+        System.out.println(routeTransfers.getRoutes().toString());
         List<Coordinates> routeCoords = new ArrayList<>();
 
         for (PathCoordinates pathCoord : route.getCoordinates()) {

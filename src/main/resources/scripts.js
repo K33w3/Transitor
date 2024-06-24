@@ -342,11 +342,11 @@ function toggleSEAILayers(show) {
 
 function getColorBySEAI(SEAI) {
     try {
-        if (SEAI >= 0 && SEAI <= 5) {
+        if (SEAI >= 0 && SEAI <= 20) {
             return "red";
-        } else if (SEAI > 5 && SEAI <= 9) {
+        } else if (SEAI > 21 && SEAI <= 90) {
             return "yellow";
-        } else if (SEAI >= 10 && SEAI <= 80) {
+        } else if (SEAI >= 91) {
             return "green";
         } else {
             return "grey";
@@ -358,7 +358,7 @@ function getColorBySEAI(SEAI) {
 
 async function fetchSEAIData() {
     try {
-        const response = await fetch('postalAcc.csv');
+        const response = await fetch('postalAccUpdated.csv');
         const csvText = await response.text();
         const data = Papa.parse(csvText, {
             header: true,

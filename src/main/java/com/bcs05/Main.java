@@ -10,7 +10,7 @@ public final class Main {
     }
 
     public static void main(String[] args) {
-        JSONAccessabilityScores.writeToCSVFile();
+       
         UI ui = new UI();
         ui.setExtendedState(JFrame.MAXIMIZED_BOTH);
         ui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

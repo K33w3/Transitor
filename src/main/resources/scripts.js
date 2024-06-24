@@ -512,18 +512,78 @@ function toggleOverlay() {
     if (accessibilityMode) {
       leftPanel.classList.add("hide");
       accessibilityPanel.classList.add("show");
+      toggleSEAILayers(true);
     } else {
       leftPanel.classList.remove("hide");
       accessibilityPanel.classList.remove("show");
+      toggleSEAILayers(false);
     }
   } catch (error) {
     displayError("Error toggling overlay: " + error.message);
   }
 }
 
-/* 
-Toggle the accessibility mode. This includes the accessibility mode button.
-*/
+function toggleSEAILayers(show) {
+    try {
+        if (show) {
+            fetchSEAIData().then(data => {
+                data.forEach(entry => {
+                    const { Lat, Lon, SEAI } = entry;
+                    if (Lat && Lon) {
+                        var color = getColorBySEAI(SEAI);
+                        var marker = L.circleMarker([Lat, Lon], {
+                            color: color,
+                            radius: 8,
+                            fillOpacity: 0.8
+                        }).addTo(map);
+                        activityLayers.push(marker);
+                    } else {
+                        console.error("Invalid Lat/Lon values for entry:", entry);
+                    }
+                });
+            }).catch(error => {
+                displayError("Error loading SEAI data: " + error.message);
+            });
+        } else {
+            activityLayers.forEach(layer => {
+                map.removeLayer(layer);
+            });
+            activityLayers = [];
+        }
+    } catch (error) {
+        displayError("Error toggling SEAI layers: " + error.message);
+    }
+}
+
+function getColorBySEAI(SEAI) {
+    try {
+        if (SEAI >= 0 && SEAI <= 20) {
+            return "red";
+        } else if (SEAI > 21 && SEAI <= 90) {
+            return "yellow";
+        } else if (SEAI >= 91) {
+            return "green";
+        } else {
+            return "grey";
+        }
+    } catch (error) {
+        displayError("Error getting color by SEAI: " + error.message);
+    }
+}
+
+async function fetchSEAIData() {
+    try {
+        const response = await fetch('postalAccUpdated.csv');
+        const csvText = await response.text();
+        const data = Papa.parse(csvText, {
+            header: true,
+            dynamicTyping: true
+        }).data;
+        return data;
+    } catch (error) {
+        displayError("Error fetching SEAI data: " + error.message);
+    }
+}
 
 document.addEventListener("DOMContentLoaded", (event) => {
   initializeMap();

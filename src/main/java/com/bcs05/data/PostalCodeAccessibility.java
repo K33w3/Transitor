@@ -1,5 +1,7 @@
 package com.bcs05.data;
 
+import com.bcs05.util.Coordinates;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,12 +9,12 @@ import java.util.List;
 import java.util.Map;
 
 public class PostalCodeAccessibility {
-    String postalCode;
-    int amenityCount;
-    int shopCount;
-    int tourismCount;
-    double latitude;
-    double longitude;
+    private String postalCode;
+    private int amenityCount;
+    private int shopCount;
+    private int tourismCount;
+    private double latitude;
+    private double longitude;
 
     public int calculateAccessibilityScore() {
         return amenityCount + shopCount + tourismCount;
@@ -20,9 +22,9 @@ public class PostalCodeAccessibility {
 
     public static Map<String, Coordinates> readCoordinatesCSV(String fileName) {
         Map<String, Coordinates> coordinatesMap = new HashMap<>();
-        String line;
-        boolean firstLine = true;  // To skip the header line
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            boolean firstLine = true;  // To skip the header line
             while ((line = br.readLine()) != null) {
                 if (firstLine) {
                     firstLine = false;  // Skip the header line
@@ -31,9 +33,9 @@ public class PostalCodeAccessibility {
                 String[] values = line.split(",");
                 if (values.length >= 3) {
                     String postalCode = values[0].trim();
-                    double latitude = Double.parseDouble(values[1].trim());
-                    double longitude = Double.parseDouble(values[2].trim());
-                    coordinatesMap.put(postalCode, new Coordinates(latitude, longitude));
+                    String latitude = values[1].trim();
+                    String longitude = values[2].trim();
+                    coordinatesMap.put(postalCode, new Coordinates(latitude, longitude, postalCode));
                 } else {
                     System.err.println("Invalid line format: " + line);
                 }
@@ -46,9 +48,9 @@ public class PostalCodeAccessibility {
 
     public static List<PostalCodeAccessibility> readCSV(String fileName) {
         List<PostalCodeAccessibility> postalCodes = new ArrayList<>();
-        String line;
-        boolean firstLine = true;  // To skip the header line
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            boolean firstLine = true;  // To skip the header line
             while ((line = br.readLine()) != null) {
                 if (firstLine) {
                     firstLine = false;  // Skip the header line
@@ -79,8 +81,8 @@ public class PostalCodeAccessibility {
             for (PostalCodeAccessibility pca : postalCodes) {
                 Coordinates coords = coordinatesMap.get(pca.postalCode);
                 if (coords != null) {
-                    pca.latitude = coords.latitude;
-                    pca.longitude = coords.longitude;
+                    pca.latitude = Double.parseDouble(coords.getLatitude());
+                    pca.longitude = Double.parseDouble(coords.getLongitude());
                     bw.write(pca.latitude + "," + pca.longitude + "," + pca.calculateAccessibilityScore() + "\n");
                 } else {
                     System.err.println("Coordinates not found for postal code: " + pca.postalCode);
@@ -95,16 +97,5 @@ public class PostalCodeAccessibility {
         Map<String, Coordinates> coordinatesMap = readCoordinatesCSV("src/main/resources/MassZipLatLon.csv");
         List<PostalCodeAccessibility> postalCodes = readCSV("src/main/resources/countofammenities.csv");
         writeCSV("src/main/resources/postalAcc.csv", postalCodes, coordinatesMap);
-    }
-
-}
-
-class Coordinates {
-    double latitude;
-    double longitude;
-
-    public Coordinates(double latitude, double longitude) {
-        this.latitude = latitude;
-        this.longitude = longitude;
     }
 }

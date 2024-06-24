@@ -30,14 +30,14 @@ public class GTFSEngine {
      * @param postalCode the postal code to find nearby stops for
      * @return a list of stops within radiusDistance km of the given postal code
      */
-    public ArrayList<Stop> getStopsFromPostalCode(String postalCode, double radiusDistance) {
+    public static ArrayList<Stop> getStopsFromPostalCode(String postalCode, double radiusDistance) {
         // Convert postal code to coordinates
         Coordinates coordinates = CoordHandler.getCoordinates(postalCode);
         if (coordinates == null) {
             return null;
         }
         // Initiate nearest stops list
-        ArrayList<Stop> nearestStops = new ArrayList<Stop>();
+        ArrayList<Stop> nearestStops = new ArrayList<>();
 
         try {
             // Get database connection
@@ -123,8 +123,11 @@ public class GTFSEngine {
             Connection connection = DatabaseConnection.getConnection();
 
             // Find shortest trip
+            boolean found = false;
             for (Stop fromStop : fromStops) {
+                if (found) break;
                 for (Stop toStop : toStops) {
+                    if (found) break;
 
                     // Calculate walk time from postal code to stop
                     ResponsePath walkToFromStopPath = walk(CoordHandler.getCoordinates(fromPostalCode),
@@ -138,38 +141,43 @@ public class GTFSEngine {
 
                     // SQL query to find shortest trip from stop to stop
                     String findShortestPathSQL = """
-                            select
-                                t1.trip_id as trip_id,
-                                t1.from_stop_id as from_stop_id,
-                                t2.to_stop_id  as to_stop_id,
-                                t1.departure_time as departure_time,
-                                (t2.departure_time + interval t2.travel_time second + interval ? second) as arrival_time
-                            from
-                                timetable t1
-                            join
-                                timetable t2 on t1.trip_id = t2.trip_id
-                            join
-                                trips tr on t1.trip_id = tr.trip_id
-                            join
-                                calendar_dates cd on tr.service_id = cd.service_id
-                            where
-                                t1.from_stop_id = ?
-                                and t2.to_stop_id = ?
-                                and t1.trip_segment <= t2.trip_segment
-                                and t1.departure_time >= (current_time + interval ? second)
-                                and cd.date = current_date
-                            order by
-                                arrival_time
-                            limit
-                                1;
-                                    """;
-
+                        SELECT
+                            t1.trip_id AS trip_id,
+                            t1.from_stop_id AS from_stop_id,
+                            t2.to_stop_id AS to_stop_id,
+                            t1.departure_time AS departure_time,
+                            (t2.departure_time + INTERVAL t2.travel_time SECOND + INTERVAL ? SECOND) AS arrival_time
+                        FROM
+                            timetable t1
+                        JOIN
+                            timetable t2 ON t1.trip_id = t2.trip_id
+                        WHERE
+                            t1.from_stop_id = ?
+                            AND t2.to_stop_id = ?
+                            AND EXISTS (
+                                SELECT 1
+                                FROM trips tr
+                                WHERE tr.trip_id = t1.trip_id
+                                AND EXISTS (
+                                    SELECT 1
+                                    FROM calendar_dates cd
+                                    WHERE cd.service_id = tr.service_id
+                                    AND cd.date = CURRENT_DATE
+                                )
+                            )
+                            AND t2.trip_segment >= t1.trip_segment
+                            AND t1.departure_time >= (CURRENT_TIME + INTERVAL ? SECOND)
+                        ORDER BY
+                            arrival_time
+                        LIMIT 1;
+                    """;
+                    
                     // Prepare the statement
                     PreparedStatement statement = connection.prepareStatement(findShortestPathSQL);
-                    statement.setInt(1, walkTimeInSecondsToToPostalCode);
+                    statement.setInt(1, walkTimeInSecondsToToPostalCode);  // For the interval addition in arrival_time calculation
                     statement.setString(2, fromStop.getStopId());
                     statement.setString(3, toStop.getStopId());
-                    statement.setInt(4, walkTimeInSecondsToFromStop);
+                    statement.setInt(4, walkTimeInSecondsToFromStop);  // For the departure_time condition                    
 
                     // Check if this path is better than previous ones
                     ResultSet newPossibleBestPath = statement.executeQuery();
@@ -184,6 +192,7 @@ public class GTFSEngine {
                             bestArrivalTime = arrivalTime;
                             bestFromStop = fromStop;
                             bestToStop = toStop;
+                            found = true;
                         }
                     }
 
@@ -192,7 +201,7 @@ public class GTFSEngine {
                 }
             }
 
-            // Check is a direct trip was not found
+            // Check if a direct trip was not found
             if (bestTripId == -1)
                 return null;
 
@@ -207,7 +216,7 @@ public class GTFSEngine {
         return path;
     }
 
-    private ResponsePath walk(Coordinates from, Coordinates to) {
+    public static ResponsePath walk(Coordinates from, Coordinates to) {
         RoutingEngine routingEngine = new RoutingEngine(Transportation.FOOT);
         return routingEngine.routing(from, to);
     }
@@ -257,7 +266,7 @@ public class GTFSEngine {
             String latitute = String.valueOf(coordinates.getDouble("shape_pt_lat"));
             String longitude = String.valueOf(coordinates.getDouble("shape_pt_lon"));
             int shapeDistTraveled = coordinates.getInt("shape_dist_traveled");
-            path.addCoordinates(new PathCoordinates(latitute, longitude, shapeDistTraveled,1));
+            path.addCoordinates(new PathCoordinates(latitute, longitude, shapeDistTraveled, 1));
         }
 
         // Path from postal code to stop
@@ -280,12 +289,12 @@ public class GTFSEngine {
 
         // Add walk to from stop path
         for (int i = walkToFromStopCoordinates.size() - 1; i >= 0; i--) {
-            path.addCoordinatesToStart(walkToFromStopCoordinates.get(i),0);
+            path.addCoordinatesToStart(walkToFromStopCoordinates.get(i), 0);
         }
 
         // Add walk to to postal code path
         for (Coordinates c : walkToToPostalCodeCoordinates) {
-            path.addCoordinates(c,0);
+            path.addCoordinates(c, 0);
         }
 
         // Get trip stops
@@ -325,35 +334,40 @@ public class GTFSEngine {
 
     private ArrayList<PathStop> getTripStops(int tripId, Stop start, Stop end, Connection connection)
             throws SQLException {
-        ArrayList<PathStop> stops = new ArrayList<PathStop>();
+        ArrayList<PathStop> stops = new ArrayList<>();
 
         // Get stops SQL query (using a join)
         String getStopsSQL = """
-                select
-                    s.stop_id,
-                    s.stop_name,
-                    s.stop_lat,
-                    s.stop_lon,
-                    st.departure_time
-                from
-                    stops s
-                join
-                    stop_times st on s.stop_id = st.stop_id
-                where
-                    st.trip_id = ?
-                    and st.stop_sequence >= (select stop_sequence from stop_times where trip_id = ? and stop_id = ?)
-                    and st.stop_sequence <= (select stop_sequence from stop_times where trip_id = ? and stop_id = ?)
-                order by
-                    st.stop_sequence;
-                    """;
-
+            select
+                s.stop_id,
+                s.stop_name,
+                s.stop_lat,
+                s.stop_lon,
+                (select st.departure_time from stop_times st where st.stop_id = s.stop_id and st.trip_id = ?) as departure_time
+            from
+                stops s
+            where
+                s.stop_id in (
+                    select stop_id
+                    from stop_times
+                    where trip_id = ?
+                    and stop_sequence >= (select stop_sequence from stop_times where trip_id = ? and stop_id = ?)
+                    and stop_sequence <= (select stop_sequence from stop_times where trip_id = ? and stop_id = ?)
+                )
+            order by
+                (select stop_sequence from stop_times st where st.stop_id = s.stop_id and st.trip_id = ?);
+            """;
+    
         // Prepare statement
         PreparedStatement statement = connection.prepareStatement(getStopsSQL);
-        statement.setInt(1, tripId);
-        statement.setInt(2, tripId);
-        statement.setString(3, start.getStopId());
-        statement.setInt(4, tripId);
-        statement.setString(5, end.getStopId());
+        statement.setInt(1, tripId); // For departure_time subquery
+        statement.setInt(2, tripId); // For the main subquery
+        statement.setInt(3, tripId); // For start stop_sequence subquery
+        statement.setString(4, start.getStopId()); // For start stop_sequence subquery
+        statement.setInt(5, tripId); // For end stop_sequence subquery
+        statement.setString(6, end.getStopId()); // For end stop_sequence subquery
+        statement.setInt(7, tripId); // For stop_sequence order subquery
+        
 
         // Populate the stops list
         ResultSet stopResults = statement.executeQuery();
@@ -368,4 +382,5 @@ public class GTFSEngine {
 
         return stops;
     }
+
 }

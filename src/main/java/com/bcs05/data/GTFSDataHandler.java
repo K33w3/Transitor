@@ -46,43 +46,46 @@ public class GTFSDataHandler {
 
             // Query trip stops ordered by departure time
             String tripStopsQuerySQL = """
-                        SELECT
-                            trips.trip_id,
-                            stop_times.stop_id,
-                            stop_times.departure_time,
-                            stop_times.shape_dist_traveled
-                        FROM
-                            trips,
-                            stop_times
-                        WHERE
-                            trips.trip_id = stop_times.trip_id
-                            AND stop_times.stop_id IN (
-                                SELECT stop_id
-                                FROM stops
-                            )
-                            AND trips.route_id IN (
-                                SELECT route_id
-                                FROM routes
-                                WHERE route_type = 3
-                            )
-                            AND stop_times.departure_time <= '23:59:59'
-                        ORDER BY
-                            stop_times.trip_id,
-                            stop_times.departure_time;
-                    """;
+                    SELECT
+                        trips.trip_id,
+                        stop_times.stop_id,
+                        stop_times.departure_time,
+                        stop_times.shape_dist_traveled
+                    FROM
+                        trips
+                    JOIN
+                        stop_times
+                    ON
+                    	trips.trip_id = stop_times.trip_id
+                    JOIN
+                    	calendar_dates
+                    ON
+                    	trips.service_id = calendar_dates.service_id
+                    JOIN
+                    	routes
+                    ON
+                    	trips.route_id = routes.route_id
+                    WHERE
+                       stop_times.departure_time <= '23:59:59'
+                       AND
+                       calendar_dates.date = CURRENT_DATE
+                    ORDER BY
+                        stop_times.trip_id,
+                        stop_times.departure_time;
+                                        """;
 
-            ResultSet resultSet = statement.executeQuery(tripStopsQuerySQL);
+            ResultSet tripStops = statement.executeQuery(tripStopsQuerySQL);
 
             String currentTripID = "";
             String currentStopID = "";
             Time currentDepartureTime = null;
-            int count = 0;
+            int tripSegment = 0;
 
-            while (resultSet.next()) {
-                String tripID = resultSet.getString("trip_id");
-                String stopID = resultSet.getString("stop_id");
-                Time departureTime = resultSet.getTime("departure_time");
-                int shapeDistanceTraveled = resultSet.getInt("shape_dist_traveled");
+            while (tripStops.next()) {
+                String tripID = tripStops.getString("trip_id");
+                String stopID = tripStops.getString("stop_id");
+                Time departureTime = tripStops.getTime("departure_time");
+                int shapeDistanceTraveled = tripStops.getInt("shape_dist_traveled");
 
                 if (currentTripID.equals(tripID)) {
                     String from_stop_id = currentStopID;
@@ -96,7 +99,7 @@ public class GTFSDataHandler {
                             """;
                     PreparedStatement preparedStatement = connection.prepareStatement(insertToTimeTableSQL);
                     preparedStatement.setString(1, currentTripID);
-                    preparedStatement.setInt(2, count);
+                    preparedStatement.setInt(2, tripSegment);
                     preparedStatement.setString(3, from_stop_id);
                     preparedStatement.setString(4, to_stop_id);
                     preparedStatement.setTime(5, currentDepartureTime);
@@ -107,12 +110,12 @@ public class GTFSDataHandler {
                     preparedStatement.close();
 
                 } else
-                    count = 0;
+                    tripSegment = 0;
 
                 currentTripID = tripID;
                 currentStopID = stopID;
                 currentDepartureTime = departureTime;
-                count++;
+                tripSegment++;
             }
 
         } catch (SQLException e) {

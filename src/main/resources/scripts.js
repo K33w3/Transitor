@@ -512,9 +512,11 @@ function toggleOverlay() {
     if (accessibilityMode) {
       leftPanel.classList.add("hide");
       accessibilityPanel.classList.add("show");
+      toggleSEAILayers(true);
     } else {
       leftPanel.classList.remove("hide");
       accessibilityPanel.classList.remove("show");
+      toggleSEAILayers(false);
     }
   } catch (error) {
     displayError("Error toggling overlay: " + error.message);

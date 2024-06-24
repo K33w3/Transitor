@@ -105,6 +105,8 @@ public class GTFSGraph {
         LinkedList<GTFSWeightedEdge> neighbours = new LinkedList<GTFSWeightedEdge>();
         LinkedList<GTFSWeightedEdge> edges = adjacencyList.get(stop);
 
+        edges.sort((GTFSWeightedEdge e1, GTFSWeightedEdge e2) -> e1.getArrivalTime().compareTo(e2.getArrivalTime()));
+
         if (edges == null || edges.isEmpty()) {
             return neighbours;
         }

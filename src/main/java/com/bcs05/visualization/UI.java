@@ -119,7 +119,7 @@ public class UI extends JFrame {
                 System.out.println("Transit route chosen: " + routeBus.getStops().size() + " stops");
 
             } else if(mode.equals("transit")){
-                routeDetails.put("coordinates", convertCoordinatesToJsArrayBus(routeTransfers));
+                routeDetails.put("coordinates", convertCoordinatesToJsArrayBusTransfer(routeTransfers));
                 routeDetails.put("routes", convertRouteNamesToMapList(routeTransfers.getRoutes()));           
             
             }else {
@@ -261,6 +261,36 @@ public class UI extends JFrame {
 
         System.out.println("Route list: " + routeList.toString());
         return routeList;
+    }
+
+    private String convertCoordinatesToJsArrayBusTransfer(PathTransfer route) {
+        if (route.getCoordinates() == null || route == null) {
+            return "[]";
+        }
+
+        StringBuilder sb = new StringBuilder("[");
+        try {
+            for (int i = 0; i < route.getCoordinates().size(); i++) {
+                PathCoordinates coord = route.getCoordinates().get(i);
+                sb
+                    .append("[")
+                    .append(coord.getLatitude())
+                    .append(", ")
+                    .append(coord.getLongitude())
+                    .append(", ")
+                    .append(coord.getBusPathColorId())
+                    .append("]");
+                if (i < route.getCoordinates().size() - 1) {
+                    sb.append(", ");
+                }
+            }
+        } catch (Exception e) {
+            Platform.runLater(() -> {
+                webEngine.executeScript("displayError(\"Error converting transit coordinates to JS array\");");
+            });
+        }
+        sb.append("]");
+        return sb.toString();
     }
     
 
@@ -404,10 +434,12 @@ public class UI extends JFrame {
         PathTransfer route = engine.findPathWithTransfers(fromPostal, toPostal, range / 100.0);
         this.routeTransfers = route;
         // distance = route.getDistance();
+       
         time = route.getTime().toMinutes();
         List<Coordinates> routeCoords = new ArrayList<>();
 
         for (PathCoordinates pathCoord : route.getCoordinates()) {
+            
             routeCoords.add(new Coordinates(pathCoord.getLatitude(), pathCoord.getLongitude()));
         }
         return routeCoords;

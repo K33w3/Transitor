@@ -6,6 +6,7 @@ let overlayVisible = false;
 let activityLayers = [];
 let markers = [];
 let accessibilityMode = false;
+let routeColors = {}; // Store colors for each busPathId
 
 /*
 Initialize the map with the default view set to Maastricht.
@@ -362,45 +363,66 @@ Draw the route on the map based on the route coordinates and mode of transportat
 This includes the route coordinates and mode of transportation.
 */
 
+function getColorForBusPath(busPathId) {
+  if (!busPathId) return "orange"; // Default color for null busPathId
+
+  if (!routeColors[busPathId]) {
+    // Generate a new color and assign it to this busPathId
+    routeColors[busPathId] = generateRandomColor();
+  }
+
+  return routeColors[busPathId];
+}
+
+function generateRandomColor() {
+  let color;
+  do {
+    color = "#" + Math.floor(Math.random() * 16777215).toString(16);
+  } while (color.toLowerCase() === "#ffa500" || color.toLowerCase() === "orange"); // Avoid orange color
+  return color;
+}
+
 function drawRouteOnMap(routeCoordinates, mode) {
   try {
     clearMap(); // Clear previous layers and markers
 
     if (routeCoordinates.length > 0) {
-      let segments = [];
-      let currentSegment = {
-        type: routeCoordinates[0][2],
-        latLngs: [],
-      };
+      if (mode === "transit") {
+        let segments = [];
+        let currentSegment = {
+          busPathId: routeCoordinates[0][2],
+          latLngs: [],
+        };
 
-      for (let i = 0; i < routeCoordinates.length; i++) {
-        let coord = routeCoordinates[i];
-        currentSegment.latLngs.push([coord[0], coord[1]]);
+        for (let i = 0; i < routeCoordinates.length; i++) {
+          let coord = routeCoordinates[i];
+          currentSegment.latLngs.push([coord[0], coord[1]]);
 
-        // Check if the next segment has a different type or if it is the last coordinate
-        if (
-          i === routeCoordinates.length - 1 ||
-          routeCoordinates[i + 1][2] !== currentSegment.type
-        ) {
-          segments.push(currentSegment);
-          if (i !== routeCoordinates.length - 1) {
-            currentSegment = {
-              type: routeCoordinates[i + 1][2],
-              latLngs: [],
-            };
+          // Check if the next segment has a different busPathId or if it is the last coordinate
+          if (
+            i === routeCoordinates.length - 1 ||
+            routeCoordinates[i + 1][2] !== currentSegment.busPathId
+          ) {
+            segments.push(currentSegment);
+            if (i !== routeCoordinates.length - 1) {
+              currentSegment = {
+                busPathId: routeCoordinates[i + 1][2],
+                latLngs: [],
+              };
+            }
           }
         }
-      }
 
-      segments.forEach((segment) => {
-        let color = "#1A73E8"; // Default color
-        if (mode === "bus") {
-          color = segment.type === 0 ? "orange" : "blue"; // Change color based on type
-        }
+        segments.forEach((segment) => {
+          let color = getColorForBusPath(segment.busPathId);
 
-        const layer = L.polyline(segment.latLngs, { color: color }).addTo(map);
+          const layer = L.polyline(segment.latLngs, { color: color }).addTo(map);
+          currentRouteLayers.push(layer); // Store the layer
+        });
+      } else {
+        const layer = L.polyline(routeCoordinates.map((coord) => [coord[0], coord[1]]), { color: "#1A73E8" }).addTo(map);
         currentRouteLayers.push(layer); // Store the layer
-      });
+      }
 
       const startPoint = [routeCoordinates[0][0], routeCoordinates[0][1]];
       const endPoint = [

@@ -11,18 +11,6 @@ import java.util.LinkedList;
 
 public class GTFSGraph {
 
-    public static void main(String[] args) {
-        GTFSGraph graph = new GTFSGraph();
-        System.out.println("Graph created");
-        // Check outgoing edges for 2577952
-        Stop stop = new Stop("2577952");
-        LinkedList<GTFSWeightedEdge> edges = graph.adjacencyList.get(stop);
-        System.out.println("Outgoing edges for stop " + stop.getStopId() + ": ");
-        for (GTFSWeightedEdge edge : edges) {
-            System.out.println(edge.getStop().getStopId() + " " + edge.getDepartureTime() + " " + edge.getTravelTime());
-        }
-    }
-
     private HashMap<Stop, LinkedList<GTFSWeightedEdge>> adjacencyList;
     private static GTFSGraph instance;
 

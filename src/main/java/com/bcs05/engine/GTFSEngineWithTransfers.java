@@ -33,10 +33,11 @@ public class GTFSEngineWithTransfers {
 
     public static void main(String[] args) {
         GTFSEngineWithTransfers engine = new GTFSEngineWithTransfers();
-        engine.findPathWithTransfers("6225GE", "6228JG", 0.3);
+        engine.findPathWithTransfers("6226CW", "6215TM", 0.5);
     }
 
     private final int HEURISTIC_PARAMETER = 10;
+    private final int TIME_DIFFERENCE_ALLLOWED = 600; // in seconds
 
     GTFSGraph graph;
 
@@ -89,6 +90,10 @@ public class GTFSEngineWithTransfers {
 
         BusTransferResult bestResult = getBestTransferResult(results);
         PathTransfer finalPath = reconstructPathForUI(fromPostalCode, toPostalCode, bestResult);
+
+        for (PathStop stop : finalPath.getStops()) {
+            System.out.println(stop.getStopId() + " " + stop.getName() + " " + stop.getDepartureTime());
+        }
 
         return finalPath;
     }
@@ -194,9 +199,18 @@ public class GTFSEngineWithTransfers {
      */
     private BusTransferResult getBestTransferResult(ArrayList<BusTransferResult> results) {
         BusTransferResult bestResult = results.get(0);
+        int numberOfTransfers = getNumberOfTransfers(bestResult);
         for (BusTransferResult result : results) {
             if (result.getArrivalTime().isBefore(bestResult.getArrivalTime())) {
                 bestResult = result;
+                numberOfTransfers = getNumberOfTransfers(result);
+            } else if (result.getArrivalTime().minusSeconds(TIME_DIFFERENCE_ALLLOWED)
+                    .isBefore(bestResult.getArrivalTime())) {
+                int numberOfTransfersForCurrentResult = getNumberOfTransfers(result);
+                if (numberOfTransfersForCurrentResult < numberOfTransfers) {
+                    bestResult = result;
+                    numberOfTransfers = numberOfTransfersForCurrentResult;
+                }
             }
         }
 
@@ -227,8 +241,7 @@ public class GTFSEngineWithTransfers {
         stops.add(result.getStops().get(0));
         associatedRoutes.add(routes.get(1));
 
-        // Add first stop of each distinct route
-        String currentRouteId = routes.get(1).getRouteId();
+        // Add first stop of each distinct trips
         String currentTripId = result.getStops().get(1).getTripId();
         for (int i = 2; i < result.getStops().size(); i++) {
             PathTransferStop stop = result.getStops().get(i);
@@ -237,7 +250,6 @@ public class GTFSEngineWithTransfers {
                 stop.setName(stopNameForRoute);
                 stops.add(stop);
                 associatedRoutes.add(routes.get(i));
-                currentRouteId = routes.get(i).getRouteId();
                 currentTripId = stop.getTripId();
             }
         }
@@ -428,6 +440,21 @@ public class GTFSEngineWithTransfers {
 
         return route;
 
+    }
+
+    private int getNumberOfTransfers(BusTransferResult result) {
+        String currentTripId = result.getStops().get(1).getTripId();
+        int numberOfTransfers = 0;
+
+        for (int i = 2; i < result.getStops().size(); i++) {
+            PathTransferStop stop = result.getStops().get(i);
+            if (!result.getStops().get(i).getTripId().equals(currentTripId)) {
+                currentTripId = stop.getTripId();
+                numberOfTransfers++;
+            }
+        }
+
+        return numberOfTransfers;
     }
 
 }

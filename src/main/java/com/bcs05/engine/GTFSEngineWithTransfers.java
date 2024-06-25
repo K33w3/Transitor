@@ -36,14 +36,24 @@ public class GTFSEngineWithTransfers {
         engine.findPathWithTransfers("6221BA", "6221GE", 0.3);
     }
 
+    // maximum number of results to consider before breaking out of the loop
     private final int HEURISTIC_PARAMETER = 10;
 
     GTFSGraph graph;
 
+    // initializes the graph
     public GTFSEngineWithTransfers() {
         graph = GTFSGraph.getInstance();
     }
 
+    /**
+     * Finds the path with transfers between two postal codes within a given radius
+     * 
+     * @param fromPostalCode the starting postal code 
+     * @param toPostalCode the destination postal code 
+     * @param radius the radius to search for stops
+     * @return PathTransfer containing the path with transfers
+     */
     public PathTransfer findPathWithTransfers(String fromPostalCode, String toPostalCode, double radius) {
         ArrayList<Stop> startStops = GTFSEngine.getStopsFromPostalCode(fromPostalCode, radius);
         ArrayList<Stop> endStops = GTFSEngine.getStopsFromPostalCode(toPostalCode, radius);
@@ -87,6 +97,7 @@ public class GTFSEngineWithTransfers {
             return null;
         }
 
+        // Get the best transfer result and reconstruct the path for UI
         BusTransferResult bestResult = getBestTransferResult(results);
         PathTransfer finalPath = reconstructPathForUI(fromPostalCode, toPostalCode, bestResult);
 
@@ -94,13 +105,12 @@ public class GTFSEngineWithTransfers {
     }
 
     /**
-     * Find the shortest path between two stops with transfers
+     * Find the shortest path between two stops with transfers using Dijkstra's algorithm
      * 
-     * @param startStop
-     * @param endStop
-     * @param timeArrivingAtStartStop
-     * 
-     * @return BusTransferResult
+     * @param startStop the starting stop 
+     * @param endStop the destination stop
+     * @param timeArrivingAtStartStop the time of arrival at the starting stop
+     * @return BusTransferResult containing the path details
      **/
     public BusTransferResult findBusPathWithTransfers(Stop startStop, Stop endStop,
             LocalTime timeArrivingAtStartStop) {
@@ -188,9 +198,8 @@ public class GTFSEngineWithTransfers {
     /**
      * Get the best transfer result from a list of results
      * 
-     * @param results
-     * 
-     * @return BusTransferResult
+     * @param results the list of BusTransferResults
+     * @return the best result based on arrival time
      */
     private BusTransferResult getBestTransferResult(ArrayList<BusTransferResult> results) {
         BusTransferResult bestResult = results.get(0);
@@ -203,6 +212,14 @@ public class GTFSEngineWithTransfers {
         return bestResult;
     }
 
+    /**
+     * Reconstruct the path for UI display
+     * 
+     * @param fromPostalCode the starting postal code 
+     * @param toPostalCode the destination postal code 
+     * @param result the BusTransferResult containing the path details
+     * @return the reconstructed path
+     */
     private PathTransfer reconstructPathForUI(String fromPostalCode, String toPostalCode, BusTransferResult result) {
         PathTransfer path = new PathTransfer();
 
@@ -266,6 +283,12 @@ public class GTFSEngineWithTransfers {
         return path;
     }
 
+    /**
+     * Adds walking path coordinates to the Path object
+     * 
+     * @param path the Path object
+     * @param walkPath the ResponsePath containing walking path coordinates
+     */
     private void addWalkPath(Path path, ResponsePath walkPath) {
         ArrayList<Coordinates> walkCoordinates = Utils.pointListToArrayList(walkPath.getPoints());
         for (Coordinates c : walkCoordinates) {
@@ -273,6 +296,12 @@ public class GTFSEngineWithTransfers {
         }
     }
 
+    /**
+     * Retrieves routes for each stop
+     * 
+     * @param stops the list of PathTransferStop objects
+     * @return the list of routes
+     */
     private ArrayList<Route> getRoutesForEachStop(ArrayList<PathTransferStop> stops) {
         ArrayList<Route> routes = new ArrayList<Route>();
         routes.add(null);
@@ -284,6 +313,12 @@ public class GTFSEngineWithTransfers {
         return routes;
     }
 
+    /**
+     * Divides the path stops into groups based on trip IDs
+     * 
+     * @param stops the list of PathTransferStop objects
+     * @return the list of grouped stops
+     */
     private ArrayList<ArrayList<PathTransferStop>> divideIntoTripIds(ArrayList<PathTransferStop> stops) {
         ArrayList<ArrayList<PathTransferStop>> dividedIntoTripIds = new ArrayList<ArrayList<PathTransferStop>>();
         ArrayList<PathTransferStop> currentTripIds = new ArrayList<PathTransferStop>();
@@ -304,6 +339,13 @@ public class GTFSEngineWithTransfers {
         return dividedIntoTripIds;
     }
 
+    /**
+     * Adds coordinates to the path based on trip stops
+     * 
+     * @param path the Path object
+     * @param tripStops the list of PathTransferStop objects for a trip
+     * @param colorId the colorID for the trip
+     */
     private void addCoordinatesToPath(Path path, ArrayList<PathTransferStop> tripStops, int colorId) {
         String tripId = tripStops.get(tripStops.size() - 1).getTripId();
 
@@ -345,11 +387,24 @@ public class GTFSEngineWithTransfers {
         }
     }
 
+    /**
+     * Computes the total time taken to travel along the path
+     * 
+     * @param finalBusArrivalTime the final bus arrival time
+     * @param walkTimeToToPostalCodeInSeconds the walking time to the destination postal code in seconds
+     * @return the total duration of the journey
+     */
     private Duration computeTime(LocalTime finalBusArrivalTime, int walkTimeToToPostalCodeInSeconds) {
         LocalTime finalWalkArrivalTime = finalBusArrivalTime.plusSeconds(walkTimeToToPostalCodeInSeconds);
         return Duration.between(LocalTime.now(), finalWalkArrivalTime);
     }
 
+    /**
+     * Retrieves the name of a stop given its ID
+     * 
+     * @param stopId the stop ID
+     * @return the name of the stop as a string
+     */
     private String getStopName(String stopId) {
 
         String stopName = null;
@@ -382,6 +437,12 @@ public class GTFSEngineWithTransfers {
 
     }
 
+    /**
+     * Retrieves the route details given a trip ID
+     * 
+     * @param tripId the trip ID
+     * @return a Route object containing the route details
+     */
     private Route getRoute(String tripId) {
 
         Route route = null;

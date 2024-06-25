@@ -33,7 +33,7 @@ public class GTFSEngineWithTransfers {
 
     public static void main(String[] args) {
         GTFSEngineWithTransfers engine = new GTFSEngineWithTransfers();
-        engine.findPathWithTransfers("6221BA", "6221GE", 0.3);
+        engine.findPathWithTransfers("6225GE", "6228JG", 0.3);
     }
 
     private final int HEURISTIC_PARAMETER = 10;
@@ -229,14 +229,16 @@ public class GTFSEngineWithTransfers {
 
         // Add first stop of each distinct route
         String currentRouteId = routes.get(1).getRouteId();
+        String currentTripId = result.getStops().get(1).getTripId();
         for (int i = 2; i < result.getStops().size(); i++) {
             PathTransferStop stop = result.getStops().get(i);
-            if (!routes.get(i).getRouteId().equals(currentRouteId)) {
+            if (!result.getStops().get(i).getTripId().equals(currentTripId)) {
                 String stopNameForRoute = getStopName(stop.getStopId());
                 stop.setName(stopNameForRoute);
                 stops.add(stop);
                 associatedRoutes.add(routes.get(i));
                 currentRouteId = routes.get(i).getRouteId();
+                currentTripId = stop.getTripId();
             }
         }
 
@@ -245,6 +247,9 @@ public class GTFSEngineWithTransfers {
 
         // Divide into tripIds
         ArrayList<ArrayList<PathTransferStop>> dividedIntoTripIds = divideIntoTripIds(result.getStops());
+
+        System.out.println("Divided into tripIds: " + dividedIntoTripIds.size());
+        System.out.println("Routes: " + associatedRoutes.size());
 
         // Get shapes coordinates
         int colorId = 0;

@@ -7,7 +7,11 @@ let activityLayers = [];
 let markers = [];
 let accessibilityMode = false;
 let routeColors = {}; // Store colors for each busPathId
-
+const predefinedColors = [
+  'orange', '#FF5733', '#33FF57', '#3357FF', '#FF33A1', '#FF8C33', '#33FFBD', '#8D33FF',
+  '#FFD133', '#33FF7A', '#FF3333', '#33D1FF', '#7A33FF', '#FF7A33', '#33FFEC', '#D1FF33',
+  '#FF33E1', '#33FF33', '#336CFF', '#FF3357', '#33A1FF'
+];
 /*
 Initialize the map with the default view set to Maastricht.
 */
@@ -182,17 +186,26 @@ function updateRouteList() {
       var routeItem = document.createElement("div");
       routeItem.className = "route-item";
       routeItem.setAttribute("data-route-id", route.id);
-      routeItem.innerHTML = `
-                <span class="route-details">
-                    <strong>${route.details}</strong><br>
-                    Time: ${route.time}<br>
-                    Distance: ${route.distance}<br>
-                    ${getModeIcon(route.mode)}
-                </span>
-                <img src="trash.svg" alt="Delete" class="trash-icon" onclick="deleteRoute(event, ${
-                  route.id
-                })">
-            `;
+      if (route.mode === "transit") {
+        routeItem.innerHTML = `
+          <span class="route-details">
+            <strong>${route.details}</strong><br>
+            Time: ${route.time}<br>
+            ${getModeIcon(route.mode)}
+          </span>
+          <img src="trash.svg" alt="Delete" class="trash-icon" onclick="deleteRoute(event, ${route.id})">
+        `;
+      } else {
+        routeItem.innerHTML = `
+          <span class="route-details">
+            <strong>${route.details}</strong><br>
+            Time: ${route.time}<br>
+            Distance: ${route.distance}<br>
+            ${getModeIcon(route.mode)}
+          </span>
+          <img src="trash.svg" alt="Delete" class="trash-icon" onclick="deleteRoute(event, ${route.id})">
+        `;
+      }
       routeItem.querySelector(".route-details").onclick = function () {
         showRouteDetails(route.id);
       };
@@ -267,7 +280,13 @@ function showRouteDetails(routeId) {
 
     document.getElementById("route-name").innerText = route.details;
     document.getElementById("route-time").innerText = `Time: ${route.time}`;
-    document.getElementById("route-distance").innerText = `Distance: ${route.distance}`;
+    
+    if (route.mode === "transit") {
+      document.getElementById("route-distance").style.display = "none";
+    } else {
+      document.getElementById("route-distance").style.display = "block";
+      document.getElementById("route-distance").innerText = `Distance: ${route.distance}`;
+    }
 
     // Clear previous instructions
     routeInstructions.innerHTML = "";
@@ -363,65 +382,65 @@ Draw the route on the map based on the route coordinates and mode of transportat
 This includes the route coordinates and mode of transportation.
 */
 
-function getColorForBusPath(busPathId) {
-  if (!busPathId) return "orange"; // Default color for null busPathId
-
-  if (!routeColors[busPathId]) {
-    // Generate a new color and assign it to this busPathId
-    routeColors[busPathId] = generateRandomColor();
-  }
-
-  return routeColors[busPathId];
-}
-
-function generateRandomColor() {
-  let color;
-  do {
-    color = "#" + Math.floor(Math.random() * 16777215).toString(16);
-  } while (color.toLowerCase() === "#ffa500" || color.toLowerCase() === "orange"); // Avoid orange color
-  return color;
-}
 
 function drawRouteOnMap(routeCoordinates, mode) {
   try {
     clearMap(); // Clear previous layers and markers
 
     if (routeCoordinates.length > 0) {
+      const busPathIdToColor = new Map();
+      let nextColorIndex = 1; // Start from 1 because 0 is reserved for null
+
       if (mode === "transit") {
-        let segments = [];
-        let currentSegment = {
-          busPathId: routeCoordinates[0][2],
-          latLngs: [],
-        };
+        let currentSegmentLatLngs = [];
+        let currentBusPathId = routeCoordinates[0][2];
 
         for (let i = 0; i < routeCoordinates.length; i++) {
-          let coord = routeCoordinates[i];
-          currentSegment.latLngs.push([coord[0], coord[1]]);
+          const coord = routeCoordinates[i];
+          currentSegmentLatLngs.push([coord[0], coord[1]]);
 
-          // Check if the next segment has a different busPathId or if it is the last coordinate
-          if (
-            i === routeCoordinates.length - 1 ||
-            routeCoordinates[i + 1][2] !== currentSegment.busPathId
-          ) {
-            segments.push(currentSegment);
-            if (i !== routeCoordinates.length - 1) {
-              currentSegment = {
-                busPathId: routeCoordinates[i + 1][2],
-                latLngs: [],
-              };
+          const nextBusPathId = i === routeCoordinates.length - 1 ? null : routeCoordinates[i + 1][2];
+          
+          if (nextBusPathId !== currentBusPathId || i === routeCoordinates.length - 1) {
+            let color;
+            if (currentBusPathId === null) {
+              color = 'orange';
+            } else {
+              if (!busPathIdToColor.has(currentBusPathId)) {
+                busPathIdToColor.set(currentBusPathId, predefinedColors[nextColorIndex % predefinedColors.length]);
+                nextColorIndex++;
+              }
+              color = busPathIdToColor.get(currentBusPathId);
             }
+
+            const layer = L.polyline(currentSegmentLatLngs, { color: color }).addTo(map);
+            currentRouteLayers.push(layer);
+            currentSegmentLatLngs = [];
+            currentBusPathId = nextBusPathId;
           }
         }
-
-        segments.forEach((segment) => {
-          let color = getColorForBusPath(segment.busPathId);
-
-          const layer = L.polyline(segment.latLngs, { color: color }).addTo(map);
-          currentRouteLayers.push(layer); // Store the layer
-        });
       } else {
-        const layer = L.polyline(routeCoordinates.map((coord) => [coord[0], coord[1]]), { color: "#1A73E8" }).addTo(map);
-        currentRouteLayers.push(layer); // Store the layer
+        let currentSegmentLatLngs = [];
+        let currentType = routeCoordinates[0][2];
+
+        for (let i = 0; i < routeCoordinates.length; i++) {
+          const coord = routeCoordinates[i];
+          currentSegmentLatLngs.push([coord[0], coord[1]]);
+
+          const nextType = i === routeCoordinates.length - 1 ? null : routeCoordinates[i + 1][2];
+          
+          if (nextType !== currentType || i === routeCoordinates.length - 1) {
+            let color = "#1A73E8"; // Default color
+            if (mode === "bus") {
+              color = currentType === 0 ? "orange" : "blue"; // Change color based on type
+            }
+
+            const layer = L.polyline(currentSegmentLatLngs, { color: color }).addTo(map);
+            currentRouteLayers.push(layer);
+            currentSegmentLatLngs = [];
+            currentType = nextType;
+          }
+        }
       }
 
       const startPoint = [routeCoordinates[0][0], routeCoordinates[0][1]];

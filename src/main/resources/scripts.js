@@ -8,9 +8,27 @@ let markers = [];
 let accessibilityMode = false;
 let routeColors = {}; // Store colors for each busPathId
 const predefinedColors = [
-  'orange', '#FF5733', '#33FF57', '#3357FF', '#FF33A1', '#FF8C33', '#33FFBD', '#8D33FF',
-  '#FFD133', '#33FF7A', '#FF3333', '#33D1FF', '#7A33FF', '#FF7A33', '#33FFEC', '#D1FF33',
-  '#FF33E1', '#33FF33', '#336CFF', '#FF3357', '#33A1FF'
+  "orange",
+  "#FF5733",
+  "#33FF57",
+  "#3357FF",
+  "#FF33A1",
+  "#FF8C33",
+  "#33FFBD",
+  "#8D33FF",
+  "#FFD133",
+  "#33FF7A",
+  "#FF3333",
+  "#33D1FF",
+  "#7A33FF",
+  "#FF7A33",
+  "#33FFEC",
+  "#D1FF33",
+  "#FF33E1",
+  "#33FF33",
+  "#336CFF",
+  "#FF3357",
+  "#33A1FF",
 ];
 /*
 Initialize the map with the default view set to Maastricht.
@@ -193,7 +211,9 @@ function updateRouteList() {
             Time: ${route.time}<br>
             ${getModeIcon(route.mode)}
           </span>
-          <img src="trash.svg" alt="Delete" class="trash-icon" onclick="deleteRoute(event, ${route.id})">
+          <img src="trash.svg" alt="Delete" class="trash-icon" onclick="deleteRoute(event, ${
+            route.id
+          })">
         `;
       } else {
         routeItem.innerHTML = `
@@ -203,7 +223,9 @@ function updateRouteList() {
             Distance: ${route.distance}<br>
             ${getModeIcon(route.mode)}
           </span>
-          <img src="trash.svg" alt="Delete" class="trash-icon" onclick="deleteRoute(event, ${route.id})">
+          <img src="trash.svg" alt="Delete" class="trash-icon" onclick="deleteRoute(event, ${
+            route.id
+          })">
         `;
       }
       routeItem.querySelector(".route-details").onclick = function () {
@@ -273,8 +295,12 @@ function showRouteDetails(routeId) {
     let route = routes.find((r) => r.id === routeId);
     if (!route) return;
 
-    document.querySelectorAll(".route-item").forEach((item) => item.classList.remove("active"));
-    document.querySelector(`.route-item[data-route-id='${routeId}']`).classList.add("active");
+    document
+      .querySelectorAll(".route-item")
+      .forEach((item) => item.classList.remove("active"));
+    document
+      .querySelector(`.route-item[data-route-id='${routeId}']`)
+      .classList.add("active");
 
     let routeInstructions = document.getElementById("route-instructions");
 
@@ -285,7 +311,9 @@ function showRouteDetails(routeId) {
       document.getElementById("route-distance").style.display = "none";
     } else {
       document.getElementById("route-distance").style.display = "block";
-      document.getElementById("route-distance").innerText = `Distance: ${route.distance}`;
+      document.getElementById(
+        "route-distance"
+      ).innerText = `Distance: ${route.distance}`;
     }
 
     // Clear previous instructions
@@ -336,10 +364,10 @@ function showRouteDetails(routeId) {
     }
 
     if (route.mode === "transit" && route.routes) {
-      console.log("Transit routes:", route.routes);  // Debugging line to check routes array
+      console.log("Transit routes:", route.routes); // Debugging line to check routes array
 
       route.routes.forEach((routeDetail, index) => {
-        console.log("Route detail:", routeDetail);  // Debugging line to check each route detail
+        console.log("Route detail:", routeDetail); // Debugging line to check each route detail
         let transferDiv = document.createElement("div");
         transferDiv.className = "route-transfer-step";
         transferDiv.innerHTML = `
@@ -398,7 +426,8 @@ function showRouteDetails(routeId) {
 
     document.getElementById("route-details-container").style.display = "block";
     document.getElementById("route-details-container").style.height = "auto";
-    document.getElementById("route-details-container").style.maxHeight = "calc(100% - 100px)"; /* Allow for spacing */
+    document.getElementById("route-details-container").style.maxHeight =
+      "calc(100% - 100px)"; /* Allow for spacing */
     document.getElementById("route-details-container").style.overflowY = "auto";
 
     drawRouteOnMap(route.coordinates, route.mode);
@@ -406,7 +435,6 @@ function showRouteDetails(routeId) {
     displayError("Error showing route details: " + error.message);
   }
 }
-
 
 /*
 Clear the map of all layers and markers. This includes the current route layers and markers.
@@ -457,21 +485,32 @@ function drawRouteOnMap(routeCoordinates, mode) {
           const coord = routeCoordinates[i];
           currentSegmentLatLngs.push([coord[0], coord[1]]);
 
-          const nextBusPathId = i === routeCoordinates.length - 1 ? null : routeCoordinates[i + 1][2];
-          
-          if (nextBusPathId !== currentBusPathId || i === routeCoordinates.length - 1) {
+          const nextBusPathId =
+            i === routeCoordinates.length - 1
+              ? null
+              : routeCoordinates[i + 1][2];
+
+          if (
+            nextBusPathId !== currentBusPathId ||
+            i === routeCoordinates.length - 1
+          ) {
             let color;
             if (currentBusPathId === null) {
-              color = 'orange';
+              color = "orange";
             } else {
               if (!busPathIdToColor.has(currentBusPathId)) {
-                busPathIdToColor.set(currentBusPathId, predefinedColors[nextColorIndex % predefinedColors.length]);
+                busPathIdToColor.set(
+                  currentBusPathId,
+                  predefinedColors[nextColorIndex % predefinedColors.length]
+                );
                 nextColorIndex++;
               }
               color = busPathIdToColor.get(currentBusPathId);
             }
 
-            const layer = L.polyline(currentSegmentLatLngs, { color: color }).addTo(map);
+            const layer = L.polyline(currentSegmentLatLngs, {
+              color: color,
+            }).addTo(map);
             currentRouteLayers.push(layer);
             currentSegmentLatLngs = [];
             currentBusPathId = nextBusPathId;
@@ -485,15 +524,20 @@ function drawRouteOnMap(routeCoordinates, mode) {
           const coord = routeCoordinates[i];
           currentSegmentLatLngs.push([coord[0], coord[1]]);
 
-          const nextType = i === routeCoordinates.length - 1 ? null : routeCoordinates[i + 1][2];
-          
+          const nextType =
+            i === routeCoordinates.length - 1
+              ? null
+              : routeCoordinates[i + 1][2];
+
           if (nextType !== currentType || i === routeCoordinates.length - 1) {
             let color = "#1A73E8"; // Default color
             if (mode === "bus") {
               color = currentType === 0 ? "orange" : "blue"; // Change color based on type
             }
 
-            const layer = L.polyline(currentSegmentLatLngs, { color: color }).addTo(map);
+            const layer = L.polyline(currentSegmentLatLngs, {
+              color: color,
+            }).addTo(map);
             currentRouteLayers.push(layer);
             currentSegmentLatLngs = [];
             currentType = nextType;
@@ -565,81 +609,88 @@ function toggleOverlay() {
   }
 }
 
+/*
+Toggle the SEAI layers on the map. This includes the SEAI data fetched from the CSV file.
+*/
 function toggleSEAILayers(show) {
-    try {
-        if (show) {
-            fetchSEAIData().then(data => {
-                data.forEach(entry => {
-                    const { Lat, Lon, SEAI } = entry;
-                    if (Lat && Lon) {
-                        var color = getColorBySEAI(SEAI);
-                        var marker = L.circleMarker([Lat, Lon], {
-                            color: color,
-                            radius: 8,
-                            fillOpacity: 0.8
-                        }).addTo(map);
-                        activityLayers.push(marker);
-                    } else {
-                        console.error("Invalid Lat/Lon values for entry:", entry);
-                    }
-                });
-            }).catch(error => {
-                displayError("Error loading SEAI data: " + error.message);
-            });
-        } else {
-            activityLayers.forEach(layer => {
-                map.removeLayer(layer);
-            });
-            activityLayers = [];
-        }
-    } catch (error) {
-        displayError("Error toggling SEAI layers: " + error.message);
+  try {
+    if (show) {
+      fetchSEAIData()
+        .then((data) => {
+          data.forEach((entry) => {
+            const { Lat, Lon, SEAI } = entry;
+            if (Lat && Lon) {
+              var color = getColorBySEAI(SEAI);
+              var marker = L.circleMarker([Lat, Lon], {
+                color: color,
+                radius: 8,
+                fillOpacity: 0.8,
+              }).addTo(map);
+              activityLayers.push(marker);
+            } else {
+              console.error("Invalid Lat/Lon values for entry:", entry);
+            }
+          });
+        })
+        .catch((error) => {
+          displayError("Error loading SEAI data: " + error.message);
+        });
+    } else {
+      activityLayers.forEach((layer) => {
+        map.removeLayer(layer);
+      });
+      activityLayers = [];
     }
+  } catch (error) {
+    displayError("Error toggling SEAI layers: " + error.message);
+  }
 }
 
+/*
+Fetch the SEAI data from the CSV file. This includes the postalAccUpdated.csv file.
+*/
 async function fetchSEAIData() {
-    try {
-        const response = await fetch('postalAccUpdated.csv');
-        const csvText = await response.text();
-        const data = Papa.parse(csvText, {
-            header: true,
-            dynamicTyping: true
-        }).data;
-        return data;
-    } catch (error) {
-        displayError("Error fetching SEAI data: " + error.message);
-    }
+  try {
+    const response = await fetch("postalAccUpdated.csv");
+    const csvText = await response.text();
+    const data = Papa.parse(csvText, {
+      header: true,
+      dynamicTyping: true,
+    }).data;
+    return data;
+  } catch (error) {
+    displayError("Error fetching SEAI data: " + error.message);
+  }
 }
 
 document.addEventListener("DOMContentLoaded", (event) => {
   initializeMap();
 });
 
-
 function getColorByRange(range) {
   switch (range) {
-    case '0-20':
-      return 'red';
-    case '21-50':
-      return 'orange';
-    case '51-100':
-      return 'yellow';
-    case '101-150':
-      return 'lightgreen';
-    case '151-200':
-      return 'green';
-    case '201-300':
-      return 'blue';
-    case '301-400':
-      return 'purple';
-    case '401-500':
-      return 'pink';
-    case '501-600':
-      return 'magenta';
-    case '601+':
-      return 'black';
+    case "0-20":
+      return "red";
+    case "21-50":
+      return "orange";
+    case "51-100":
+      return "yellow";
+    case "101-150":
+      return "lightgreen";
+    case "151-200":
+      return "green";
+    case "201-300":
+      return "blue";
+    case "301-400":
+      return "purple";
+    case "401-500":
+      return "pink";
+    case "501-600":
+      return "magenta";
+    case "601+":
+      return "black";
     default:
-      return 'grey';
+      return "grey";
   }
 }
 
@@ -687,7 +738,7 @@ function calculateAccessibilityDistribution(data) {
     "601+": 0,
   };
 
-  data.forEach(entry => {
+  data.forEach((entry) => {
     const { SEAI } = entry;
     if (SEAI >= 0 && SEAI <= 20) {
       distribution["0-20"]++;
@@ -715,38 +766,10 @@ function calculateAccessibilityDistribution(data) {
   return distribution;
 }
 
-function updatePieChart(distribution) {
-  const total = Object.values(distribution).reduce((sum, value) => sum + value, 0);
-  const pieChart = document.querySelector('.pie-chart');
-
-  // Clear previous segments
-  while (pieChart.firstChild) {
-    pieChart.removeChild(pieChart.firstChild);
-  }
-
-  let cumulativePercentage = 0;
-
-  Object.entries(distribution).forEach(([range, count], index) => {
-    if (count > 0) {
-      const percentage = (count / total) * 100;
-      const segment = document.createElement('div');
-      segment.classList.add('pie-chart-segment');
-      segment.classList.add(`segment-${range.replace('+', '-plus').replace('-', '-')}`);
-      
-      const color = getColorByRange(range);
-      const segmentAngle = (percentage / 100) * 360;
-      segment.style.background = `conic-gradient(${color} ${segmentAngle}deg, transparent 0)`;
-      segment.style.transform = `rotate(${cumulativePercentage}deg)`;
-      cumulativePercentage += segmentAngle;
-      
-      pieChart.appendChild(segment);
-    }
+fetchSEAIData()
+  .then((data) => {
+    const distribution = calculateAccessibilityDistribution(data);
+  })
+  .catch((error) => {
+    displayError("Error updating accessibility: " + error.message);
   });
-}
-
-fetchSEAIData().then(data => {
-  const distribution = calculateAccessibilityDistribution(data);
-  updatePieChart(distribution);
-}).catch(error => {
-  displayError("Error updating pie chart: " + error.message);
-});

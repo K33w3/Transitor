@@ -26,10 +26,30 @@ public class Path {
         this.distanceInMeters = 0;
     }
 
+    /**
+     * Constructs a new path object with given coordinates and stops
+     * 
+     * @param path List of coordinates along the path
+     * @param stops List of stops along the path
+     */
     public Path(ArrayList<PathCoordinates> path, ArrayList<PathStop> stops) {
         this.coordinates = path;
         this.time = null;
         this.stops = stops;
+    }
+
+    /**
+     * Adds a coordinate to the path with a specified type and bus path color ID
+     * 
+     * @param coordinate the coordinate to add
+     * @param type the type of coordinate
+     * @param busPathColorId the bus path color ID associated with the coordinate
+     */
+    public void addCoordinates(Coordinates coordinate, int type, int busPathColorId) {
+        PathCoordinates pathCoordinate = new PathCoordinates(coordinate.getLatitude(), coordinate.getLongitude(), 0,
+                type);
+        pathCoordinate.setBusPathColorId(busPathColorId);
+        coordinates.add(pathCoordinate);
     }
 
     /**
@@ -38,7 +58,8 @@ public class Path {
      * @param coordinate The coordinate to add to the path.
      */
     public void addCoordinates(Coordinates coordinate, int type) {
-        PathCoordinates pathCoordinate = new PathCoordinates(coordinate.getLatitude(), coordinate.getLongitude(), 0, type);
+        PathCoordinates pathCoordinate = new PathCoordinates(coordinate.getLatitude(), coordinate.getLongitude(), 0,
+                type);
         coordinates.add(pathCoordinate);
     }
 
@@ -48,7 +69,8 @@ public class Path {
      * @param coordinate
      */
     public void addCoordinatesToStart(Coordinates coordinate, int type) {
-        PathCoordinates pathCoordinate = new PathCoordinates(coordinate.getLatitude(), coordinate.getLongitude(), 0, type);
+        PathCoordinates pathCoordinate = new PathCoordinates(coordinate.getLatitude(), coordinate.getLongitude(), 0,
+                type);
         coordinates.add(0, pathCoordinate);
     }
 

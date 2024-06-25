@@ -33,6 +33,15 @@ public class PathStop extends Stop {
     }
 
     /**
+     * Sets the name of the stop
+     * 
+     * @param name The name of the stop to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
      * Gets the departure time of the stop.
      *
      * @return the departure time of the stop

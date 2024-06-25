@@ -17,7 +17,7 @@ public class PostalCodeAccessibility {
     private double longitude;
 
     public double calculateAccessibilityScore() {
-        return 0.7* amenityCount + 0.4 * shopCount + 0.4*tourismCount;
+        return 0.7* amenityCount + 0.2 * shopCount + 0.1*tourismCount;
     }
 
     public static Map<String, Coordinates> readCoordinatesCSV(String fileName) {
@@ -97,10 +97,5 @@ public class PostalCodeAccessibility {
         Map<String, Coordinates> coordinatesMap = readCoordinatesCSV("src/main/resources/MassZipLatLon.csv");
         List<PostalCodeAccessibility> postalCodes = readCSV("src/main/resources/countofammenities.csv");
         writeCSV("src/main/resources/postalAccUpdated.csv", postalCodes, coordinatesMap);
-    }
-
-    public static void main(String[] args) {
-        PostalCodeAccessibility pca = new PostalCodeAccessibility();
-        pca.writeChangesCSV();
-    }
+    } 
 }

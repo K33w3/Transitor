@@ -2,7 +2,7 @@ package com.bcs05;
 
 import javax.swing.JFrame;
 
-import com.bcs05.util.JSONAccessabilityScores;
+
 import com.bcs05.visualization.UI;
 
 public final class Main {

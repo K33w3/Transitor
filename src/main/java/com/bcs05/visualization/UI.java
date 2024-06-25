@@ -401,8 +401,7 @@ public class UI extends JFrame {
         PathTransfer route = engine.findPathWithTransfers(fromPostal, toPostal, range / 100.0);
         this.routeTransfers = route;
         // distance = route.getDistance();
-        // time = route.getTime().toMinutes();
-        System.out.println(routeTransfers.getRoutes().toString());
+         time = route.getTime().toMinutes();
         List<Coordinates> routeCoords = new ArrayList<>();
 
         for (PathCoordinates pathCoord : route.getCoordinates()) {

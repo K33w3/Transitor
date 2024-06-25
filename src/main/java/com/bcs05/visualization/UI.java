@@ -45,6 +45,9 @@ public class UI extends JFrame {
     private Path routeBus;
     private PathTransfer routeTransfers;
 
+    /**
+     * Constructs the UI frame
+     */
     public UI() {
         setTitle("Route Generator");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -60,6 +63,9 @@ public class UI extends JFrame {
         Platform.runLater(this::createJavaFXScene);
     }
 
+    /**
+     * Initializes the Swing components
+     */
     private void initComponents() {
         jfxPanel = new JFXPanel();
         add(jfxPanel, BorderLayout.CENTER);
@@ -243,11 +249,20 @@ public class UI extends JFrame {
         return stopList;
     }
 
+    /**
+     * Update accessibility data before initializing the map
+     */
     public void updateAcc(){
         PostalCodeAccessibility pca = new PostalCodeAccessibility();
         pca.writeChangesCSV();
     }
 
+    /**
+     * Convert route names to a list of maps
+     * 
+     * @param routes List of routes
+     * @return List of maps representing routes
+     */
     private List<Map<String, Object>> convertRouteNamesToMapList(ArrayList<Route> routes) {
         List<Map<String, Object>> routeList = new ArrayList<>();
         if (routes != null && !routes.isEmpty()) {

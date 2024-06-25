@@ -32,6 +32,11 @@ public class PathStop extends Stop {
         return name;
     }
 
+    /**
+     * Sets the name of the stop
+     * 
+     * @param name The name of the stop to set
+     */
     public void setName(String name) {
         this.name = name;
     }

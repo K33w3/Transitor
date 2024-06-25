@@ -85,6 +85,11 @@ public class GTFSWeightedEdge {
         return tripId;
     }
 
+    /**
+     * Returns a string representation of the GTFSWeightedEdge object
+     * 
+     * @return a String representation containing trip ID, stop ID, departure time and travel time
+     */
     @Override
     public String toString() {
         return "Trip: " + tripId + " Stop: " + stop.getStopId() + " Dep. " + departureTime + " tT: " + travelTime

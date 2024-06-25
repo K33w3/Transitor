@@ -216,6 +216,13 @@ public class GTFSEngine {
         return path;
     }
 
+    /**
+     * Calculates the walking route between two coordinates
+     * 
+     * @param from the starting coordinate
+     * @param to the destination coordinate
+     * @return the ResponsePath containing the walking route 
+     */
     public static ResponsePath walk(Coordinates from, Coordinates to) {
         RoutingEngine routingEngine = new RoutingEngine(Transportation.FOOT);
         return routingEngine.routing(from, to);
@@ -332,6 +339,16 @@ public class GTFSEngine {
 
     }
 
+    /**
+     * Retrieves the list of stops for a given trip between the start and end stops
+     * 
+     * @param tripId the trip ID
+     * @param start the starting stop
+     * @param end the ending stop
+     * @param connection the database connection
+     * @return the list of stops for the trip
+     * @throws SQLException if an error occurs while querying the database
+     */
     private ArrayList<PathStop> getTripStops(int tripId, Stop start, Stop end, Connection connection)
             throws SQLException {
         ArrayList<PathStop> stops = new ArrayList<>();

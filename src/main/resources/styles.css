@@ -698,3 +698,39 @@ display: inline-block;
 margin-right: 10px;
 border: 1px solid #000;
 }
+
+
+
+  #route-details-container .route-timeline-dot {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    border-radius: 50%;
+    background-color: #1abc9c;
+    padding: 5px;
+  }
+  
+  #route-details-container .route-icon {
+    width: 100%;
+    height: 100%;
+  }
+  
+  #route-details-container .route-step {
+    margin-bottom: 10px;
+  }
+  
+  #route-details-container .route-step-details {
+    display: inline-block;
+    margin-left: 10px;
+  }
+  
+  #route-details-container .route-timeline-line {
+    height: 20px;
+    margin-left: 20px;
+  }
+  
+  #route-details-container .route-solid-line {
+    border-left: 2px solid #000;
+    height: 100%;
+  }

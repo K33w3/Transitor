@@ -280,7 +280,7 @@ function showRouteDetails(routeId) {
 
     document.getElementById("route-name").innerText = route.details;
     document.getElementById("route-time").innerText = `Time: ${route.time}`;
-    
+
     if (route.mode === "transit") {
       document.getElementById("route-distance").style.display = "none";
     } else {
@@ -291,13 +291,35 @@ function showRouteDetails(routeId) {
     // Clear previous instructions
     routeInstructions.innerHTML = "";
 
+    // Add start walk image and first step
+    let startStepDiv = document.createElement("div");
+    startStepDiv.className = "route-step";
+    startStepDiv.innerHTML = `
+      <div class="route-timeline-dot">
+        <img src="walk.svg" alt="Walking" class="route-icon">
+      </div>
+      <div class="route-step-details">
+        <strong>Start Walking</strong><br>
+        Walk to the first point
+      </div>
+    `;
+    routeInstructions.appendChild(startStepDiv);
+
+    // Add a solid line after the start walking step
+    let startLineDiv = document.createElement("div");
+    startLineDiv.className = "route-timeline-line";
+    startLineDiv.innerHTML = `<div class="route-solid-line"></div>`;
+    routeInstructions.appendChild(startLineDiv);
+
     if (route.mode === "bus" && route.stops) {
       route.stops.forEach((step, index) => {
         let stepDiv = document.createElement("div");
-        stepDiv.className = "step";
+        stepDiv.className = "route-step";
         stepDiv.innerHTML = `
-          <div class="timeline-dot ${route.mode}"></div>
-          <div class="step-details">
+          <div class="route-timeline-dot">
+            <img src="bus.svg" alt="Bus" class="route-icon">
+          </div>
+          <div class="route-step-details">
             <strong>${step.time}</strong><br>
             ${step.name}
           </div>
@@ -306,8 +328,8 @@ function showRouteDetails(routeId) {
 
         if (index < route.stops.length - 1) {
           let lineDiv = document.createElement("div");
-          lineDiv.className = "timeline-line";
-          lineDiv.innerHTML = `<div class="solid-line"></div>`;
+          lineDiv.className = "route-timeline-line";
+          lineDiv.innerHTML = `<div class="route-solid-line"></div>`;
           routeInstructions.appendChild(lineDiv);
         }
       });
@@ -315,14 +337,16 @@ function showRouteDetails(routeId) {
 
     if (route.mode === "transit" && route.routes) {
       console.log("Transit routes:", route.routes);  // Debugging line to check routes array
-      // Append the transfer details for transit routes
+
       route.routes.forEach((routeDetail, index) => {
         console.log("Route detail:", routeDetail);  // Debugging line to check each route detail
         let transferDiv = document.createElement("div");
-        transferDiv.className = "transfer-step";
+        transferDiv.className = "route-transfer-step";
         transferDiv.innerHTML = `
-          <div class="timeline-dot transfer"></div>
-          <div class="step-details">
+          <div class="route-timeline-dot">
+            <img src="bus.svg" alt="Bus" class="route-icon">
+          </div>
+          <div class="route-step-details">
             <strong>Line: ${routeDetail.line}</strong><br>
             ${routeDetail.name}
           </div>
@@ -331,12 +355,46 @@ function showRouteDetails(routeId) {
 
         if (index < route.routes.length - 1) {
           let lineDiv = document.createElement("div");
-          lineDiv.className = "timeline-line";
-          lineDiv.innerHTML = `<div class="dashed-line"></div>`;
+          lineDiv.className = "route-timeline-line";
+          lineDiv.innerHTML = `<div class="route-solid-line"></div>`;
           routeInstructions.appendChild(lineDiv);
         }
       });
     }
+
+    // Add a solid line before the final walk step
+    let endWalkLineDiv = document.createElement("div");
+    endWalkLineDiv.className = "route-timeline-line";
+    endWalkLineDiv.innerHTML = `<div class="route-solid-line"></div>`;
+    routeInstructions.appendChild(endWalkLineDiv);
+
+    // Add end walk image and last step
+    let endStepDiv = document.createElement("div");
+    endStepDiv.className = "route-step";
+    endStepDiv.innerHTML = `
+      <div class="route-timeline-dot">
+        <img src="walk.svg" alt="Walking" class="route-icon">
+      </div>
+      <div class="route-step-details">
+        <strong>End Walking</strong><br>
+        ${route.toPostal}
+      </div>
+    `;
+    routeInstructions.appendChild(endStepDiv);
+
+    // Add end icon after the final walk
+    let endIconDiv = document.createElement("div");
+    endIconDiv.className = "route-step";
+    endIconDiv.innerHTML = `
+      <div class="route-timeline-dot">
+        <img src="end.png" alt="End" class="route-icon">
+      </div>
+      <div class="route-step-details">
+        <strong>Destination</strong><br>
+        ${route.toPostal}
+      </div>
+    `;
+    routeInstructions.appendChild(endIconDiv);
 
     document.getElementById("route-details-container").style.display = "block";
     document.getElementById("route-details-container").style.height = "auto";
@@ -348,6 +406,7 @@ function showRouteDetails(routeId) {
     displayError("Error showing route details: " + error.message);
   }
 }
+
 
 /*
 Clear the map of all layers and markers. This includes the current route layers and markers.
@@ -381,7 +440,6 @@ const endIcon = L.divIcon({
 Draw the route on the map based on the route coordinates and mode of transportation.
 This includes the route coordinates and mode of transportation.
 */
-
 
 function drawRouteOnMap(routeCoordinates, mode) {
   try {

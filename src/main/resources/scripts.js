@@ -520,22 +520,6 @@ function toggleSEAILayers(show) {
     }
 }
 
-function getColorBySEAI(SEAI) {
-    try {
-        if (SEAI >= 0 && SEAI <= 20) {
-            return "red";
-        } else if (SEAI > 21 && SEAI <= 90) {
-            return "yellow";
-        } else if (SEAI >= 91) {
-            return "green";
-        } else {
-            return "grey";
-        }
-    } catch (error) {
-        displayError("Error getting color by SEAI: " + error.message);
-    }
-}
-
 async function fetchSEAIData() {
     try {
         const response = await fetch('postalAccUpdated.csv');
@@ -552,4 +536,140 @@ async function fetchSEAIData() {
 
 document.addEventListener("DOMContentLoaded", (event) => {
   initializeMap();
+});
+
+
+function getColorByRange(range) {
+  switch (range) {
+    case '0-20':
+      return 'red';
+    case '21-50':
+      return 'orange';
+    case '51-100':
+      return 'yellow';
+    case '101-150':
+      return 'lightgreen';
+    case '151-200':
+      return 'green';
+    case '201-300':
+      return 'blue';
+    case '301-400':
+      return 'purple';
+    case '401-500':
+      return 'pink';
+    case '501-600':
+      return 'magenta';
+    case '601+':
+      return 'black';
+    default:
+      return 'grey';
+  }
+}
+
+function getColorBySEAI(SEAI) {
+  try {
+    if (SEAI >= 0 && SEAI <= 20) {
+      return "red";
+    } else if (SEAI > 20 && SEAI <= 50) {
+      return "orange";
+    } else if (SEAI > 50 && SEAI <= 100) {
+      return "yellow";
+    } else if (SEAI > 100 && SEAI <= 150) {
+      return "lightgreen";
+    } else if (SEAI > 150 && SEAI <= 200) {
+      return "green";
+    } else if (SEAI > 200 && SEAI <= 300) {
+      return "lightblue";
+    } else if (SEAI > 300 && SEAI <= 400) {
+      return "blue";
+    } else if (SEAI > 400 && SEAI <= 500) {
+      return "purple";
+    } else if (SEAI > 500 && SEAI <= 600) {
+      return "magenta";
+    } else if (SEAI > 600) {
+      return "black";
+    } else {
+      return "grey";
+    }
+  } catch (error) {
+    displayError("Error getting color by SEAI: " + error.message);
+  }
+}
+
+function calculateAccessibilityDistribution(data) {
+  const distribution = {
+    "0-20": 0,
+    "21-50": 0,
+    "51-100": 0,
+    "101-150": 0,
+    "151-200": 0,
+    "201-300": 0,
+    "301-400": 0,
+    "401-500": 0,
+    "501-600": 0,
+    "601+": 0,
+  };
+
+  data.forEach(entry => {
+    const { SEAI } = entry;
+    if (SEAI >= 0 && SEAI <= 20) {
+      distribution["0-20"]++;
+    } else if (SEAI > 20 && SEAI <= 50) {
+      distribution["21-50"]++;
+    } else if (SEAI > 50 && SEAI <= 100) {
+      distribution["51-100"]++;
+    } else if (SEAI > 100 && SEAI <= 150) {
+      distribution["101-150"]++;
+    } else if (SEAI > 150 && SEAI <= 200) {
+      distribution["151-200"]++;
+    } else if (SEAI > 200 && SEAI <= 300) {
+      distribution["201-300"]++;
+    } else if (SEAI > 300 && SEAI <= 400) {
+      distribution["301-400"]++;
+    } else if (SEAI > 400 && SEAI <= 500) {
+      distribution["401-500"]++;
+    } else if (SEAI > 500 && SEAI <= 600) {
+      distribution["501-600"]++;
+    } else if (SEAI > 600) {
+      distribution["601+"]++;
+    }
+  });
+
+  return distribution;
+}
+
+function updatePieChart(distribution) {
+  const total = Object.values(distribution).reduce((sum, value) => sum + value, 0);
+  const pieChart = document.querySelector('.pie-chart');
+
+  // Clear previous segments
+  while (pieChart.firstChild) {
+    pieChart.removeChild(pieChart.firstChild);
+  }
+
+  let cumulativePercentage = 0;
+
+  Object.entries(distribution).forEach(([range, count], index) => {
+    if (count > 0) {
+      const percentage = (count / total) * 100;
+      const segment = document.createElement('div');
+      segment.classList.add('pie-chart-segment');
+      segment.classList.add(`segment-${range.replace('+', '-plus').replace('-', '-')}`);
+      
+      const color = getColorByRange(range);
+      const segmentAngle = (percentage / 100) * 360;
+      segment.style.background = `conic-gradient(${color} ${segmentAngle}deg, transparent 0)`;
+      segment.style.transform = `rotate(${cumulativePercentage}deg)`;
+      cumulativePercentage += segmentAngle;
+      
+      pieChart.appendChild(segment);
+    }
+  });
+}
+
+fetchSEAIData().then(data => {
+  const distribution = calculateAccessibilityDistribution(data);
+  updatePieChart(distribution);
+}).catch(error => {
+  displayError("Error updating pie chart: " + error.message);
 });

@@ -12,24 +12,51 @@ import java.time.format.DateTimeFormatter;
  */
 public class ErrorHandler {
 
+    /**
+     * Handles an expection by logging the error and taking appropriate action
+     * 
+     * @param e the exception to handle
+     */
     public static void handleError(Exception e) {
         log("ERROR", e.getMessage(), e);
         takeAction(e);
     }
 
+    /**
+     * Handles an error message by logging it and taking appropriate action
+     * 
+     * @param message the error message to handle
+     */
     public static void handleError(String message) {
         log("ERROR", message, null);
         takeAction(new Exception(message));
     }
 
+    /**
+     * Logs a warning message
+     * 
+     * @param message the warning message to log
+     */
     public static void logWarning(String message) {
         log("WARNING", message, null);
     }
 
+    /**
+     * Logs an informational message
+     * 
+     * @param message the informational message to log 
+     */
     public static void logInfo(String message) {
         log("INFO", message, null);
     }
 
+    /**
+     * Logs a message with a specified level and optional exception stack trace
+     * 
+     * @param level the level of the log (e.g. ERROR, WARNING, INFO)
+     * @param message the message to log
+     * @param e the exception whose stack trace should be logged (optional)
+     */
     private static void log(String level, String message, Exception e) {
         String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         String logMessage = String.format("[%s] %s: %s", timestamp, level, message);
@@ -59,6 +86,11 @@ public class ErrorHandler {
         }
     }
 
+    /**
+     * Takes an action based on the exception type or message
+     * 
+     * @param e the exception to take action on
+     */
     private static void takeAction(Exception e) {
         // Determine action based on exception type or message
         if (e instanceof IOException) {

@@ -10,8 +10,18 @@ import java.util.List;
 
 import com.bcs05.engine.GTFSEngineWithTransfers;
 
+/**
+ * Used to analyze memory usage and execution time for generating routes
+ * between postal code pairs using GTFSEngineWithTransfers
+ */
 public class MemoryUsageAnalysis {
 
+    /**
+     * Reads postal code pairs from a CSV file
+     * 
+     * @param csvFile The path to the CSV file containing postal code pairs
+     * @return A list of String arrays where each array contains two postal codes
+     */
     private static List<String[]> readZipCodesFromCSV(String csvFile) {
         List<String[]> zipCodes = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
@@ -27,6 +37,12 @@ public class MemoryUsageAnalysis {
         return zipCodes;
     }
 
+    /**
+     * Writes results to a CSV file
+     * 
+     * @param csvFile The path to the CSV file to write results to
+     * @param result The results to write to the CSV file as a String array
+     */
     private static void writeResultsToCSV(String csvFile, String[] result) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(csvFile, true))) {
             bw.write(String.join(",", result) + "\n");
@@ -35,6 +51,11 @@ public class MemoryUsageAnalysis {
         }
     }
 
+    /**
+     * Writes a header to a CSV file
+     * 
+     * @param csvFile The path to the CSV file to write header to
+     */
     private static void writeHeaderToCSV(String csvFile) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(csvFile))) {
             bw.write("postal_Code_start,postal_code_end,time,memory_used(MB)\n"); // Writing header
@@ -43,6 +64,13 @@ public class MemoryUsageAnalysis {
         }
     }
 
+    /**
+     * Performs the route generation and measures the time and memory used
+     * 
+     * @param from the starting postal code 
+     * @param to The destination postal code
+     * @return an Array containing the time taken in milliseconds and memory used in MB
+     */
     private long[] timeAndMemoryTakenGenerateRoute(String from, String to) {
         GTFSEngineWithTransfers engine = new GTFSEngineWithTransfers();
         Runtime runtime = Runtime.getRuntime();

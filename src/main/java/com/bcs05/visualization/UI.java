@@ -215,6 +215,9 @@ public class UI extends JFrame {
                     ) /
                     60
                 );
+
+            case "transit":
+                return time;
             default:
                 return 0;
         }
@@ -401,7 +404,7 @@ public class UI extends JFrame {
         PathTransfer route = engine.findPathWithTransfers(fromPostal, toPostal, range / 100.0);
         this.routeTransfers = route;
         // distance = route.getDistance();
-         time = route.getTime().toMinutes();
+        time = route.getTime().toMinutes();
         List<Coordinates> routeCoords = new ArrayList<>();
 
         for (PathCoordinates pathCoord : route.getCoordinates()) {

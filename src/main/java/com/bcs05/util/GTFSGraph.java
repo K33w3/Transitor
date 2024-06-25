@@ -24,8 +24,20 @@ public class GTFSGraph {
     }
 
     private HashMap<Stop, LinkedList<GTFSWeightedEdge>> adjacencyList;
+    private static GTFSGraph instance;
 
-    public GTFSGraph() {
+    public static void createInstance() {
+        instance = new GTFSGraph();
+    }
+
+    public static GTFSGraph getInstance() {
+        if (instance == null) {
+            instance = new GTFSGraph();
+        }
+        return instance;
+    }
+
+    private GTFSGraph() {
         adjacencyList = new HashMap<Stop, LinkedList<GTFSWeightedEdge>>();
         createGraph();
     }
@@ -104,6 +116,8 @@ public class GTFSGraph {
     public LinkedList<GTFSWeightedEdge> getNeighbours(Stop stop, LocalTime departureTime) {
         LinkedList<GTFSWeightedEdge> neighbours = new LinkedList<GTFSWeightedEdge>();
         LinkedList<GTFSWeightedEdge> edges = adjacencyList.get(stop);
+
+        edges.sort((GTFSWeightedEdge e1, GTFSWeightedEdge e2) -> e1.getArrivalTime().compareTo(e2.getArrivalTime()));
 
         if (edges == null || edges.isEmpty()) {
             return neighbours;

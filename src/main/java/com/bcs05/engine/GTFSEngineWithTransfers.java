@@ -37,7 +37,7 @@ public class GTFSEngineWithTransfers {
     GTFSGraph graph;
 
     public GTFSEngineWithTransfers() {
-        graph = new GTFSGraph();
+        graph = GTFSGraph.getInstance();
     }
 
     public PathTransfer findPathWithTransfers(String fromPostalCode, String toPostalCode, double radius) {
@@ -196,40 +196,40 @@ public class GTFSEngineWithTransfers {
     private PathTransfer reconstructPathForUI(String fromPostalCode, String toPostalCode, BusTransferResult result) {
         PathTransfer path = new PathTransfer();
         ArrayList<PathTransferStop> stopsList = result.getStops();
-    
+
         System.out.println("Stops list size: " + stopsList.size());
-    
+
         Stop fromStop = stopsList.get(0);
         Stop toStop = stopsList.get(stopsList.size() - 1);
-    
+
         // Walk to fromStop
         addWalkPath(path, fromPostalCode, fromStop);
-    
+
         // Get routes for each stop
         ArrayList<Route> routes = new ArrayList<Route>();
         routes.add(null); // Ensure the first element is null
-    
+
         for (int i = 1; i < stopsList.size(); i++) {
             PathTransferStop stop = stopsList.get(i);
             Route route = getRoute(stop.getTripId());
             routes.add(route);
         }
-    
+
         System.out.println("Routes list size: " + routes.size());
-    
+
         // Add first stop to path
         ArrayList<PathStop> stops = new ArrayList<PathStop>();
         ArrayList<Route> associatedRoutes = new ArrayList<Route>();
-    
+
         stops.add(stopsList.get(0));
-    
+
         if (routes.size() > 1) {
             associatedRoutes.add(routes.get(1));
-        } else { 
+        } else {
             System.out.println("Routes list is too small to access element 1");
-            return path; 
+            return path;
         }
-    
+
         // Add first stop of each distinct route
         String currentRouteId = routes.get(1).getRouteId();
         for (int i = 2; i < stopsList.size(); i++) {
@@ -240,24 +240,24 @@ public class GTFSEngineWithTransfers {
                 currentRouteId = routes.get(i).getRouteId();
             }
         }
-    
+
         path.setStops(stops);
         path.setRoutes(associatedRoutes);
-    
+
         // Divide into tripIds
         ArrayList<PathTransferStop> allStops = stopsList;
         ArrayList<ArrayList<PathTransferStop>> dividedIntoTripIds = new ArrayList<ArrayList<PathTransferStop>>();
         ArrayList<PathTransferStop> currentTripIds = new ArrayList<PathTransferStop>();
-    
+
         currentTripIds.add(allStops.get(0));
-    
+
         if (allStops.size() > 1) {
             currentTripIds.add(allStops.get(1));
         } else {
             System.out.println("Stops list is too small to access element 1");
             return path; // or handle this case appropriately
         }
-    
+
         for (int i = 2; i < allStops.size(); i++) {
             if (allStops.get(i).getTripId().equals(allStops.get(i - 1).getTripId())) {
                 currentTripIds.add(allStops.get(i));
@@ -268,18 +268,18 @@ public class GTFSEngineWithTransfers {
                 currentTripIds.add(allStops.get(i));
             }
         }
-    
+
         dividedIntoTripIds.add(currentTripIds);
-    
+
         for (ArrayList<PathTransferStop> tripStops : dividedIntoTripIds) {
             System.out.println(tripStops);
         }
-    
+
         // Get shapes coordinates
         System.out.println("divided size: " + dividedIntoTripIds.size());
         for (ArrayList<PathTransferStop> tripStops : dividedIntoTripIds) {
             String tripId = tripStops.get(tripStops.size() - 1).getTripId();
-    
+
             PathTransferStop firstStop = tripStops.get(0);
             PathTransferStop lastStop = tripStops.get(tripStops.size() - 1);
             try {
@@ -303,7 +303,7 @@ public class GTFSEngineWithTransfers {
                 getCoordinatesStatement.setString(3, firstStop.getStopId());
                 getCoordinatesStatement.setString(4, tripId);
                 getCoordinatesStatement.setString(5, lastStop.getStopId());
-    
+
                 ResultSet coordinatesResult = getCoordinatesStatement.executeQuery();
                 while (coordinatesResult.next()) {
                     String lat = coordinatesResult.getString("shape_pt_lat");
@@ -311,137 +311,143 @@ public class GTFSEngineWithTransfers {
                     Coordinates c = new Coordinates(lat, lon);
                     path.addCoordinates(c, 1);
                 }
-    
+
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-    
+
         // Walk to toStop
         ResponsePath walkPath = GTFSEngine.walk(toStop.getCoordinates(), CoordHandler.getCoordinates(toPostalCode));
         ArrayList<Coordinates> walkCoordinates = Utils.pointListToArrayList(walkPath.getPoints());
         for (Coordinates c : walkCoordinates) {
             path.addCoordinates(c, 0);
         }
-    
+
         return path;
     }
-    
-    
-    // private PathTransfer reconstructPathForUI(String fromPostalCode, String toPostalCode, BusTransferResult result) {
-    //     PathTransfer path = new PathTransfer();
 
-    //     Stop fromStop = result.getStops().get(0);
-    //     Stop toStop = result.getStops().get(result.getStops().size() - 1);
+    // private PathTransfer reconstructPathForUI(String fromPostalCode, String
+    // toPostalCode, BusTransferResult result) {
+    // PathTransfer path = new PathTransfer();
 
-    //     // Walk to fromStop
-    //     addWalkPath(path, fromPostalCode, fromStop);
+    // Stop fromStop = result.getStops().get(0);
+    // Stop toStop = result.getStops().get(result.getStops().size() - 1);
 
-    //     // Get routes for each stop
-    //     ArrayList<Route> routes = new ArrayList<Route>();
-    //     routes.add(null);
-    //     for (int i = 1; i < result.getStops().size(); i++) {
-    //         PathTransferStop stop = result.getStops().get(i);
-    //         Route route = getRoute(stop.getTripId());
-    //         routes.add(route);
-    //     }
+    // // Walk to fromStop
+    // addWalkPath(path, fromPostalCode, fromStop);
 
-    //     // Add first stop to path
-    //     ArrayList<PathStop> stops = new ArrayList<PathStop>();
-    //     ArrayList<Route> associatedRoutes = new ArrayList<Route>();
-    //     System.out.println("It reached the point where i d like it to");
-    //     stops.add(result.getStops().get(0));
-    //    associatedRoutes.add(routes.get(1));
+    // // Get routes for each stop
+    // ArrayList<Route> routes = new ArrayList<Route>();
+    // routes.add(null);
+    // for (int i = 1; i < result.getStops().size(); i++) {
+    // PathTransferStop stop = result.getStops().get(i);
+    // Route route = getRoute(stop.getTripId());
+    // routes.add(route);
+    // }
 
-    //     // Add first stop of each distinct route
-    //     String currentRouteId = routes.get(1).getRouteId();
-    //     for (int i = 2; i < result.getStops().size(); i++) {
-    //         PathTransferStop stop = result.getStops().get(i);
-    //         if (!routes.get(i).getRouteId().equals(currentRouteId)) {
-    //             stops.add(stop);
-    //             associatedRoutes.add(routes.get(i));
-    //             currentRouteId = routes.get(i).getRouteId();
-    //         }
-    //     }
+    // // Add first stop to path
+    // ArrayList<PathStop> stops = new ArrayList<PathStop>();
+    // ArrayList<Route> associatedRoutes = new ArrayList<Route>();
+    // System.out.println("It reached the point where i d like it to");
+    // stops.add(result.getStops().get(0));
+    // associatedRoutes.add(routes.get(1));
 
-    //     path.setStops(stops);
-    //     path.setRoutes(associatedRoutes);
+    // // Add first stop of each distinct route
+    // String currentRouteId = routes.get(1).getRouteId();
+    // for (int i = 2; i < result.getStops().size(); i++) {
+    // PathTransferStop stop = result.getStops().get(i);
+    // if (!routes.get(i).getRouteId().equals(currentRouteId)) {
+    // stops.add(stop);
+    // associatedRoutes.add(routes.get(i));
+    // currentRouteId = routes.get(i).getRouteId();
+    // }
+    // }
 
-    //     // Divide into tripIds
-    //     ArrayList<PathTransferStop> allStops = result.getStops();
-    //     ArrayList<ArrayList<PathTransferStop>> dividedIntoTripIds = new ArrayList<ArrayList<PathTransferStop>>();
-    //     ArrayList<PathTransferStop> currentTripIds = new ArrayList<PathTransferStop>();
-    //     currentTripIds.add(allStops.get(0));
-    //     currentTripIds.add(allStops.get(1));
-    //     for (int i = 2; i < allStops.size(); i++) {
-    //         if (allStops.get(i).getTripId().equals(allStops.get(i - 1).getTripId())) {
-    //             currentTripIds.add(allStops.get(i));
-    //         } else {
-    //             // currentTripIds.add(allStops.get(i));
-    //             dividedIntoTripIds.add(currentTripIds);
-    //             currentTripIds = new ArrayList<PathTransferStop>();
-    //             currentTripIds.add(allStops.get(i - 1));
-    //             currentTripIds.add(allStops.get(i));
+    // path.setStops(stops);
+    // path.setRoutes(associatedRoutes);
 
-    //         }
-    //     }
-    //     dividedIntoTripIds.add(currentTripIds);
-    //     for (ArrayList<PathTransferStop> tripStops : dividedIntoTripIds) {
-    //         System.out.println(tripStops);
-    //     }
+    // // Divide into tripIds
+    // ArrayList<PathTransferStop> allStops = result.getStops();
+    // ArrayList<ArrayList<PathTransferStop>> dividedIntoTripIds = new
+    // ArrayList<ArrayList<PathTransferStop>>();
+    // ArrayList<PathTransferStop> currentTripIds = new
+    // ArrayList<PathTransferStop>();
+    // currentTripIds.add(allStops.get(0));
+    // currentTripIds.add(allStops.get(1));
+    // for (int i = 2; i < allStops.size(); i++) {
+    // if (allStops.get(i).getTripId().equals(allStops.get(i - 1).getTripId())) {
+    // currentTripIds.add(allStops.get(i));
+    // } else {
+    // // currentTripIds.add(allStops.get(i));
+    // dividedIntoTripIds.add(currentTripIds);
+    // currentTripIds = new ArrayList<PathTransferStop>();
+    // currentTripIds.add(allStops.get(i - 1));
+    // currentTripIds.add(allStops.get(i));
 
-    //     // Get shapes coordinates
-    //     System.out.println("divided size: " + dividedIntoTripIds.size());
-    //     for (ArrayList<PathTransferStop> tripStops : dividedIntoTripIds) {
-    //         String tripId = tripStops.get(tripStops.size() - 1).getTripId();
+    // }
+    // }
+    // dividedIntoTripIds.add(currentTripIds);
+    // for (ArrayList<PathTransferStop> tripStops : dividedIntoTripIds) {
+    // System.out.println(tripStops);
+    // }
 
-    //         PathTransferStop firstStop = tripStops.get(0);
-    //         PathTransferStop lastStop = tripStops.get(tripStops.size() - 1);
-    //         try {
-    //             Connection connection = DatabaseConnection.getConnection();
-    //             // Get coordinates SQL query
-    //             String getCoordinatesSQL = """
-    //                     select
-    //                         shape_pt_lat,
-    //                         shape_pt_lon,
-    //                         shape_dist_traveled
-    //                     from
-    //                         shapes
-    //                     where
-    //                         shape_id = (select shape_id from trips where trip_id = ?)
-    //                         and shape_dist_traveled >= (select shape_dist_traveled from stop_times where trip_id = ? and stop_id = ?)
-    //                         and shape_dist_traveled <= (select shape_dist_traveled from stop_times where trip_id = ? and stop_id = ?);
-    //                             """;
-    //             PreparedStatement getCoordinatesStatement = connection.prepareStatement(getCoordinatesSQL);
-    //             getCoordinatesStatement.setString(1, tripId);
-    //             getCoordinatesStatement.setString(2, tripId);
-    //             getCoordinatesStatement.setString(3, firstStop.getStopId());
-    //             getCoordinatesStatement.setString(4, tripId);
-    //             getCoordinatesStatement.setString(5, lastStop.getStopId());
+    // // Get shapes coordinates
+    // System.out.println("divided size: " + dividedIntoTripIds.size());
+    // for (ArrayList<PathTransferStop> tripStops : dividedIntoTripIds) {
+    // String tripId = tripStops.get(tripStops.size() - 1).getTripId();
 
-    //             ResultSet coordinatesResult = getCoordinatesStatement.executeQuery();
-    //             while (coordinatesResult.next()) {
-    //                 String lat = coordinatesResult.getString("shape_pt_lat");
-    //                 String lon = coordinatesResult.getString("shape_pt_lon");
-    //                 Coordinates c = new Coordinates(lat, lon);
-    //                 path.addCoordinates(c, 1);
-    //             }
+    // PathTransferStop firstStop = tripStops.get(0);
+    // PathTransferStop lastStop = tripStops.get(tripStops.size() - 1);
+    // try {
+    // Connection connection = DatabaseConnection.getConnection();
+    // // Get coordinates SQL query
+    // String getCoordinatesSQL = """
+    // select
+    // shape_pt_lat,
+    // shape_pt_lon,
+    // shape_dist_traveled
+    // from
+    // shapes
+    // where
+    // shape_id = (select shape_id from trips where trip_id = ?)
+    // and shape_dist_traveled >= (select shape_dist_traveled from stop_times where
+    // trip_id = ? and stop_id = ?)
+    // and shape_dist_traveled <= (select shape_dist_traveled from stop_times where
+    // trip_id = ? and stop_id = ?);
+    // """;
+    // PreparedStatement getCoordinatesStatement =
+    // connection.prepareStatement(getCoordinatesSQL);
+    // getCoordinatesStatement.setString(1, tripId);
+    // getCoordinatesStatement.setString(2, tripId);
+    // getCoordinatesStatement.setString(3, firstStop.getStopId());
+    // getCoordinatesStatement.setString(4, tripId);
+    // getCoordinatesStatement.setString(5, lastStop.getStopId());
 
-    //         } catch (SQLException e) {
-    //             e.printStackTrace();
-    //         }
+    // ResultSet coordinatesResult = getCoordinatesStatement.executeQuery();
+    // while (coordinatesResult.next()) {
+    // String lat = coordinatesResult.getString("shape_pt_lat");
+    // String lon = coordinatesResult.getString("shape_pt_lon");
+    // Coordinates c = new Coordinates(lat, lon);
+    // path.addCoordinates(c, 1);
+    // }
 
-    //     }
+    // } catch (SQLException e) {
+    // e.printStackTrace();
+    // }
 
-    //     // Walk to toStop
-    //     ResponsePath walkPath = GTFSEngine.walk(
-    //             toStop.getCoordinates(), CoordHandler.getCoordinates(toPostalCode));
-    //     ArrayList<Coordinates> walkCoordinates = Utils.pointListToArrayList(walkPath.getPoints());
-    //     for (Coordinates c : walkCoordinates) {
-    //         path.addCoordinates(c, 0);
-    //     }
+    // }
 
-    //     return path;
+    // // Walk to toStop
+    // ResponsePath walkPath = GTFSEngine.walk(
+    // toStop.getCoordinates(), CoordHandler.getCoordinates(toPostalCode));
+    // ArrayList<Coordinates> walkCoordinates =
+    // Utils.pointListToArrayList(walkPath.getPoints());
+    // for (Coordinates c : walkCoordinates) {
+    // path.addCoordinates(c, 0);
+    // }
+
+    // return path;
     // }
 
     private void addWalkPath(Path path, String postalCode, Stop stop) {

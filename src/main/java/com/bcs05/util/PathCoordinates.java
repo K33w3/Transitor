@@ -8,6 +8,7 @@ public class PathCoordinates extends Coordinates {
 
     private int shapeDistTraveled;
     private int type;
+    private Integer busPathColorId;
 
     /**
      * Constructs a new PathCoordinates object with the specified latitude,
@@ -21,6 +22,7 @@ public class PathCoordinates extends Coordinates {
         super(latitude, longitude);
         this.shapeDistTraveled = shapeDistTraveled;
         this.type = type;
+        busPathColorId = null;
     }
 
     /**
@@ -34,5 +36,13 @@ public class PathCoordinates extends Coordinates {
 
     public int getType() {
         return type;
+    }
+
+    public Integer getBusPathColorId() {
+        return busPathColorId;
+    }
+
+    public void setBusPathColorId(Integer busPathColorId) {
+        this.busPathColorId = busPathColorId;
     }
 }

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-  <!-- APIs for the map implementation -->
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="styles.css" />
@@ -19,7 +18,6 @@
         <div class="logo-container">
           <h1>Transport Planner</h1>
         </div>
-        <!-- Input fields for the postal codes and the plan route button -->
         <div class="top-bar">
           <div class="input-container">
             <input
@@ -33,13 +31,11 @@
               <button id="swap-button" onclick="swapInputs()"></button>
             </div>
           </div>
-          <!-- Slider for choosing the range of the GTFS related searches -->
           <div class="slider-container">
             <label for="range-slider">Range:</label>
             <input type="range" id="range-slider" min="1" max="50" value="10" />
           </div>
         </div>
-        <!-- Transportation buttons options -->
         <div class="transportation-options">
           <button onclick="selectMode('foot')">Walking</button>
           <button onclick="selectMode('bike')">Biking</button>
@@ -55,7 +51,6 @@
       </div>
       <div id="map-container">
         <div id="map"></div>
-        <!-- Toggle button for the map and the accessibility information -->
         <div class="toggle-container" onclick="toggleOverlay()">
           <div id="toggle-slider" class="toggle-slider left"></div>
           <div class="toggle-label left">Map</div>
@@ -63,21 +58,68 @@
         </div>
         <div id="overlay"></div>
       </div>
-      <!-- Accessibility information panel -->
       <div id="accessibility-panel">
         <h2>Accessibility Information</h2>
-        <p>Details about accessible routes and facilities.</p>
-        <div class="pie-chart-container">
-          <div class="pie-chart">
-            <div class="pie-chart-segment segment-1"></div>
-            <div class="pie-chart-segment segment-2"></div>
-            <div class="pie-chart-segment segment-3"></div>
-            <div class="pie-chart-segment segment-4"></div>
-          </div>
+        <div class="metric-formula">
+          <p><strong>Accessibility Metric</strong></p>
+          <p>
+            <span class="variable">A<sub>i</sub></span> = &#8721;<sub>j=1</sub><sup>n</sup> <span class="variable">W<sub>jk</sub></span> f(<span class="variable">c<sub>ij</sub></span>)
+          </p>
+          <ul>
+            <li><span class="variable">A<sub>i</sub></span>: Accessibility score for postal code <span class="variable">i</span>.</li>
+            <li><span class="variable">W<sub>jk</sub></span>: Weight assigned to service <span class="variable">j</span> within category <span class="variable">k</span>.</li>
+            <li>f(<span class="variable">c<sub>ij</sub></span>): Accessibility measure from postal code <span class="variable">i</span> to service <span class="variable">j</span>.</li>
+            <li><span class="variable">n</span>: Total number of services considered.</li>
+          </ul>
         </div>
+        
+        <div class="pie-chart-container">
+          <div class="pie-chart"></div>
+        </div>          
+        <h3>Accessibility Score Color Legend</h3>     
+        <div class="legend-container">
+          <div class="legend-item">
+            <span class="legend-color" style="background-color: red;"></span>
+            0 - 20
+          </div>
+          <div class="legend-item">
+            <span class="legend-color" style="background-color: orange;"></span>
+            21 - 50
+          </div>
+          <div class="legend-item">
+            <span class="legend-color" style="background-color: yellow;"></span>
+            51 - 100
+          </div>
+          <div class="legend-item">
+            <span class="legend-color" style="background-color: lightgreen;"></span>
+            101 - 150
+          </div>
+          <div class="legend-item">
+            <span class="legend-color" style="background-color: green;"></span>
+            151 - 200
+          </div>
+          <div class="legend-item">
+            <span class="legend-color" style="background-color: lightblue;"></span>
+            201 - 300
+          </div>
+          <div class="legend-item">
+            <span class="legend-color" style="background-color: blue;"></span>
+            301 - 400
+          </div>
+          <div class="legend-item">
+            <span class="legend-color" style="background-color: purple;"></span>
+            401 - 500
+          </div>
+          <div class="legend-item">
+            <span class="legend-color" style="background-color: darkmagenta;"></span>
+            501 - 600
+          </div>
+          <div class="legend-item">
+            <span class="legend-color" style="background-color: black;"></span>
+            601+
+          </div>
+        </div>       
       </div>
-
-      <!-- Route details panel -->
       <div id="route-details-container" style="display: none">
         <h2 id="route-name">Route Name</h2>
         <p id="route-time">Time: 0 mins</p>

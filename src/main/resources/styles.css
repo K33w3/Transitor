@@ -594,47 +594,64 @@ body {
     position: relative;
     margin: 20px auto;
 }
-
+  
 .pie-chart {
     width: 100%;
     height: 100%;
     border-radius: 50%;
+    position: relative;
     clip: rect(0, 100px, 100px, 50px);
-    background: #1abc9c;
-    position: absolute;
 }
-
+  
 .pie-chart .pie-chart-segment {
     position: absolute;
     width: 100px;
     height: 100px;
     border-radius: 50%;
     clip: rect(0, 50px, 100px, 0);
-    animation: loadSegment 1s ease forwards;
+    transform-origin: center center;
 }
 
-.pie-chart .segment-1 {
-    background: #1abc9c;
-    transform: rotate(0deg);
+.pie-chart .segment-0-20 {
+    background-color: red;
+}
+  
+.pie-chart .segment-21-50 {
+    background-color: orange;
+}
+  
+.pie-chart .segment-51-100 {
+    background-color: yellow;
+}
+  
+.pie-chart .segment-101-150 {
+    background-color: lightgreen;
+}
+  
+.pie-chart .segment-151-200 {
+    background-color: green;
+}
+  
+.pie-chart .segment-201-300 {
+    background-color: lightblue;
+}
+  
+.pie-chart .segment-301-400 {
+    background-color: blue;
+}
+  
+.pie-chart .segment-401-500 {
+    background-color: purple;
+}
+  
+.pie-chart .segment-501-600 {
+    background-color: magenta;
+}
+  
+.pie-chart .segment-601-plus {
+    background-color: black;
 }
 
-.pie-chart .segment-2 {
-    background: #3498db;
-    transform: rotate(90deg);
-    animation-delay: 0.5s;
-}
-
-.pie-chart .segment-3 {
-    background: #9b59b6;
-    transform: rotate(180deg);
-    animation-delay: 1s;
-}
-
-.pie-chart .segment-4 {
-    background: #e74c3c;
-    transform: rotate(270deg);
-    animation-delay: 1.5s;
-}
 
 @keyframes loadSegment {
     0% {
@@ -643,4 +660,41 @@ body {
     100% {
         transform: rotate(90deg);
     }
+}
+
+#accessibility-panel p {
+    margin-bottom: 10px;
+    }    
+
+.metric-formula {
+    margin-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 5px;
+    background-color: #34495e;
+    border-radius: 5px;
+    color: #ecf0f1;
+    font-size: 14px;
+}
+
+.metric-formula .variable {
+font-style: italic;
+color: #ffce00;
+}
+
+.legend-container {
+padding-left: 20px;
+}
+
+.legend-item {
+display: flex;
+align-items: center;
+margin-bottom: 10px;
+}
+
+.legend-color {
+width: 20px;
+height: 20px;
+display: inline-block;
+margin-right: 10px;
+border: 1px solid #000;
 }
